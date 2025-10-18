@@ -1,1 +1,0 @@
-import "./github-box.less";

@@ -1,1 +1,0 @@
-import "./ribbon.less";

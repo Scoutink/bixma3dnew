@@ -1,1 +1,0 @@
-import "./social-box.less";
