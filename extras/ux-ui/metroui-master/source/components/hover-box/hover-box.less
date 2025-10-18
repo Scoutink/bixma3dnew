@@ -1,0 +1,36 @@
+:root {
+    --hover-box-effect-color: hsl(from var(--color-light-nude) h s l);
+    --hover-box-k: 6;
+}
+
+.dark-side {
+    --hover-box-effect-color: hsla(234,78%,62%, 0.26);
+}
+
+.hover-box {
+    --x: 0;
+    --y: 0;
+    --size: 0;
+    position: relative;
+    overflow: hidden;
+    border-color: var(--hover-box-effect-color);
+    transition: border-color .5s ease;
+    
+    @media (hover: hover) {
+        &:hover {
+            border-color: var(--hover-box-effect-color);
+            &::before {
+                content: "";
+                position: absolute;
+                left: var(--x);
+                top: var(--y);
+                width: calc(var(--hover-box-k) * var(--size));
+                height: calc(var(--hover-box-k) * var(--size));
+                background: radial-gradient(var(--hover-box-effect-color), transparent 40%);
+                transform: translate(-50%, -50%);
+                transition: width .2s ease, height .2s ease;
+                pointer-events: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,118 @@
+@import (once) "../../include/vars";
+
+:root {
+    --info-button-font-size: 14px;
+    --info-button-border-radius: 4px;
+    --info-button-border-color: var(--border-color);
+    --info-button-background: #F8F8F8;
+    --info-button-color: #191919;
+    --info-button-background-secondary: #ffffff;
+    --info-button-color-secondary: #000000;
+    --info-button-background-hover: #dcdcdc;
+    --info-button-color-hover: #474747;
+}
+
+.dark-side {
+    --info-button-background: #2e2e2e;
+    --info-button-color: #F8F8F8;
+    --info-button-background-secondary: var(--default-background);
+    --info-button-color-secondary: var(--default-color);
+    --info-button-background-hover: #373737;
+    --info-button-color-hover: #bfbfbf;
+}
+
+.info-button {
+    --control-height: var(--control-height-normal);
+    border: 1px solid var(--border-color);
+    border-radius: var(--info-button-border-radius);
+    background: var(--info-button-background);
+    color: var(--info-button-color);
+    overflow: hidden;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    height: var(--control-height);
+    font-size: var(--info-button-font-size);
+    text-decoration: none;
+    line-height: 1;
+    transition: @transition-short;
+    padding: 0;
+    cursor: pointer;
+    gap: 0;
+
+    .title, .value {
+        font-size: inherit;
+        font-weight: 400;
+        text-decoration: none;
+        height: 100%;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        padding: 0 calc(var(--control-height) / 3 + 0px);
+        margin: 0;
+        color: inherit;
+        transition: @transition-speed;
+    }
+
+    .value {
+        background: var(--info-button-background-secondary);
+        color: var(--info-button-color-secondary);
+        font-size: calc(var(--info-button-font-size) * 0.9);
+        font-weight: 500;
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            background: var(--info-button-background-hover);
+            color: var(--info-button-color-hover);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            background: var(--info-button-background-hover);
+            color: var(--info-button-color-hover);
+        }
+    }
+}
+
+each(@accentColors, {
+    @color: "@{value}Color";
+    @dark-color: "@{value}ColorDark";
+
+    .info-button.@{value} {
+        .title {
+            background: @@color;
+            color: #ffffff;
+        }
+        &:hover {
+            .title {
+                background: @@dark-color!important;
+            }
+        }
+    }
+})
+
+.info-button {
+    &.mini {
+        --control-height: var(--control-height-mini);
+        --info-button-font-size: 10px;
+    }
+    &.small {
+        --control-height: var(--control-height-small);
+        --info-button-font-size: 12px;
+    }
+    &.medium {
+        --control-height: var(--control-height-medium);
+        --info-button-font-size: 14px;
+    }
+    &.large {
+        --control-height: var(--control-height-large);
+        --info-button-font-size: 18px;
+    }
+    &.largest {
+        --control-height: var(--control-height-largest);
+        --info-button-font-size: 24px;
+    }
+}

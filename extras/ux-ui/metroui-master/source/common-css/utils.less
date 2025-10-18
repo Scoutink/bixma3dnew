@@ -1,0 +1,110 @@
+@import (once) "../include/vars";
+@import (once) "../include/mixins";
+
+:root {
+}
+
+.dark-side {
+
+}
+
+.transition {
+    transition: all .3s linear;
+}
+
+.inherit-colors {
+    background-color: inherit!important;
+    color: inherit!important;
+}
+
+.inherit-background {
+    background-color: inherit!important;
+}
+
+.inherit-color {
+    color: inherit!important;
+}
+
+.clear, .clear-fix, .clearfix {
+    .clear()
+}
+
+.overflow {overflow: auto !important;}
+.no-overflow {overflow: hidden !important;}
+.scroll {overflow: scroll !important;}
+.scroll-x {overflow-x: auto !important;}
+.scroll-y {overflow-y: auto !important;}
+.no-scroll {overflow: hidden !important;}
+.no-scroll-x {overflow-x: hidden !important;}
+.no-scroll-y {overflow-y: hidden !important;}
+.wrap {white-space: normal !important;}
+.no-wrap {white-space: nowrap !important;}
+.no-user-select {user-select: none !important;}
+.no-appearance {appearance: none !important;}
+
+.collapse {
+    .collapse();
+}
+
+.expand {
+    .expand();
+}
+
+.selected {
+    box-shadow: 0 0 0 4px var(--selected-color)!important;
+    border-radius: 6px;
+
+    &::after {
+        position: absolute;
+        display: block;
+        border-top: 22px solid var(--selected-color);
+        border-left: 22px solid transparent;
+        right: -1px;
+        content:"";
+        top: -1px;
+        z-index: @zindex-selectedCheck;
+    }
+
+    &::before {
+        position: absolute;
+        display: block;
+        content: "";
+        background-color: transparent;
+        border-color: #fff!important;
+        border-left: 2px solid;
+        border-bottom: 2px solid;
+        height: .325rem;
+        width: .5rem;
+        right: .25rem;
+        top: .25rem;
+        z-index: 102;
+        transform: rotate(-45deg);
+    }
+}
+
+.disabled, .-disabled {
+    pointer-events: none!important;
+}
+
+.stop-pointer {
+    pointer-events: none;
+    user-select: none;
+}
+
+each(@media-rules, {
+    @container (min-width: @value) {
+        .overflow-@{key} {overflow: auto !important;}
+        .no-overflow-@{key} {overflow: hidden !important;}
+        .scroll-@{key} {overflow: scroll !important;}
+        .scroll-x-@{key} {overflow-x: auto !important;}
+        .scroll-y-@{key} {overflow-y: auto !important;}
+        .no-scroll-@{key} {overflow: hidden !important;}
+        .no-scroll-x-@{key} {overflow-x: hidden !important;}
+        .no-scroll-y-@{key}{overflow-y: hidden !important;}
+        .wrap-@{key} {white-space: normal !important;}
+        .no-wrap-@{key} {white-space: nowrap !important;}
+
+        .collapse-@{key} {.collapse();}
+        .expand-@{key} {.expand();}
+    }
+})

@@ -1,0 +1,48 @@
+@import "../include/vars"; 
+
+:root {
+    --stroke-width: 1px;
+}
+
+each(@simpleColors, {
+    .stroke-@{value} {
+        color: transparent;
+        -webkit-text-stroke: var(--stroke-width) @@value;
+        text-stroke: var(--stroke-width) @@value;
+    }
+})
+
+each(@normalColors, {
+    @dark-color: "dark-@{value}";
+    @light-color: "light-@{value}";
+    @minor-color: "minor-@{value}";
+    @sat-color: "sat-@{value}";
+
+    .stroke-light-@{value} {
+        color: transparent;
+        -webkit-text-stroke: var(--stroke-width) @@light-color;
+        text-stroke: var(--stroke-width) @@light-color;
+    }
+    .stroke-minor-@{value} {
+        color: transparent;
+        -webkit-text-stroke: var(--stroke-width) @@minor-color;
+        text-stroke: var(--stroke-width) @@minor-color;
+    }
+
+    .stroke-@{value} {
+        color: transparent;
+        -webkit-text-stroke: var(--stroke-width) @@value;
+        text-stroke: var(--stroke-width) @@value;
+    }
+
+    .stroke-sat-@{value} {
+        color: transparent;
+        -webkit-text-stroke: var(--stroke-width) @@sat-color;
+        text-stroke: var(--stroke-width) @@sat-color;
+    }
+    .stroke-dark-@{value} {
+        color: transparent;
+        -webkit-text-stroke: var(--stroke-width) @@dark-color;
+        text-stroke: var(--stroke-width) @@dark-color;
+    }
+})

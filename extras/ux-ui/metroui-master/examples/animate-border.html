@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-side">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link href="../lib/metro.css" rel="stylesheet">
+
+    <title>Animate Border - Metro UI :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="cloak h-100-vh">
+    <div class="container h-100 d-flex flex-center">
+        <div class="box d-flex flex-column gap-2" style="width: 300px;">
+            <button class="button gradient-border">Button</button>
+            <button class="button gradient-border animated-border-hover">Button</button>
+            <button class="button gradient-border animated-border-red">Button</button>
+            <button class="button gradient-border" style="--gradient-border-colors: var(--color-violet), var(--color-cyan), var(--color-violet)">Button</button>
+
+            <div class="box text-center gradient-border">Box</div>
+            <div class="box text-center gradient-border animated-border">Button</div>
+            <div class="box text-center gradient-border gradient-border-red animated-border">Button</div>
+            <div class="box text-center gradient-border" style="--gradient-border-colors: var(--color-violet), var(--color-cyan), var(--color-violet)">Button</div>
+        </div>
+    </div>
+<script src="../lib/metro.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --sidenav-counter-width: 220px;
+    --sidenav-counter-border-radius: 4px;
+}
+
+:root {
+    --sidenav-counter-background: #f6f6f6;
+    --sidenav-counter-color: #191919;
+    --sidenav-counter-icon-color: #191919;
+    --sidenav-counter-counter-color: #191919;
+    --sidenav-counter-background-hover: #cecece;
+    --sidenav-counter-color-hover: #0a0a0a;
+    --sidenav-counter-background-active: #68a3ff;
+    --sidenav-counter-color-active: #ffffff;
+}
+
+.dark-side {
+    --sidenav-counter-background: #2b2d30;
+    --sidenav-counter-color: #dfe1e5;
+    --sidenav-counter-icon-color: #dfe1e5;
+    --sidenav-counter-counter-color: #dfe1e5;
+    --sidenav-counter-background-hover: #43454a;
+    --sidenav-counter-color-hover: #ffffff;
+    --sidenav-counter-background-active: #468cff;
+    --sidenav-counter-color-active: #ffffff;
+}
+
+.sidenav-counter {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    list-style: none inside;
+    height: 100%;
+    width: 60px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0 6px;
+    background-color: var(--sidenav-counter-background);
+    color: var(--sidenav-counter-color);
+
+    .hideScrollBars();
+}
+
+.sidenav-counter {
+    li, a {
+        display: block;
+        position: relative;
+        height: 52px;
+        line-height: 52px;
+        background-color: inherit;
+        color: inherit;
+        width: 100%;
+        border-radius: var(--sidenav-counter-border-radius);
+    }
+
+    a {
+        padding: .625rem 0 .625rem 0;
+        line-height: .875rem;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .icon {
+        .square(28, px);
+        font-size: 26px;
+        line-height: 28px;
+        vertical-align: middle;
+        text-align: center;
+        position: absolute;
+        left: .625rem;
+        top: .635rem;
+        color: var(--sidenav-counter-icon-color);
+    }
+
+    .title, .counter {
+        display: block;
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    .title {
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: none;
+    }
+
+    .counter {
+        font-size: .8rem;
+        font-weight: normal;
+        position: absolute;
+        top: 0;
+        right: 4px;
+        color: var(--sidenav-counter-counter-color);
+    }
+
+
+    li:hover {
+        background-color: var(--sidenav-counter-background-hover);
+        color: var(--sidenav-counter-color-hover);
+    }
+
+    li.active {
+        background-color: var(--sidenav-counter-background-active);
+        color: var(--sidenav-counter-color-active);
+    }
+}
+
+.sidenav-counter[dir=rtl] {
+    .counter {
+        right: auto;
+        left: 4px;
+    }
+
+    .icon {
+        left: .725rem;
+    }
+}
+
+.sidenav-counter.expanded {
+    width: var(--sidenav-counter-width);
+
+    a {
+        padding: .625rem 1rem .625rem 3.75rem;
+    }
+
+    .title {
+        display: block;
+    }
+
+    .counter {
+        position: relative;
+        top: auto;
+        right: auto;
+    }
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+    <link href="../lib/icons.css" rel="stylesheet">
+
+    <title>Test dialog - Metro UI :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="cloak">
+<nav data-role="appbar">
+    <span class="app-bar-item">Dialog</span>
+    <div class="app-bar-item no-hover">
+        <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Dialog test page</h1>
+    <button class="button" onclick="OpenDialog()">Open dialog</button>
+    <button class="button" onclick="LoadDialog()">Load dialog</button>
+    <div  data-role="dialog"
+            data-overlay="true"
+            data-close-button="true"
+            data-overlay-click-close="true"
+            id="dialog"></div>
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+    var customButtons = [
+        {
+            text: "Yes, of course!",
+            cls: "js-dialog-close alert",
+            onclick: async function(){
+                const res = await fetch(postRef, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                window.location.reload()
+            }
+        },
+        {
+            text: "No, cancel",
+            cls: "js-dialog-close",
+            onclick: function(){
+            }
+        }
+    ]
+    
+    function OpenDialog() {
+        Metro.dialog.create({
+            title: "Dialog title",
+            content: "Do you want to continue?",
+            closeButton: true,
+            defaultActions: false,
+            customButtons,
+        })
+    }
+    
+    function LoadDialog() {
+        const content = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. A delectus dignissimos dolore error, est excepturi facilis fuga nesciunt nulla quibusdam quisquam reprehenderit, voluptate. Aliquid ea, inventore iste labore necessitatibus nihil?`
+        var dialog = Metro.getPlugin('#dialog', 'dialog');
+        dialog.setTitle('<span class="mif-calendar icon"></span>My Dialog Title');
+        dialog.setContent(content);
+        dialog.open();
+    }
+</script>
+</body>
+</html>

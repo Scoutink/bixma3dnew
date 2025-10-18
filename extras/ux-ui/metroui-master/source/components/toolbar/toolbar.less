@@ -1,0 +1,145 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --tool-button-border-radius: 4px;
+    --tool-button-background: #F8F8F8;
+    --tool-button-color: #191919;
+    --tool-button-background-hover: #dcdcdc;
+    --tool-button-color-hover: #474747;
+    --tool-button-border-color: #E8E8E8;
+}
+
+.dark-side {
+    --tool-button-background: #2e2e2e;
+    --tool-button-color: #F8F8F8;
+    --tool-button-background-hover: #373737;
+    --tool-button-color-hover: #bfbfbf;
+    --tool-button-border-color: #4A4D51;
+}
+
+.tool-button {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--tool-button-background);
+    color: var(--tool-button-color);
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: var(--tool-button-border-radius);
+    transition: @transition-base;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    margin: 0 2px;
+    position: relative;
+    font-size: 14px;
+
+    [class*=mif], .icon, img {
+        height: 16px;
+        width: 16px;
+        font-size: 16px;
+    }
+
+    &.text-button {
+        width: auto;
+        padding-left: .5rem;
+        padding-right: .5rem;
+    }
+
+    &:focus, &:hover {
+        text-decoration: none;
+    }
+
+    &:active {
+        outline: 0;
+        box-shadow: none;
+    }
+
+    &.outline {
+        background: transparent none;
+        border-width: 1px;
+        border-color: var(--tool-button-border-color);
+    }
+
+    &:hover {
+        background: var(--tool-button-background-hover);
+        color: var(--tool-button-color-hover);
+    }
+
+    &.disabled, &:disabled {
+        opacity: .65;
+    }
+    
+    &.w-auto {
+        padding: 0 8px;
+    }
+}
+
+.toolbar {
+    display: inline-flex;
+    position: relative;
+    padding: 0;
+    flex-flow: row nowrap;
+
+    &.no-divider {
+        &::before {
+            display: none;
+        }
+    }
+
+    &::before {
+        position: absolute;
+        content: "";
+        width: 4px;
+        height: 32px;
+        top: 0;
+        left: 0;
+        background: var(--tool-button-background);
+        cursor: default;
+        display: none;
+    }
+
+    &::after {
+        content: attr(data-caption);
+        position: absolute;
+        left: 2px;
+        bottom: 100%;
+        font-size: 8px;
+        text-transform: uppercase;
+    }
+
+    &.movable {
+        padding-left: 6px;
+        &::before {
+            display: block;
+            cursor: move;
+        }
+    }
+
+    &.vertical {
+        flex-flow: column nowrap;
+        padding: .5725rem 0 0 0;
+        width: 32px;
+        margin-left: 0;
+        margin-top: 4px;
+
+        &::before {
+            width: 32px;
+            height: 4px;
+        }
+
+        // TODO Need test this
+        &::after {
+            transform: rotate(-90deg);
+            right: 100%;
+            top: auto;
+        }
+
+        .tool-button {
+            margin: 2px 0;
+        }
+    }
+}

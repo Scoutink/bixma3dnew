@@ -1,0 +1,130 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --textarea-color: #191919;
+    --textarea-border-color: var(--border-color);
+    --textarea-font-size: 14px;
+    --textarea-border-radius: 4px;
+}
+
+.dark-side {
+    --textarea-color: #dbdfe7;
+    --textarea-border-color: #444444;
+}
+
+.textarea, textarea {
+    height: auto;
+}
+
+textarea {
+    line-height: 1.2;
+    width: 100%;
+}
+
+.textarea {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    background: var(--input-background);
+    border-radius: var(--textarea-border-radius);
+
+    .fake-textarea {
+        opacity: 0;
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        font-size: var(--textarea-font-size);
+    }
+
+    textarea {
+        appearance: none;
+        display: block;
+        outline: none;
+        padding: 6px 6px 0;
+        resize: none;
+        border: none!important;
+        transition: height .1s linear;
+        font-size: var(--textarea-font-size);
+        background: transparent;
+        color: var(--textarea-color);
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    &.no-scroll-vertical textarea{
+        overflow-y: hidden!important;
+    }
+
+    .button {
+        color: var(--textarea-color);
+        width: 32px;
+        height: 32px;
+    }
+    
+    .input-clear-button {
+        font-family: var(--font-family-icon);
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        z-index: 2;
+        background-color: transparent;
+    }
+
+    &:not(.no-scroll-vertical) {
+        .input-clear-button {
+            right: 18px;
+        }
+    }
+
+    &.disabled {
+        .clear-button {
+            display: none;
+        }
+    }
+
+    .prepend {order: 1}
+    .append {order: 3}
+    textarea {order: 2;}
+
+    .input-clear-button ~ textarea {
+        padding-right: 48px;
+    }
+    
+    .prepend {
+        border-top-left-radius: var(--textarea-border-radius);
+        border-bottom-left-radius: var(--textarea-border-radius);
+    }
+    
+    .append {
+        border-top-right-radius: var(--textarea-border-radius);
+        border-bottom-right-radius: var(--textarea-border-radius);
+    }
+}
+
+.textarea {
+    &[dir=rtl], &.rtl {
+
+        flex-direction: row-reverse;
+
+        .prepend {order: 3;}
+        .append {order: 1;}
+        textarea {order: 2;}
+
+        .input-clear-button {
+            right: auto;
+            left: .25rem;
+        }
+
+        .input-clear-button ~ textarea {
+            padding-left: 48px;
+            padding-right: .75rem;
+        }
+    }
+}

@@ -1,0 +1,72 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --spinner-border-radius: 4px;
+}
+
+.dark-side {
+
+}
+
+.spinner {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 4px;
+    cursor: text;
+    position: relative;
+    height: var(--input-height, 36px);
+    border-radius: var(--spinner-border-radius);
+
+    input {
+        border: none!important;
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        line-height: var(--input-height, 36px);
+        font-size: var(--input-font-size);
+        padding: 0 4px!important;
+        text-align: center;
+        &:focus {
+            box-shadow: none!important;
+        }
+    }
+
+    .button {
+        height: calc(100% - 4px);
+        aspect-ratio: 1;
+        text-align: center;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 14px;
+        padding: 0;
+        user-select: none;
+    }
+
+    .spinner-button-plus {order: 3}
+    .spinner-button-minus {order: 1}
+    input {order: 2}
+
+    &.buttons-left {
+        .spinner-button-plus {order: 2; margin-left: 2px;}
+        .spinner-button-minus {order: 1}
+        input {order: 3; text-align: right;}
+    }
+    &.buttons-right {
+        .spinner-button-plus {order: 3; margin-left: 2px;}
+        .spinner-button-minus {order: 2}
+        input {order: 1; text-align: left;}
+    }
+
+    &.pill-input {
+        --spinner-border-radius: calc(var(--input-height) * 0.44);
+
+        .button {
+            border-radius: 50%;
+        }
+    }
+}

@@ -1,0 +1,69 @@
+@import (once) "../include/vars";
+
+:root {
+    --ribbed-size: 20px;
+    --ribbed-alpha: .15;
+    --ribbed-angle: -45deg;
+}
+
+each(@normalColors, {
+    @lightColor: "light-@{value}";
+    @minorColor: "minor-@{value}";
+    @darkColor: "dark-@{value}";
+    @satColor: "sat-@{value}";
+    
+    .ribbed-@{value} {
+        background: @@value
+        linear-gradient(var(--ribbed-angle), rgba(255,255,255,var(--ribbed-alpha)) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255,255,255,var(--ribbed-alpha)) 50%,
+        rgba(255,255,255,var(--ribbed-alpha)) 75%,
+        transparent 75%, transparent) !important;
+        background-size: var(--ribbed-size) var(--ribbed-size) !important;
+    }
+    
+    .ribbed-light-@{value} {
+        background: @@lightColor
+        linear-gradient(var(--ribbed-angle), rgba(255,255,255,var(--ribbed-alpha)) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255,255,255,var(--ribbed-alpha)) 50%,
+        rgba(255,255,255,var(--ribbed-alpha)) 75%,
+        transparent 75%, transparent) !important;
+        background-size: var(--ribbed-size) var(--ribbed-size) !important;
+    }
+    
+    .ribbed-minor-@{value} {
+        background: @@minorColor
+        linear-gradient(var(--ribbed-angle), rgba(255,255,255,var(--ribbed-alpha)) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255,255,255,var(--ribbed-alpha)) 50%,
+        rgba(255,255,255,var(--ribbed-alpha)) 75%,
+        transparent 75%, transparent) !important;
+        background-size: var(--ribbed-size) var(--ribbed-size) !important;
+    }
+    
+    .ribbed-sat-@{value} {
+        background: @@satColor
+        linear-gradient(var(--ribbed-angle), rgba(255,255,255,var(--ribbed-alpha)) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255,255,255,var(--ribbed-alpha)) 50%,
+        rgba(255,255,255,var(--ribbed-alpha)) 75%,
+        transparent 75%, transparent) !important;
+        background-size: var(--ribbed-size) var(--ribbed-size) !important;
+    }
+    
+    .ribbed-dark-@{value} {
+        background: @@darkColor
+        linear-gradient(var(--ribbed-angle), rgba(255,255,255,var(--ribbed-alpha)) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255,255,255,var(--ribbed-alpha)) 50%,
+        rgba(255,255,255,var(--ribbed-alpha)) 75%,
+        transparent 75%, transparent) !important;
+        background-size: var(--ribbed-size) var(--ribbed-size) !important;
+    }
+})

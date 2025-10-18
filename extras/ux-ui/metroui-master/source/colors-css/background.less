@@ -1,0 +1,62 @@
+@import (once) "../include/vars";
+
+.bg-transparent {
+    background-color: @transparent !important;
+}
+
+.bg-default {
+    background-color: var(--default-background)!important;
+    color: var(--default-color)!important;
+}
+
+.bg-hover:hover {background-color: @hoverBackground !important;}
+
+.bg-facebook {background-color: #4267b2!important; color: #ffffff !important;}
+.bg-twitter {background-color: #1DA1F2!important; color: #ffffff !important;}
+.bg-github {background-color: #24292e!important; color: #ffffff !important;}
+.bg-bootstrap {background-color: #563d7c!important; color: #ffffff !important;}
+.bg-gitlab {background-color: #e65328!important; color: #ffffff !important;}
+.bg-amazon {background-color: #232f3e!important; color: #ffffff !important;}
+
+each(@colors, {
+    .bg-@{value} {background-color: @@value !important;}
+    .bg-@{value}-active {&:active {background-color: @@value !important;}}
+    .bg-@{value}-hover {&:hover {background-color: @@value !important;}}
+    .bg-@{value}-focus {&:focus {background-color: @@value !important;}}
+})
+
+each(@normalColors, {
+    @lightColor: "light-@{value}";
+    @minorColor: "minor-@{value}";
+    @darkColor: "dark-@{value}";
+    @satColor: "sat-@{value}";
+    
+    .bg-light-@{value} {background-color: @@lightColor !important;}
+    .bg-light-@{value}-active {&:active {background-color: @@lightColor !important;}}
+    .bg-light-@{value}-hover {&:hover {background-color: @@lightColor !important;}}
+    .bg-light-@{value}-focus {&:focus {background-color: @@lightColor !important;}}
+
+    .bg-minor-@{value} {background-color: @@minorColor !important;}
+    .bg-minor-@{value}-active {&:active {background-color: @@minorColor !important;}}
+    .bg-minor-@{value}-hover {&:hover {background-color: @@minorColor !important;}}
+    .bg-minor-@{value}-focus {&:focus {background-color: @@minorColor !important;}}
+
+    .bg-sat-@{value} {background-color: @@satColor !important;}
+    .bg-sat-@{value}-active {&:active {background-color: @@satColor !important;}}
+    .bg-sat-@{value}-hover {&:hover {background-color: @@satColor !important;}}
+    .bg-sat-@{value}-focus {&:focus {background-color: @@satColor !important;}}
+
+    .bg-dark-@{value} {background-color: @@darkColor !important;}
+    .bg-dark-@{value}-active {&:active {background-color: @@darkColor !important;}}
+    .bg-dark-@{value}-hover {&:hover {background-color: @@darkColor !important;}}
+    .bg-dark-@{value}-focus {&:focus {background-color: @@darkColor !important;}}
+})
+
+:root {
+    --gm-value: 16px;
+}
+
+.bg-glassmorphism {
+    background-color: rgba(255, 255, 255, 0.1)!important;
+    backdrop-filter: blur(var(--gm-value))!important;
+}

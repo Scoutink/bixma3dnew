@@ -1,0 +1,134 @@
+:root {
+    --catalog-menu-width: 272px;
+    --catalog-menu-chevron: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 6'%3E%3Cpath d='M5.5 6L11 .7l-.73-.7L5.5 4.6.73 0 0 .7z' fill='%23595959'/%3E%3C/svg%3E");
+    --catalog-menu-background: #ffffff;
+    --catalog-menu-color: #191919;
+    --catalog-menu-border-color: #c5c5c5;
+    --catalog-menu-item-background-hover: #e8e8e8;
+    --catalog-menu-item-color-hover: #000000;
+}
+
+.dark-side {
+    --catalog-menu-chevron: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 6'%3E%3Cpath d='M5.5 6L11 .7l-.73-.7L5.5 4.6.73 0 0 .7z' fill='%23e0e0e0'/%3E%3C/svg%3E");
+    --catalog-menu-background: #2b2d30;
+    --catalog-menu-color: #f3fcff;
+    --catalog-menu-border-color: #2b2d30;
+    --catalog-menu-item-background-hover: #1e1f22;
+    --catalog-menu-item-color-hover: #ffffff;    
+}
+
+.catalog-menu {
+    --catalog-content-width: 0;
+
+    position: relative;
+    display: block;
+    width: var(--catalog-menu-width);
+    background: var(--catalog-menu-background);
+    color: var(--catalog-menu-color);
+    border: 1px solid var(--catalog-menu-border-color);
+    padding: 8px 0;
+    isolation: isolate;
+    flex-shrink: 0;
+    flex-grow: 0;
+    
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: var(--catalog-content-width);
+        height: calc(100% + 2px);
+        display: none;
+        z-index: -1;
+        background: var(--catalog-menu-background);
+        border: 1px solid var(--catalog-menu-border-color);
+    }
+}
+
+.catalog-menu {
+    
+    & > .catalog-list, & > ul {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: flex-start;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        color: inherit;
+        width: 100%;
+
+        & > .catalog-item, & > li {
+            display: block;
+            width: 100%;
+            cursor: pointer;
+            color: inherit;
+            border-radius: 4px;
+            
+            a {
+                display: flex;
+                align-items: center;
+                font-size: 13px;
+                font-weight: 400;
+                color: inherit;
+                text-decoration: none;
+                letter-spacing: .15px;
+                position: relative;
+                height: 28px;
+                padding: 0 16px 0 8px;
+                margin: 0 8px;
+                border-radius: 4px;
+                
+                .icon {
+                    width: 16px;
+                    height: 16px;
+                    line-height: 16px;
+                    font-size: 16px;
+                    opacity: 1;
+                    margin-right: 8px;
+                    object-fit: cover;
+                }
+                
+                &::after {
+                    content: "";
+                    position: absolute;
+                    background-image: var(--catalog-menu-chevron);
+                    top: calc(50% - 3px);
+                    transform: rotate(270deg);
+                    width: 11px;
+                    height: 6px;
+                    right: 4px;
+                }
+            }
+            
+            .catalog-item-content {
+                display: none;
+                position: absolute;
+                left: calc(100% - 1px);
+                top: -1px;
+                width: calc(var(--catalog-content-width) - var(--catalog-menu-width) + 2px); 
+                background-color: var(--catalog-menu-background);
+                border: 1px solid var(--catalog-menu-border-color);
+                z-index: 2;
+                padding: 8px;
+                height: calc(100% + 2px);
+            }
+            
+            @media (hover: hover) {
+                &:hover {
+                    a {
+                        background-color: var(--catalog-menu-item-background-hover);
+                        color: var(--catalog-menu-item-color-hover);
+                    }
+                    
+                    .catalog-item-content {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.catalog-menu {
+}

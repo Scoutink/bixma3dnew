@@ -1,0 +1,113 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --command-button-border-radius: 6px;
+    --command-button-background: #F8F8F8;
+    --command-button-color: #191919;
+    --command-button-background-hover: #eaeaea;
+    --command-button-color-hover: #000000;
+}
+
+.dark-side {
+    --command-button-background: #2e2e2e;
+    --command-button-color: #F8F8F8;
+    --command-button-background-hover: #4b4b4b;
+    --command-button-color-hover: #F8F8F8;
+}
+
+.command-button {
+    padding: .5rem .75rem;
+    display: inline-flex;
+    align-items: center;
+    transition: @transition-short;
+    background: var(--command-button-background);
+    color: var(--command-button-color);
+    cursor: pointer;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: var(--command-button-border-radius);
+    outline: none;
+    position: relative;
+    font-weight: 500;
+    margin: .5rem;
+    height: auto;
+
+    &:first-child {
+        margin-left: 0;
+    }
+    &:last-child {
+        margin-right: 0;
+    }
+
+    .icon, .caption {
+        transition: @transition-base;
+    }
+
+    .icon {
+        width: 43px;
+        height: 43px;
+        line-height: 43px;
+        font-size: 2rem;
+        color: inherit;
+        order: 1;
+    }
+
+    .caption {
+        margin-left: .5rem;
+        text-align: left;
+        color: inherit;
+        order: 2;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1.2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        transform: translateY(-2px);
+
+        small {
+            display: block;
+            font-size: .8rem;
+        }
+    }
+
+    &.icon-right {
+        .icon {
+            order: 2;
+        }
+
+        .caption {
+            order: 1;
+            margin-left: 0;
+            margin-right: .5rem;
+        }
+    }
+
+    &.outline {
+        background: transparent none;
+        border-width: 1px;
+        border-color: var(--border-color);
+    }
+    
+    @media (hover: hover) {
+        &:hover {
+            background: var(--command-button-background-hover);
+            color: var(--command-button-color-hover);
+        }
+    }
+    
+    @media (hover: none) {
+        &:active {
+            background: var(--command-button-background-hover);
+            color: var(--command-button-color-hover);
+        }
+    }
+
+    &.shadow { box-shadow: 6px 6px 0 var(--shadow-color-3d); }
+    &.shadow:active { transform: translate(4px, 4px); }
+    &.shift { &:active {transform: translate(2px, 2px);} }
+}

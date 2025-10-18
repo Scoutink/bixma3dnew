@@ -1,0 +1,51 @@
+Exporter version: 6.4.4, Blender version: 2.90.0
+========= Conversion from Blender to Babylon.js =========
+	Scene settings used :
+		Inline textures     :  false
+		Material Type       :  PBR
+		Positions Precision :  4
+		Normals Precision   :  3
+		UVs Precision       :  3
+		Vert Color Precision:  3
+		Mat Weight Precision:  2
+		Keep Z-up r-handed  :  no
+		Texture directory   :  D:\Data\HTTP3DInc\Blender\productdisplay\
+	Python World class constructor completed
+	processing begun of camera (UniversalCamera):  Camera
+	processing begun of mesh:  case
+		processing begun of material:  case material
+		num positions      :  333
+		num normals        :  333
+		num tangents       :  0
+		num uvs            :  666
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  394
+	processing begun of mesh:  button
+		animation processing begun
+			processing action buttonAction:  in[1 - 35], out[0 - 35]
+		processing begun of material:  button material
+		num positions      :  215
+		num normals        :  215
+		num tangents       :  0
+		num uvs            :  430
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  178
+	processing begun of mesh:  buynow
+		processing begun of material:  text material
+		num positions      :  1516
+		num normals        :  1516
+		num tangents       :  0
+		num uvs            :  3032
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  1469
+	processing begun of light (POINT):  Light
+========= Writing of JSON file started =========
+	writing mesh:  case
+	writing mesh:  button
+	writing mesh:  buynow
+========= Writing of JSON file completed =========
+========= end of processing =========
+elapsed time:  0 min, 0.3319 secs

@@ -1,0 +1,34 @@
+@import (once) "../include/vars";
+@import (once) "../include/mixins";
+
+.fixed-top, .fixed-bottom {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.fixed-top {
+    top: 0;
+    bottom: auto;
+}
+
+.fixed-bottom {
+    top: auto;
+    bottom: 0;
+}
+
+.pos-relative {position: relative!important;}
+.pos-absolute {position: absolute!important;}
+.pos-static {position: static!important;}
+.pos-fixed {position: fixed!important;}
+.pos-sticky {position: sticky!important; top: 0; align-self: flex-start!important;}
+
+each(@media-rules, {
+    @container (min-width: @value) {
+        .pos-relative-@{key} {position: relative!important;}
+        .pos-absolute-@{key} {position: absolute!important;}
+        .pos-static-@{key} {position: static!important;}
+        .pos-fixed-@{key} {position: fixed!important;}
+    }
+})

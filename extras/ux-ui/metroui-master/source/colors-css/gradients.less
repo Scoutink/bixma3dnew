@@ -1,0 +1,51 @@
+@import "../include/vars.less";
+
+:root {
+    --gradient-direction: to right;
+    --gradient-position: circle;
+    --gradient-from-color: #000;
+    --gradient-to-color: #5c5c5c;
+}
+
+.dark-side {
+    --gradient-from-color: #fff;
+    --gradient-to-color: #cacaca;
+}
+
+.gradient{
+    background: var(--background)!important;
+}
+
+.gradient-text {
+    background: var(--background)!important;
+    -webkit-background-clip: text!important;
+    -webkit-text-fill-color: transparent!important;
+}
+
+each(@normalColors, {
+    @gradient: "gradient-@{value}";
+    .gradient-@{value} {
+        --background: @@gradient;
+    }
+})
+
+each(@normalColors, {
+    @gradient: "gradient-radial-@{value}";
+    .gradient-radial-@{value} {
+        --background: @@gradient;
+    }
+})
+
+each(@gradient-transitions, {
+    @gradient: "gradient-@{value}";
+    .gradient-@{value} {
+        --background: @@gradient;
+    }
+})
+
+each(@gradient-themed, {
+    @gradient: "gradient-@{value}";
+    .gradient-@{value} {
+        --background: @@gradient;
+    }
+})

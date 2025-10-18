@@ -1,0 +1,90 @@
+@import (once) "../include/vars";
+
+.bd-default {
+    border-color: var(--border-color)!important;
+}
+.bd-transparent {
+    border-color: transparent!important;
+}
+
+each(@normalColors, {
+    @lightColor: "light-@{value}";
+    @minorColor: "minor-@{value}";
+    @darkColor: "dark-@{value}";
+    @satColor: "sat-@{value}";
+    
+    .bd-@{value} {border-color: @@value !important;}
+    .bd-@{value}-active {&:active {border-color: @@value !important;}}
+    .bd-@{value}-hover {&:hover {border-color: @@value !important;}}
+    .bd-@{value}-focus {&:focus {border-color: @@value !important;}}
+    .bd-before-@{value} {
+        &::before {
+            border-color: @@value!important;
+        }
+    }
+    .bd-after-@{value} {
+        &::after {
+            border-color: @@value!important;
+        }
+    }
+})
+
+@property --border-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: true;
+}
+
+@keyframes spin-border {
+    from {
+        --border-angle: 0deg;
+    }
+    to {
+        --border-angle: 360deg;
+    }
+}
+
+:root {
+    --gradient-border-speed: 3s;
+    --gradient-border-size: 2px;
+    --gradient-border-colors: #ff4545, #00ff99, #006aff, #ff0095, #ff4545;
+    --gradient-border-transparent-size: 50%;
+}
+
+.gradient-border {
+    isolation: isolate;
+
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        inset: calc(-1 * var(--gradient-border-size));
+        border-radius: inherit;
+        background: conic-gradient(from var(--border-angle), var(--gradient-border-colors) );
+        z-index: -2;
+        display: block;
+        transition: all .3s linear;
+    }
+
+    &::after {
+        inset: 0;
+        z-index: -1;
+        background: inherit;
+    }
+}
+
+.animated-border {
+    animation: spin-border var(--gradient-border-speed) linear infinite;
+}
+
+.animated-border-hover {
+    &:hover {
+        animation: spin-border var(--gradient-border-speed) linear infinite;
+    }
+}
+
+each(@colors, {
+    .animated-border-@{value} {
+        --gradient-border-colors: transparent var(--gradient-border-transparent-size), @@value;
+        animation: spin-border var(--gradient-border-speed) linear infinite;
+    }
+})

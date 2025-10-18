@@ -1,0 +1,72 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --h-menu-gap: 0;
+    --h-menu-font-size: 13px;
+    --h-menu-border-radius: 4px;   
+}
+
+:root {
+    --h-menu-background: #ffffff;
+    --h-menu-color: #191919;
+    --h-menu-item-hover-background: #e8e8e8;
+    --h-menu-item-hover-color: #191919;
+}
+
+.dark-side {
+    --h-menu-background: #1e1f22;
+    --h-menu-color: #dbdfe7;
+    --h-menu-item-hover-background: #2b2d30;
+    --h-menu-item-hover-color: #ffffff;
+}
+
+.h-menu {
+    list-style: none inside;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    background-color: var( --h-menu-background);
+    color: var( --h-menu-color);
+    gap: var( --h-menu-gap);
+    font-size: var( --h-menu-font-size);
+    position: relative;
+    
+    & > li, & > li > a {
+        color: inherit;
+        background: transparent;
+        border-radius: var( --h-menu-border-radius);
+        position: relative;
+    }
+
+    & > li > a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 4px 8px;
+        cursor: pointer;
+
+        & > .dropdown-caret {
+            margin-left: 4px;            
+        }
+    }
+    
+    @media (hover: hover) {
+        li:hover {
+            background-color: var( --h-menu-item-hover-background);
+            color: var( --h-menu-item-hover-color);
+        }
+    }
+    
+    @media (hover: none) {
+        li:active {
+            background-color: var( --h-menu-item-hover-background);
+            color: var( --h-menu-item-hover-color);
+        }
+    }
+}
+

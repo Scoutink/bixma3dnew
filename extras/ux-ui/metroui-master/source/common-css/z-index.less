@@ -1,0 +1,44 @@
+@import (once) "../include/vars";
+@import (once) "../include/mixins";
+
+:root {
+    --z-index-selected: @zindex-selectedCheck; //100
+    --z-index-absolute: @zindex-absolute; //500
+    --z-index-dropdown: @zindex-dropdown; // 1000
+    --z-index-sticky: @zindex-sticky; // 1020
+    --z-index-fixed: @zindex-fixed; // 1030;
+    --z-index-modal-backdrop: @zindex-modal-backdrop; // 1040;
+    --z-index-modal: @zindex-modal; // 1050;
+    --z-index-popover: @zindex-popover; // 1060;
+    --z-index-tooltip: @zindex-tooltip; // 1070;
+    --z-index-top: @zindex-top; // 1080;
+    --z-index-notify: @zindex-notify; // 1085;
+    --z-index-charms: @zindex-charms; // 1090;
+    --z-index-overlay: @zindex-overlay; // 2000;
+    --z-index-fullscreen: @zindex-fullscreen; // 2147483647;
+}
+
+.z-absolute {z-index: var(--z-index-absolute)!important;}
+.z-dropdown {z-index: var(--z-index-dropdown)!important;}
+.z-sticky {z-index: var(--z-index-sticky)!important;}
+.z-fixed {z-index: var(--z-index-fixed)!important;}
+.z-modal-backdrop {z-index: var(--z-index-modal-backdrop)!important;}
+.z-modal {z-index: var(--z-index-modal)!important;}
+.z-popover {z-index: var(--z-index-popover)!important;}
+.z-tooltip {z-index: var(--z-index-tooltip)!important;}
+.z-top {z-index: var(--z-index-top)!important;}
+.z-notify {z-index: var(--z-index-notify)!important;}
+.z-charms {z-index: var(--z-index-charms)!important;}
+.z-overlay {z-index: var(--z-index-overlay)!important;}
+.z-fullscreen {z-index: var(--z-index-fullscreen)!important;}
+
+.z-1 {z-index: 1!important;}
+.z-2 {z-index: 2!important;}
+.z-3 {z-index: 3!important;}
+.z-4 {z-index: 4!important;}
+.z-5 {z-index: 5!important;}
+.z-6 {z-index: 6!important;}
+.z-7 {z-index: 7!important;}
+.z-8 {z-index: 8!important;}
+.z-9 {z-index: 9!important;}
+.z-10 {z-index: 10!important;}

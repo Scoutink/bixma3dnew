@@ -1,0 +1,166 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --chip-background: #F4F4F4;
+    --chip-color: #191919;
+    --chip-background-hover: #dadada;
+    --chip-color-hover: #191919;
+    --chip-action-background: #c1c1c1;
+    --chip-action-color: #191919;
+}
+
+.dark-side {
+    --chip-background: #2b2d30;
+    --chip-color: #f3fcff;
+    --chip-background-hover: #333439;
+    --chip-color-hover: #f3fcff;
+    --chip-action-background: #43444a;
+    --chip-action-color: #f3fcff;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 32px;
+    font-size: 14px;
+    padding: 0 8px;
+    line-height: 32px;
+    background: var(--chip-background);
+    color: var(--chip-color);
+    cursor: default;
+    border-radius: 4px;
+    position: relative;
+
+    .label {
+        white-space: nowrap;
+        order: 2;
+        margin: 0 1rem 0 .5rem;
+    }
+
+    .icon {
+        order: 1;
+        .square(32,px);
+        line-height: 32px;
+        vertical-align: middle;
+        font-size: 24px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 24px;
+            max-height: 24px;
+            vertical-align: initial;
+        }
+    }
+
+    .action {
+        order: 3;
+        display: block;
+        cursor: pointer;
+        .square(24,px);
+        margin-left: auto;
+
+        background: var(--chip-action-background);
+        color: var(--chip-action-color);
+        border-radius: 4px;
+
+        &:before {
+            content: "\2716";
+            line-height: 24px;
+            text-align: center;
+            display: block;
+        }
+
+    }
+
+    &.pill-chip {
+        border-radius: 1rem;
+        .action {
+            border-radius: 50%;
+        }
+    }
+
+    &:hover {
+        background-color: @hoverBackground;
+    }
+
+    &.readonly, &.disabled {
+        .action {
+            display: none;
+        }
+    }
+}
+
+.chip + .chip {
+    margin-left: 8px;
+}
+
+each(@accentColors, {
+    @color: "@{value}Color";
+
+    .@{value} {
+        .action {
+            background: darken(@@color, 10%);
+            color: #ffffff;
+        }
+    }
+})
+
+each(@normalColors, {
+    @action-color: "dark-@{value}";
+    @hover-color: darken(@@value, 10%);
+    
+    .@{value} {
+        background: @@value;
+        color: #ffffff;
+        
+        .action {
+            background: @@action-color;
+            color: #ffffff;
+        }
+        
+        @media (hover: hover) {
+            &:hover {
+                background: @hover-color;
+            }
+        }
+        @media (hover: none) {
+            &:active {
+                background: @hover-color;
+            }
+        }
+    }
+})
+
+each(@normalColors, {
+    @background: "light-@{value}";
+    @color: "dark-@{value}";
+    @hover-color: darken(@@value, 10%);
+    
+    .soft-@{value} {
+        background: @@background;
+        color: @@color;
+        
+        .action {
+            background: @@color;
+            color: #ffffff;
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                background: @hover-color;
+                color: #ffffff;
+            }
+        }
+        @media (hover: none) {
+            &:active {
+                background: @hover-color;
+                color: #ffffff;
+            }
+        }
+    }
+})

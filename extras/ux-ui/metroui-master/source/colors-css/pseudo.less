@@ -1,0 +1,50 @@
+@import (once) "../include/vars";
+
+each(@colors, {
+    .before-bg-@{value} {&::before {background: @@value !important;}}
+    .before-fg-@{value} {&::before {color: @@value !important;}}
+    .before-bd-@{value} {&::before {border-color: @@value !important;}}
+
+    .after-bg-@{value} {&::after {background: @@value !important;}}
+    .after-fg-@{value} {&::after {color: @@value !important;}}
+    .after-bd-@{value} {&::after {border-color: @@value !important;}}
+})
+
+each(@normalColors, {
+    @lightColor: "light-@{value}";
+    @minorColor: "minor-@{value}";
+    @darkColor: "dark-@{value}";
+    @satColor: "sat-@{value}";
+    
+    .before-bg-light-@{value} {&::before {background: @@lightColor !important;}}
+    .before-fg-light-@{value} {&::before {color: @@lightColor !important;}}
+    .before-bd-light-@{value} {&::before {border-color: @@lightColor !important;}}
+
+    .after-bg-light-@{value} {&::after {background: @@lightColor !important;}}
+    .after-fg-light-@{value} {&::after {color: @@lightColor !important;}}
+    .after-bd-light-@{value} {&::after {border-color: @@lightColor !important;}}
+    
+    .before-bg-minor-@{value} {&::before {background: @@minorColor !important;}}
+    .before-fg-minor-@{value} {&::before {color: @@minorColor !important;}}
+    .before-bd-minor-@{value} {&::before {border-color: @@minorColor !important;}}
+
+    .after-bg-minor-@{value} {&::after {background: @@minorColor !important;}}
+    .after-fg-minor-@{value} {&::after {color: @@minorColor !important;}}
+    .after-bd-minor-@{value} {&::after {border-color: @@minorColor !important;}}
+    
+    .before-bg-sat-@{value} {&::before {background: @@satColor !important;}}
+    .before-fg-sat-@{value} {&::before {color: @@satColor !important;}}
+    .before-bd-sat-@{value} {&::before {border-color: @@satColor !important;}}
+
+    .after-bg-sat-@{value} {&::after {background: @@satColor !important;}}
+    .after-fg-sat-@{value} {&::after {color: @@satColor !important;}}
+    .after-bd-sat-@{value} {&::after {border-color: @@satColor !important;}}
+    
+    .before-bg-dark-@{value} {&::before {background: @@darkColor !important;}}
+    .before-fg-dark-@{value} {&::before {color: @@darkColor !important;}}
+    .before-bd-dark-@{value} {&::before {border-color: @@darkColor !important;}}
+
+    .after-bg-dark-@{value} {&::after {background: @@darkColor !important;}}
+    .after-fg-dark-@{value} {&::after {color: @@darkColor !important;}}
+    .after-bd-dark-@{value} {&::after {border-color: @@darkColor !important;}}
+})

@@ -1,0 +1,12 @@
+import "./en.js";
+import "./uk.js";
+import "./pt.js";
+import "./pt-BR.js";
+import "./es.js";
+import "./de.js";
+import "./fr.js";
+import "./it.js";
+import "./zh-CN.js";
+import "./zh-TW.js";
+import "./hi.js";
+import "./pl.js";

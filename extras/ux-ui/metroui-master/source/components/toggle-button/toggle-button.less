@@ -1,0 +1,62 @@
+@import "../../include/vars"; 
+@import "../../include/mixins";
+
+:root {
+    --toggle-button-background: #dadee9;
+    --toggle-button-color: #7e7e77;
+    --toggle-button-item-background: #ffffff;
+    --toggle-button-item-color: #191919;
+    --toggle-button-item-hover-color: hsl(7, 100%, 68%);
+}
+
+.dark-side {
+    --toggle-button-background: #545957;
+    --toggle-button-color: #bdc5d2;
+    --toggle-button-item-background: #2c2f2e;
+    --toggle-button-item-color: #ffffff;
+    --toggle-button-item-hover-color: hsl(7, 100%, 68%);
+}
+
+.toggle-button {
+    //display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    background: var(--toggle-button-background);
+    color: var(--toggle-button-color);
+    padding: 4px;
+    border-radius: 6px;
+    width: auto;
+    display: inline-flex;
+    
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: transparent;
+        color: inherit;
+        font-size: 0.75rem;
+        border: none;
+        height: 26px;
+        font-weight: 500;
+        
+        @media (hover: hover) {
+            &:hover:not(.active) {
+                color: var(--toggle-button-item-hover-color);
+            }
+        }
+        
+        @media (hover: none) {
+            &:active:not(.active) {
+                color: var(--toggle-button-item-hover-color);
+            }
+        }
+        
+        &.active {
+            background: var(--toggle-button-item-background);
+            color: var(--toggle-button-item-color);
+            font-weight: 600;
+        }
+    }
+}

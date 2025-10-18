@@ -1,0 +1,139 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+@pickerDefaultHeight: 34px;
+
+:root {
+    
+}
+
+.dark-side {
+    
+}
+
+.color-picker {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    position: relative;
+
+    &:hover, &:active {
+        input {
+            border-color: transparent;
+        }
+    }
+
+    &.focused {
+        box-shadow: 0 0 0 3px var(--input-box-shadow);
+    }
+
+    input {
+        border: none!important;
+        order: 1;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 0;
+        height: calc(var(--input-height) - 2px);
+        padding: 0 .75rem;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .buttons {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        padding: 0 2px;
+    }
+
+    button,.button {
+        background-color: transparent;
+        color: var(--input-color);
+        height: calc(var(--input-height) - 4px);
+        width: calc(var(--input-height) - 4px);
+        aspect-ratio: 1;
+        border: 1px solid var(--input-border-color);
+        font-size: var(--input-font-size);
+        padding: 0;
+
+        &:focus, &:active {
+            box-shadow: none!important;
+        }
+    }
+
+    .color-picker-button {
+        font-family: "Segoe UI Symbol", sans-serif;
+    }
+    
+    .input-clear-button {
+        background-color: transparent;
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+    &.disabled .button-group {
+        button {
+            background-color: transparent;
+            color: var(--input-color-disabled);
+        }
+    }
+
+    .color-example-box {
+        display: block;
+        height: calc(var(--input-height) - 8px);
+        //width: calc(var(--input-height) - 4px);
+        aspect-ratio: 1;
+        background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uCTZhw1gGGYhAGBZIA/nYDCgBDAm9BGDWAAJyRCgLaBCAAgXwixzAS0pgAAAABJRU5ErkJggg==") top left repeat;
+        margin: 4px;
+        border: 1px solid var(--border-color);
+        position: relative;
+    }
+
+    .color-selector-box {
+        position: absolute;
+        top: 100%;
+        left: -1px;
+        display: none;
+        box-shadow: 2px 2px 10px var(--d-menu-shadow-color);
+    }
+
+    .prepend {order: 1;}
+    .color-example-box {order: 2;}
+    input {order: 3;}
+    .append {order: 5;}
+    .buttons {order: 4;}
+
+    input[placeholder] {text-overflow:ellipsis;}
+    
+    .color-selector-box {
+        z-index: @zindex-dropdown;
+    }
+    
+    .dropdown-caret {
+        display: none!important;
+    }
+}
+
+.color-picker {
+    &.open {
+        .color-selector-box {
+            display: block!important;
+        }
+    }
+}
+
+.color-picker {
+    &.pill-input {
+        --input-border-radius: calc(var(--input-height) * 0.44);
+
+        .button, .color-example-box {
+            border-radius: 50%;
+        }
+    }
+}

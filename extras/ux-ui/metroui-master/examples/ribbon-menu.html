@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+    <link href="../lib/icons.css" rel="stylesheet">
+
+    <title>Test Ribbon menu - Metro UI :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="cloak">
+<nav data-role="appbar" class="border-bottom bd-default">
+    <span class="app-bar-item">Any</span>
+    <div class="app-bar-item-static no-hover">
+        <input type="checkbox" data-role="theme-switcher"/>
+    </div>
+    <div class="app-bar-item-static no-hover">
+        <div class="text-leader">Component Test</div>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Ribbon menu test page</h1>
+    <div>
+        <button onclick="$('#ribbon-menu').data('ribbonmenu').open('#main-section')">Main</button>
+        <button onclick="$('#ribbon-menu').data('ribbonmenu').open('#buttons-section')">Buttons</button>
+        <button onclick="$('#ribbon-menu').data('ribbonmenu').open('#inputs-section')">Inputs</button>
+    </div>
+    <div class="example">
+        <div class="window">
+            <div class="window-caption">
+                <span class="icon mif-windows"></span>
+                <span class="title">Metro UI</span>
+                <div class="buttons">
+                    <span class="button btn-min"></span>
+                    <span class="button btn-max"></span>
+                    <span class="button btn-close"></span>
+                </div>
+            </div>
+            <div class="window-menu">
+                <nav id="ribbon-menu" data-role="ribbon-menu">
+                    <ul class="tabs-holder">
+                        <li class="static"><a href="#">File</a></li>
+                        <li class="active" id="main-section"><a href="#section_main">Main</a></li>
+                        <li id="buttons-section"><a href="#section_buttons">Buttons</a></li>
+                        <li id="inputs-section"><a href="#section_inputs">Inputs</a></li>
+                    </ul>
+
+                    <div class="content-holder">
+                        <div class="section" id="section_main">
+                            <div class="group">
+                                <button class="ribbon-button"><span class="icon"><span class="mif-share"></span></span><span class="caption">Share</span></button>
+                                <button class="ribbon-button"><span class="icon"><span class="mif-email"></span></span><span class="caption">Email</span></button>
+                                <div>
+                                    <button class="ribbon-button dropdown-toggle">
+                                    <span class="icon">
+                                        <span class="mif-file-zip fg-cyan"></span>
+                                    </span>
+                                        <span class="caption">Compress</span>
+                                    </button>
+                                    <ul class="ribbon-dropdown" data-role="dropmenu" data-duration="100">
+                                        <li class="checked"><a href="#">Modification</a></li>
+                                        <li class="checked"><a href="#">Type</a></li>
+                                        <li class="checked"><a href="#">Size</a></li>
+                                        <li><a href="#">Creating</a></li>
+                                        <li><a href="#">Authors</a></li>
+                                        <li class="checked-one"><a href="#">Tags</a></li>
+                                        <li><a href="#">Names</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Columns...</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="group-divider"></div>
+
+                                <div class="pl-1 pr-1 d-flex flex-column">
+                                    <button class="ribbon-tool-button">
+                                        <span class="mif-location"></span>
+                                    </button>
+                                    <div>
+                                        <button class="ribbon-tool-button dropdown-toggle">
+                                            <span class="mif-alarm fg-red"></span>
+                                        </button>
+                                        <ul class="ribbon-dropdown" data-role="dropmenu" data-duration="100">
+                                            <li class="checked"><a href="#">Modification</a></li>
+                                            <li class="checked"><a href="#">Type</a></li>
+                                            <li class="checked"><a href="#">Size</a></li>
+                                            <li><a href="#">Creating</a></li>
+                                            <li><a href="#">Authors</a></li>
+                                            <li class="checked-one"><a href="#">Tags</a></li>
+                                            <li><a href="#">Names</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Columns...</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="group-divider"></div>
+
+                                <div class="ribbon-split-button">
+                                    <button class="ribbon-main">
+                                    <span class="icon">
+                                        <span class="mif-cogs"></span>
+                                    </span>
+                                    </button>
+                                    <span class="ribbon-split dropdown-toggle">Options</span>
+                                    <ul class="ribbon-dropdown" data-role="dropmenu" data-duration="100">
+                                        <li class="checked"><a href="#">Modification</a></li>
+                                        <li class="checked"><a href="#">Type</a></li>
+                                        <li class="checked"><a href="#">Size</a></li>
+                                        <li><a href="#">Creating</a></li>
+                                        <li><a href="#">Authors</a></li>
+                                        <li class="checked-one"><a href="#">Tags</a></li>
+                                        <li><a href="#">Names</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Columns...</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="group-divider"></div>
+
+                                <div class="d-flex flex-column">
+                                    <button class="ribbon-icon-button" disabled>
+                                    <span class="icon">
+                                        <span class="mif-apple"></span>
+                                    </span>
+                                        <span class="caption">Apple</span>
+                                    </button>
+
+                                    <div>
+                                        <button class="ribbon-icon-button dropdown-toggle">
+                                        <span class="icon">
+                                            <span class="mif-apps"></span>
+                                        </span>
+                                            <span class="caption">Apps</span>
+                                        </button>
+                                        <ul class="ribbon-dropdown" data-role="dropmenu">
+                                            <li class="checked"><a href="#">Modification</a></li>
+                                            <li class="checked"><a href="#">Type</a></li>
+                                            <li class="checked"><a href="#">Size</a></li>
+                                            <li disabled><a href="#">Creating</a></li>
+                                            <li><a href="#">Authors</a></li>
+                                            <li class="checked-one"><a href="#">Tags</a></li>
+                                            <li><a href="#">Names</a></li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="#" class="dropdown-toggle">Columns...</a>
+                                                <ul class="ribbon-dropdown" data-role="dropmenu">
+                                                    <li><a href="#">Creating</a></li>
+                                                    <li><a href="#">Authors</a></li>
+                                                    <li><a href="#">Names</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="ribbon-toggle-group">
+                                    <button class="ribbon-icon-button">
+                                    <span class="icon">
+                                        <span class="mif-list-bulleted"></span>
+                                    </span>
+                                        <span class="caption">List</span>
+                                    </button>
+
+                                    <button class="ribbon-icon-button disabled">
+                                    <span class="icon">
+                                        <span class="mif-apps"></span>
+                                    </span>
+                                        <span class="caption">Content</span>
+                                    </button>
+
+                                    <button class="ribbon-icon-button">
+                                    <span class="icon">
+                                        <span class="mif-table"></span>
+                                    </span>
+                                        <span class="caption">Icons</span>
+                                    </button>
+
+                                    <button class="ribbon-icon-button">
+                                    <span class="icon">
+                                        <span class="mif-image"></span>
+                                    </span>
+                                        <span class="caption">Small icons</span>
+                                    </button>
+
+                                    <button class="ribbon-icon-button">
+                                    <span class="icon">
+                                        <span class="mif-images"></span>
+                                    </span>
+                                        <span class="caption">Large icons</span>
+                                    </button>
+
+                                    <button class="ribbon-icon-button">
+                                    <span class="icon">
+                                        <span class="mif-windows"></span>
+                                    </span>
+                                        <span class="caption">Tiles</span>
+                                    </button>
+                                </div>
+
+                                <div class="ribbon-toggle-group">
+                                    <button class="ribbon-icon-button">
+                                    <span class="icon">
+                                        <span class="mif-list-bulleted"></span>
+                                    </span>
+                                        <span class="caption">List</span>
+                                    </button>
+
+                                    <button class="ribbon-icon-button disabled">
+                                    <span class="icon">
+                                        <span class="mif-apps"></span>
+                                    </span>
+                                        <span class="caption">Content</span>
+                                    </button>
+
+                                    <button class="ribbon-icon-button">
+                                    <span class="icon">
+                                        <span class="mif-table"></span>
+                                    </span>
+                                        <span class="caption">Icons</span>
+                                    </button>
+
+                                    <button class="ribbon-icon-button">
+                                    <span class="icon">
+                                        <span class="mif-image"></span>
+                                    </span>
+                                        <span class="caption">Small icons</span>
+                                    </button>
+
+                                    <button class="ribbon-icon-button">
+                                    <span class="icon">
+                                        <span class="mif-images"></span>
+                                    </span>
+                                        <span class="caption">Large icons</span>
+                                    </button>
+
+                                    <button class="ribbon-icon-button">
+                                    <span class="icon">
+                                        <span class="mif-windows"></span>
+                                    </span>
+                                        <span class="caption">Tiles</span>
+                                    </button>
+                                </div>
+                                <span class="title">ribbon controls</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="window-content">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+</script>
+</body>
+</html>

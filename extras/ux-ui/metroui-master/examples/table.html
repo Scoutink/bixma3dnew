@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+
+    <title>Test Table - Metro UI :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="cloak">
+<nav data-role="appbar">
+    <span class="app-bar-item">Table</span>
+    <div class="app-bar-item no-hover">
+        <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+    </div>
+</nav>
+<div class="container">
+    <h1>Table test page</h1>
+
+    <div class="example" lang="ua">
+        <table class="table striped row-hover border responsive-md fixed-header"
+               data-role="table"
+               data-caption="Table caption"
+               data-rows="10"
+               data-rows-steps="5, 10, 50, 100"
+               data-show-activity="false"
+               data-source="data/table.json"
+               data-show-skip="true"
+               data-pagination-wrapper="#pagination"
+               data-pagination-island-size="1"
+               data-pagination-short-track="5"
+               data-skip-wrapper="#skip"
+               data-check="true"
+               data-check-style="2"
+               data-use-current-slice="true"
+               data-show-inspector-button="true"
+               data-horizontal-scroll="true"
+               data-horizontal-scroll-stop="xxl"
+               data-cell-wrapper="true"
+               data-on-row-click="alert('Row clicked!')"
+               data-on-cell-click="alert('Cell clicked!' + this.innerText)"
+        >
+            <thead id="head1"></thead>
+            <tbody id="body1"></tbody>
+        </table>
+        <div class="row">
+            <div class="cell-md-8">
+                <div id="pagination"></div>
+            </div>
+            <div class="cell-md-4">
+                <div id="skip"></div>
+            </div>
+        </div>
+
+        <div>
+            <button class="button" onclick="getStoredKeys()">Get stored keys</button>
+        </div>
+    </div>
+
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+    function getStoredKeys(){
+        var keys = Metro.getPlugin("table", "table").getStoredKeys();
+        alert(keys.join("\n"));
+    }
+
+    function drawCell(td, val, index, head, cells){
+        if (head.name === 'name') {
+            td.html('').append(
+                $('<a>').attr('href', '#'+val).html(val)
+            )
+        }
+
+        if (head.name === 'age') {
+            var clsBar;
+            var pb = $("<div>");
+
+            if (val >= 35 && val <= 50) {
+                clsBar = "bg-orange";
+            } else if (val > 50) {
+                clsBar = "bg-red"
+            }
+
+            pb
+                .attr("data-role", "progress")
+                .attr("data-value", val)
+                .attr("data-cls-bar", clsBar);
+
+            td.html('').append(pb);
+        }
+
+        if (head.name === 'salary') {
+            if (Metro.utils.parseMoney(val) > 8000) {
+                td.addClass("bg-green");
+            } else {
+                td.addClass("bg-red");
+            }
+        }
+    }
+
+    // $(function () {
+    //     $(".table").on("click", "tbody td", function(){
+    //         alert(this.innerText)
+    //     })
+    // })
+</script>
+</body>
+</html>

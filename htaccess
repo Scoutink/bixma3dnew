@@ -1,0 +1,22 @@
+# BEGIN WalkTheWeb
+
+AddType image/vnd.ms-dds .dds
+AddType image/vnd.radiance .hdr
+AddType image/x-exr .exr
+AddType application/wasm .wasm
+AddType application/octet-stream .obj
+AddType application/octet-stream .glb
+AddType application/octet-stream .gltf
+AddType application/babylon .babylon
+AddType application/babylonmeshdata .babylonmeshdata
+AddType application/babylonbinarymeshdata .babylonbinarymeshdata
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+	RewriteBase /
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule . /index.php?wtwpath=%{REQUEST_URI}&%{QUERY_STRING} [L]
+</IfModule>
+# END WalkTheWeb

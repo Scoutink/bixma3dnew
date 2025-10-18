@@ -1,0 +1,109 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --social-box-border-radius: 6px;
+    --social-box-border-color: var(--border-color);
+    --social-box-background: #ffffff;
+    --social-box-color: #191919;
+    --social-box-header-background: #fbfbfb;
+    --social-box-header-color: #191919;
+    --social-box-avatar-background: #e6e6e6;
+    --social-box-avatar-color: #191919;
+}
+
+.dark-side {
+    --social-box-background: #2b2d30;
+    --social-box-color: #dbdfe7;
+    --social-box-header-background: #282c35;
+    --social-box-header-color: #fbfbfb;
+    --social-box-avatar-background: #3b414e;
+    --social-box-avatar-color: #fbfbfb;
+}
+
+.social-box {
+    display: block;
+    position: relative;
+    background: var(--social-box-background);
+    color: var(--social-box-color);
+    border-radius: var(--social-box-border-radius);
+    border: 1px solid var(--social-box-border-color);
+}
+
+.social-box {
+    .header {
+        display: block;
+        position: relative;
+        padding: 20px 20px 40px 20px;
+        background: var(--social-box-header-background);
+        color: var(--social-box-header-color);
+        border-top-left-radius: var(--social-box-border-radius);
+        border-top-right-radius: var(--social-box-border-radius);
+        border-bottom: 1px solid var(--social-box-border-color);
+
+        .avatar {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            overflow: hidden;
+            top: 100%;
+            left: 50%;
+            margin-top: -45px;
+            margin-left: -45px;
+            z-index: 2;
+            border: 2px solid var(--social-box-border-color);
+            background: var(--social-box-background);
+            color: var(--social-box-header-color);
+            font-size: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title {
+            font-size: 25px;
+            line-height: 1.1;
+            font-weight: 300;
+            margin-bottom: 5px;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            line-height: 1.1;
+            font-weight: 500;
+            margin: 0;
+            z-index: 1;
+        }
+    }
+
+    .content {
+        padding: .5rem;
+    }
+
+    .skills {
+        margin: 0;
+        padding: 40px 0 0 0;
+        list-style: none inside;
+        display: flex;
+        flex-flow: row nowrap;
+
+        li {
+            padding: 8px 16px;
+            font-size: 12px;
+            text-align: center;
+            flex-grow: 1;
+            flex-basis: 0;
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+        }
+
+        li + li {
+            border-left: 1px solid var(--border-color);
+        }
+    }
+}

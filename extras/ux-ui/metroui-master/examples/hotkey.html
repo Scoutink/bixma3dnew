@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+
+    <title>Test Hotkey - Metro UI :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Hotkey test page</h1>
+
+    <div class="example">
+        <button class="button" data-hotkey="ctrl+alt+1" onclick="alert('Button1 clicked!')">Button</button>
+        <button class="button" data-hotkey="alt+2" data-repeat="true" onclick="alert('Button2 clicked!')">Button</button>
+        <button class="button" data-hotkey="alt+3 4" onclick="alert('Button3 clicked!')">Button</button>
+        <button class="button" data-hotkey="alt+meta+," onclick="alert('Button4 clicked!')">Button</button>
+        <button class="button" id="btn5" onclick="alert('Button5 clicked!')">Button</button>
+        <input type="text" id="inp1" placeholder="Input field" value="lorem impsum dolor emet"/>
+    </div>
+
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+    $("#inp1").hotkey("alt+1", function() {
+        this.value = this.value.toUpperCase();
+    });
+    $("#btn5").hotkey("alt+5");
+</script>
+</body>
+</html>

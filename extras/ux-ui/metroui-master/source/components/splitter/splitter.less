@@ -1,0 +1,173 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --splitter-color: #F8F8F8;
+    --splitter-color-active: #F8F8F8;
+    --splitter-gutter-color: #BEBEBE;
+    --splitter-gutter-color-active: #BEBEBE;
+}
+
+.dark-side {
+    --splitter-color: #1e1f22;
+    --splitter-color-active: #26282e;
+    --splitter-gutter-color: #4a4d51;
+    --splitter-gutter-color-active: #2e436e;
+}
+
+.splitter {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    position: relative;
+    user-select: none;
+
+    &.vertical {
+        flex-direction: row;
+    }
+    &.horizontal {
+        flex-direction: column;
+    }
+}
+
+.splitter {
+    & > .gutter {
+        flex-shrink: 0;
+        flex-grow: 0;
+        background-color: var(--splitter-color);
+
+        z-index: 1;
+        position: relative;
+
+        &::before {
+            content: "";
+            z-index: 1;
+            display: block;
+            position: absolute;
+            background: var(--splitter-gutter-color);
+        }
+
+        &.active {
+            background-color: var(--splitter-color-active);
+            &::before {
+                background: var(--splitter-gutter-color-active);
+            }
+        }
+    }
+
+    &.horizontal {
+        & > .gutter {
+            cursor: row-resize;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            &::before {
+                height: 100%;
+                width: 24px;
+                top: 0;
+                left: 50%;
+                margin-left: -12px;
+                margin-top: 0;
+            }
+        }
+    }
+
+    &.vertical {
+        & > .gutter {
+            cursor: col-resize;
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            &::before {
+                left: 0;
+                width: 100%;
+                top: 50%;
+                height: 24px;
+                margin-top: -12px;
+            }
+        }
+    }
+
+    &.static-size {
+        & > .gutter {
+            cursor: default;
+        }
+        & > .gutter::before {
+            display: none;
+        }
+    }
+}
+
+.splitter {
+    & > .split-block {
+        position: relative;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 100%;
+        overflow: hidden;
+    }
+}
+
+.splitter {
+    &.gutter-style-ribbed {
+        & > .gutter {
+            &::before {
+                background: repeating-linear-gradient(
+                        45deg,
+                        var(--splitter-color),
+                        var(--splitter-gutter-color) 4px,
+                        var(--splitter-color) 4px,
+                        var(--splitter-gutter-color) 8px
+                );
+            }
+        }
+    }
+
+    &.gutter-style-dashed {
+        &.horizontal {
+            & > .gutter {
+                &::before {
+                    background: repeating-linear-gradient(
+                            90deg,
+                            var(--splitter-color),
+                            var(--splitter-gutter-color) 4px,
+                            var(--splitter-color) 4px,
+                            var(--splitter-gutter-color) 8px
+                    );
+                }
+            }
+        }
+
+        &.vertical {
+            & > .gutter {
+                &::before {
+                    background: repeating-linear-gradient(
+                            0deg,
+                            var(--splitter-color),
+                            var(--splitter-gutter-color) 4px,
+                            var(--splitter-color) 4px,
+                            var(--splitter-gutter-color) 8px
+                    );
+                }
+            }
+        }
+    }
+
+    --gutter-dot-size: 2px;
+    --gutter-bg-size: 8px;
+    --gutter-bg-position: calc(var(--gutter-bg-size) / 2);
+    --gutter-dot-color: var(--splitter-color);
+    --gutter-dot-color-second: var(--splitter-gutter-color);
+
+    &.gutter-style-dotted {
+        & > .gutter {
+            &::before {
+                background-image: radial-gradient(
+                        circle at center,
+                        var(--gutter-dot-color) var(--gutter-dot-size),
+                        var(--gutter-dot-color-second) 0
+                ), radial-gradient(circle at center, var(--gutter-dot-color) var(--gutter-dot-size), var(--gutter-dot-color-second) 0);
+                background-size: var(--gutter-bg-size) var(--gutter-bg-size);
+                background-position: 0 0, var(--gutter-bg-position) var(--gutter-bg-position);
+            }
+        }
+    }
+}

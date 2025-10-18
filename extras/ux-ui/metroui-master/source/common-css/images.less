@@ -1,0 +1,192 @@
+@import (once) "../include/vars";
+@import (once) "../include/mixins";
+
+:root {
+    --thumb-background: rgba(255,255,255,.8);
+    --img-overlay-background: rgba(70, 140, 255, .7);
+    --img-overlay-color: #ffffff;
+    --img-border-radius: 6px;
+}
+
+.dark-side {
+    --thumb-background: rgba(0,0,0,.8);
+    --img-overlay-background: rgba(70, 140, 255, .7);
+    --img-overlay-color: #ffffff;
+}
+
+.img-container, .img-fluid, .img-thumbnail {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    vertical-align: middle;
+    background-color: transparent;
+    transition: @transition-base;
+    overflow: hidden;
+    border-radius: var(--img-border-radius);
+}
+
+.img-thumbnail {
+    padding: .25rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--thumb-background);
+}
+
+.img-container {
+    display: block;
+
+    img {
+        width: 100%;
+        height: auto;
+        position: relative;
+        object-fit: cover;
+    }
+
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        overflow: hidden;
+        font-size: .875rem;
+        line-height: 1rem;
+        padding: 2em;
+        background-color: var(--img-overlay-background);
+        color: var(--img-overlay-color);
+        text-align: center;
+        border-radius: inherit;
+        transition: @transition-base;
+
+        * {
+            color: inherit;
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                opacity: 1;
+
+                &:before, &:after {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        }
+
+        @media (hover: none) {
+            &:active {
+                opacity: 1;
+
+                &:before, &:after {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        }
+
+        &:before, &:after {
+            display: block;
+            position: absolute;
+            content: "";
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            top: 1em;
+            bottom: 1em;
+            left: 1em;
+            right: 1em;
+            opacity: 0;
+
+            transform: scale(1.5);
+            transition: @transition-base;
+        }
+
+        &:after {
+            border-left: none;
+            border-right: none;
+            bottom: 1em;
+            top: 1em;
+        }
+        &:before {
+            border-top: none;
+            border-bottom: none;
+            bottom: 1em;
+            top: 1em;
+        }
+    }
+
+    &.thumbnail {
+        padding: .25rem;
+        border: 1px solid var(--border-color);
+        background-color: var(--thumb-background);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        img {
+            flex: 1;
+            border-radius: calc(var(--img-border-radius)/2);
+        }
+        
+        .title {
+            font-weight: 600;
+            line-height: 1;
+            padding: .5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .description {
+            font-size: 13px;
+            line-height: 1.2;
+            margin-top: .25rem;
+            padding: 0 .5rem .5rem;
+        }
+    }
+}
+
+figure {
+    margin: 0 0 1rem;
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+        position: relative;
+        vertical-align: middle;
+        background-color: transparent;
+        transition: @transition-base;
+    }
+}
+
+.flip-image-horizontal {
+    transform: scaleX(-1);
+}
+
+.flip-image-vertical {
+    transform: scaleY(-1);
+}
+
+.flip-image {
+    transform: scale(-1);
+}
+
+.fit-cover {
+    object-fit: cover;
+}
+
+.fit-contain {
+    object-fit: contain;
+}
+
+.fit-fill {
+    object-fit: fill;
+}
+
+.fit-scale-down {
+    object-fit: scale-down;
+}
+
+.fit-none {
+    object-fit: none;
+}

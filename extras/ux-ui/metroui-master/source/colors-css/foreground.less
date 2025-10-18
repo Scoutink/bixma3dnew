@@ -1,0 +1,39 @@
+@import (once) "../include/vars";
+
+.fg-default {
+    color: var(--default-color)!important;
+}
+
+each(@colors, {
+    .fg-@{value} {color: @@value !important;}
+    .fg-@{value}-active {&:active {color: @@value !important;}}
+    .fg-@{value}-hover {&:hover {color: @@value !important;}}
+    .fg-@{value}-focus {&:focus {color: @@value !important;}}
+})
+
+each(@normalColors, {
+    @lightColor: "light-@{value}";
+    @minorColor: "minor-@{value}";
+    @darkColor: "dark-@{value}";
+    @satColor: "sat-@{value}";
+    
+    .fg-light-@{value} {color: @@lightColor !important;}
+    .fg-light-@{value}-active {&:active {color: @@lightColor !important;}}
+    .fg-light-@{value}-hover {&:hover {color: @@lightColor !important;}}
+    .fg-light-@{value}-focus {&:focus {color: @@lightColor !important;}}
+    
+    .fg-minor-@{value} {color: @@minorColor !important;}
+    .fg-minor-@{value}-active {&:active {color: @@minorColor !important;}}
+    .fg-minor-@{value}-hover {&:hover {color: @@minorColor !important;}}
+    .fg-minor-@{value}-focus {&:focus {color: @@minorColor !important;}}
+    
+    .fg-sat-@{value} {color: @@satColor !important;}
+    .fg-sat-@{value}-active {&:active {color: @@satColor !important;}}
+    .fg-sat-@{value}-hover {&:hover {color: @@satColor !important;}}
+    .fg-sat-@{value}-focus {&:focus {color: @@satColor !important;}}
+    
+    .fg-dark-@{value} {color: @@darkColor !important;}
+    .fg-dark-@{value}-active {&:active {color: @@darkColor !important;}}
+    .fg-dark-@{value}-hover {&:hover {color: @@darkColor !important;}}
+    .fg-dark-@{value}-focus {&:focus {color: @@darkColor !important;}}
+})

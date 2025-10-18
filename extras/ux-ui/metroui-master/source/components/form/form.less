@@ -1,0 +1,82 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+form, .form {
+    display: flex;
+    position: relative;
+    flex-flow: column nowrap;
+}
+
+.form-actions {
+    margin: 1rem 0;
+    display: flex;
+    position: relative;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+    
+    *:not(:last-child) {
+        margin-right: .25rem;
+    }
+}
+
+.form-group {
+    display: flex;
+    position: relative;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.form-group + .form-group {
+    margin-top: 1rem;
+}
+
+.inline-form {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+
+    & > * {
+        width: auto!important;
+        margin: 0 .5rem!important;
+        flex-shrink: 1;
+    }
+    
+    & > *:first-child {
+        margin-left: 0!important;
+    }
+    
+    .form-actions {
+        border-top: none;
+        padding-top: 0;
+    }
+}
+
+:root {
+    --form-column-min-width: 200px;
+    --form-gap-size: 1rem;
+}
+
+.grid-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--form-column-min-width), 1fr));
+    grid-gap: var(--form-gap-size);
+
+    .form-group {
+        margin: 0;
+    }
+    
+    .form-actions {
+        border-top: none;
+        padding-top: 0;
+    }
+}
+
+label:has(input) {
+    cursor: pointer;
+}

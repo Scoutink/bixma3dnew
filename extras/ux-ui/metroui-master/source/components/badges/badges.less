@@ -1,0 +1,53 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --badge-background: #F8F8F8;
+    --badge-color: #191919;
+    --badge-border-radius: 4px;
+}
+
+.dark-side {
+    --badge-background: #2b2d30;
+    --badge-color: #F8F8F8;
+}
+
+.badge {
+    position: relative;
+    z-index: 1;
+    background-color: var(--badge-background);
+    color: var(--badge-color);
+    border-radius: var(--badge-border-radius);
+    padding: .2em .4em .3em;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+
+    &.corner {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+    }
+    &.corner-outside {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(50%, -50%);
+    }
+}
+
+each(@normalColors, {
+    .badge-@{value} {
+        @border-color: "dark-@{value}";
+        background: @@value;
+        color: #ffffff;
+        border-color: @@border-color;
+    }
+})

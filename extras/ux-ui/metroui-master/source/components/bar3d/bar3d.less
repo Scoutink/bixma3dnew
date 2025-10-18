@@ -1,0 +1,91 @@
+@import "../../include/vars";
+@import "../../include/mixins";
+
+:root {
+    --chart-height: 160px;
+    --bar-height: 160px;
+    --bar-width: 32px;
+    --bar-value-color: #191919;
+    --bar-bottom-color: rgba(194, 157, 11, 0.2);
+    --bar-top-color: rgba(254, 254, 254, 0.8);
+    --bar-left-color: rgba(241, 241, 241, 0.8);
+    --bar-right-color: rgba(216, 216, 216, 0.8);
+    --bar-growing-color: @green;
+}
+
+.dark-side {
+    
+}
+
+
+.bar3d {
+    font-size: 1rem;
+    position: relative;
+    width: var( --bar-width);
+    padding: 1em;
+    transform: rotateX(-30deg) rotateY(-135deg);
+    transform-style: preserve-3d;
+    height: var( --bar-height);
+}
+
+.bar3d {
+    .side {
+        position: relative;
+        bottom: 0;
+        width: var( --bar-width);
+        height: var( --bar-height);
+        background-position: center center;
+        overflow: hidden;
+    }
+    
+    .left-side {
+        transform: rotateY(90deg) translateZ(16px);
+        background-color: var( --bar-left-color);
+    }
+    
+    .right-side {
+        transform: rotateY(180deg) translateY(-10em) translateZ(1em);
+        background-color: var( --bar-right-color);
+    }
+    
+    .top-side {
+        width: var( --bar-width);
+        height: var( --bar-width);
+        transform: rotateX(90deg) translateZ(21em);
+        text-align: center;
+        background-color: var( --bar-top-color);
+    }
+    
+    .bottom-side {
+        width: var( --bar-width);
+        height: var( --bar-width);
+        background-color: var( --bar-bottom-color);
+        transform: rotateX(-90deg) translateY(0em) translateZ(-13em) rotate(180deg);
+        text-align: center;
+        box-shadow: 0 0 0.6em rgba(0, 0, 0, 0.3), 0.6em -1em 3em rgba(0, 0, 0, 0.3), 1em 1em 10em rgba(254, 254, 254, 0.8);
+    }
+    
+    .growing-bar {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        transition: transform linear;
+        transition-duration: .3s;
+        transform: translateY(100%);
+        opacity: .8;
+        background-color: var(--bar-growing-color);
+
+        &::before {
+            content: attr(data-value);
+            font-family: 'Open Sans', sans-serif;
+            font-size: .6em;
+            font-weight: 700;
+            display: inline-block;
+            box-sizing: content-box;
+            padding: .8em;
+            text-align: center;
+            opacity: 1;
+            color: var(--bar-value-color);
+        }
+    }
+}

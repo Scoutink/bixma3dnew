@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+    <link href="../lib/icons.css" rel="stylesheet">
+
+    <title>Test Select - Metro UI :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak p-ab">
+<nav data-role="appbar">
+    <span class="app-bar-item">Select</span>
+    <div class="app-bar-item-static">
+        <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+    </div>
+</nav>
+<div class="container">
+    <h1>Select test page</h1>
+
+    <div class="example">
+        <select data-role="select" data-filter="false">
+            <option data-icon="<span class='mif-rocket'>" value="rocket" >Rocket</option>
+            <option data-icon="<span class='mif-star-empty'>" value="star" >Star</option>
+            <option data-icon="<img src='images/gerb-ukraine.svg' alt=''/>" value="Ukraine" selected>Ukraine</option>
+        </select>
+    </div>
+
+    <div class="example mt-4">
+        <select data-role="select" multiple data-clear-button="true">
+            <OPTION data-icon="<span class='mif-rocket'>" value="arknoid2" data-display="arknoid2"> Arkanoid - Revenge of DOH (World)</OPTION>
+            <OPTION value="arkanoid" data-display="arkanoid"> Arkanoid (World, older)</OPTION>
+            <OPTION value="astrob" data-display="astrob"> Astro Blaster (version 3)</OPTION>
+            <OPTION value="bankp" data-display="bankp"> Bank Panic</OPTION>
+        </select>
+    </div>
+
+    <div class="example mt-4">
+        <select data-role="select" data-show-group-name="true" data-clear-button="true">
+            <optgroup label="Microsoft">
+                <option value="microsoft-usa">USA</option>
+                <option value="microsoft-usa-alabama">Alabama</option>
+                <option value="microsoft-usa-alaska">Alaska</option>
+            </optgroup>
+
+            <optgroup label="Apple">
+                <option value="apple-usa">USA</option>
+                <option value="apple-usa-alabama">Alabama</option>
+                <option value="apple-usa-alaska">Alaska</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="example mt-4">
+        <select data-role="select" data-show-group-name="true" data-clear-button="true" class="input-large">
+            <optgroup label="Microsoft">
+                <option value="microsoft-usa">USA</option>
+                <option value="microsoft-usa-alabama">Alabama</option>
+                <option value="microsoft-usa-alaska">Alaska</option>
+            </optgroup>
+
+            <optgroup label="Apple">
+                <option value="apple-usa">USA</option>
+                <option value="apple-usa-alabama">Alabama</option>
+                <option value="apple-usa-alaska">Alaska</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="example mt-4">
+        <select data-role="select" id="select1" data-show-group-name="true">
+            <optgroup label="Physical servers">
+                <option value="dedicated_corei3_hp">Core i3 (hp)</option>
+                <option value="dedicated_pentium_hp">Pentium (hp)</option>
+                <option value="dedicated_smart_corei3_hp">Smart Core i3 (hp)</option>
+            </optgroup>
+            <optgroup label="Virtual hosting">
+                <option value="mini">Mini</option>
+                <option value="site">Site</option>
+                <option value="portal">Portal</option>
+            </optgroup>
+            <optgroup label="Virtual servers">
+                <option value="evps0">eVPS-TEST (30 дней)</option>
+                <option value="evps1" selected="selected">eVPS-1</option>
+                <option value="evps2">eVPS-2</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="example mt-4">
+        <select data-role="select" multiple id="select2"
+                data-clear-button="true"
+                data-show-group-name="true"
+                data-short-tag="true">
+            <optgroup label="Physical servers">
+                <option value="dedicated_corei3_hp">Core i3 (hp)</option>
+                <option value="dedicated_pentium_hp">Pentium (hp)</option>
+                <option value="dedicated_smart_corei3_hp">Smart Core i3 (hp)</option>
+            </optgroup>
+            <optgroup label="Virtual hosting">
+                <option value="mini">Mini</option>
+                <option value="site">Site</option>
+                <option value="portal">Portal</option>
+            </optgroup>
+            <optgroup label="Virtual servers">
+                <option value="evps0">eVPS-TEST (30 дней)</option>
+                <option value="evps1" selected="selected">eVPS-1</option>
+                <option value="evps2">eVPS-2</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="example mt-4">
+        <div class="row">
+            <div class="cell-md-6">
+                <div class="d-flex flex-row no-wrap flex-align-start">
+                    <select id="select3" data-role="select" data-prepend="Select item:"></select>
+                    <button class="button" onclick="fillSelect()">Fill select</button>
+                </div>
+
+            </div>
+            <div class="cell-md-6">
+                <div class="d-flex flex-row no-wrap flex-align-start">
+                    <select id="select3_1" data-role="select" data-prepend="Select item:"></select>
+                    <button class="button" onclick="fillSelect3_1()">Fill select</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example mt-4">
+        <div>
+            <BUTTON id="SET_2"
+                    class="button rounded bg-grayBlue bg-darkGrayBlue-hover text-bold fg-white"
+                    data-id="2">Ball & Paddle
+            </BUTTON>
+            <BUTTON id="SET_6"
+                    class="button rounded bg-grayBlue bg-darkGrayBlue-hover text-bold fg-white"
+                    data-id="6">Board Game
+            </BUTTON>
+        </div>
+        <SELECT id="CATEGORIES" name="categories"
+                data-role="select"
+                data-show-group-name="true"
+                data-label="Categories"
+                data-clear-button="true"
+                data-use-placeholder="true"
+                size="1">
+            <OPTION value="">&nbsp;</OPTION>
+            <OPTGROUP label="Arcade">
+                <OPTION value="1">Pinball</OPTION>
+            </OPTGROUP>
+            <OPTGROUP label="Ball & Paddle">
+                <OPTION value="2">Breakout</OPTION>
+                <OPTION value="3">Jump and Touch</OPTION>
+                <OPTION value="4">Misc.</OPTION>
+                <OPTION value="5">Pong</OPTION>
+            </OPTGROUP>
+            <OPTGROUP label="Board Game">
+                <OPTION value="6">Backgammon</OPTION>
+                <OPTION value="7">Bridge Machine</OPTION>
+                <OPTION value="8">Cards</OPTION>
+                <OPTION value="9">Checker Machine</OPTION>
+                <OPTION value="10">Chess Machine</OPTION>
+                <OPTION value="11">Dame Machine</OPTION>
+            </OPTGROUP>
+        </SELECT>
+    </div>
+    
+    <div class="example mt-4">
+        <div>
+            <button onclick="Metro.getPlugin('#LANGUAGE', 'select').val(['it', 'en'])">Change Val</button> 
+        </div>
+        <SELECT id="LANGUAGE" name="language[]" class="medium"
+                data-role="select" data-clear-button="true"
+                data-label="Language" data-cls-label="text-bold" 
+                multiple>
+            <OPTION value="it">Italian</OPTION>
+            <OPTION value="fr">French</OPTION>
+            <OPTION value="de">German</OPTION>
+            <OPTION value="en">English</OPTION>
+        </SELECT>
+    </div>
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+    var sel = $("@select");
+    var Utils = Metro.utils;
+
+    function fillSelect() {
+        var select = Metro.getPlugin("#select3", "select");
+        var options = {
+            "0": "New DIP Switch",
+            "T": "Time",
+            "L": "Lives",
+            "H": "Health",
+            "C": "Coins"
+        };
+        console.log(options);
+        select.data(options);
+        select.val("");
+    }
+
+    function fillSelect3_1() {
+        const select = $("#select3_1")
+        select.append($("<option>").attr("value", "value_1").text(`value_1`))
+        select.append($("<option>").attr("value", "value_2").attr("selected", "selected").text(`value_2`))
+
+        const select1 = document.querySelector("#select3_1")
+        const option = document.createElement("option")
+        option.value = "value_3"
+        option.innerText = "value3"
+        select1.appendChild(option)
+    }
+
+    // sel.on("change", function () {
+    //     console.log("changed");
+    // });
+    //
+    // sel.on("drop", function (e) {
+    //     console.log("down");
+    //     // var dropContainer = $(e.detail.list).closest(".drop-container").removeClass("drop-up");
+    //     //
+    //     // if (!Utils.inViewport(dropContainer[0])) {
+    //     //     dropContainer.addClass("drop-up");
+    //     // }
+    // });
+    //
+    // sel.on("up", function () {
+    //     console.log("up");
+    // });
+
+    $(document).on("click", "[id^='SET_']", function (e) {
+        e.preventDefault();
+
+        var tID = $(this).attr("data-id");
+
+        Metro.getPlugin("#CATEGORIES", "select").val(tID);
+        $("#CATEGORIES").focus();
+
+    });
+</script>
+</body>
+</html>

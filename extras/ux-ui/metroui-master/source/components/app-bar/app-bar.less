@@ -1,0 +1,264 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --appbar-border-radius: 4px;
+    --appbar-z-index: @zindex-fixed;
+}
+
+:root {
+    --appbar-background: #ffffff;
+    --appbar-color: #191919;
+    --appbar-item-background: transparent;
+    --appbar-item-color: #191919;
+    --appbar-item-color-disabled: #ccc;
+    --appbar-item-color-hover: #000000;
+    --appbar-item-background-hover: #e8e8e8;
+}
+
+.dark-side {
+    --appbar-background: #1e1f22;
+    --appbar-color: #dbdfe7;
+    --appbar-item-background: transparent;
+    --appbar-item-color: #dbdfe7;
+    --appbar-item-color-disabled: #a8a8a8;
+    --appbar-item-color-hover: #ffffff;
+    --appbar-item-background-hover: #2b2d30;
+}
+
+.app-bar {
+    display: flex;
+    position: sticky;
+    align-self: flex-start!important;
+    justify-self: flex-start!important;
+    top: 0;
+    width: 100%;
+    height: auto;
+    min-height: 52px;
+    z-index: var(--appbar-z-index);
+    background-color: var(--appbar-background);
+    color: var(--appbar-color);
+    flex-flow: row wrap;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.app-bar {
+    .app-bar-container {
+        background-color: inherit;
+        color: inherit;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .app-bar-item, .app-bar-item-static, .app-bar-menu > li {
+        position: relative;
+    }
+
+    .app-bar-item, .app-bar-item-static, .app-bar-menu > li > a {
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+        background-color: var(--appbar-item-background);
+        color: var(--appbar-item-color);
+        text-decoration: none;
+        padding: 4px 10px;
+        border-radius: var(--appbar-border-radius);
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        line-height: 20px;
+        overflow: hidden;
+
+        @media (hover: hover) {
+            &:hover {
+                color: var(--appbar-item-color-hover);
+                text-decoration: none;
+                background-color: var(--appbar-item-background-hover);
+            }
+        }
+        
+        @media (hover: none) {
+            &:active {
+                color: var(--appbar-item-color-hover);
+                text-decoration: none;
+                background-color: var(--appbar-item-background-hover);
+            }
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &.disabled {
+            color: var(--appbar-item-color-disabled);
+        }
+    }
+
+    .app-bar-item-static {
+        @media (hover: hover) {
+            &:hover {
+                background-color: var(--appbar-item-background);
+                color: var(--appbar-item-color);
+            }
+        }
+        @media (hover: none) {
+            &:active {
+                background-color: var(--appbar-item-background);
+                color: var(--appbar-item-color);
+            }
+        }
+    }
+
+    .brand {
+        flex-shrink: 0;
+        font-size: 20px;
+        line-height: .8;
+        &:hover {
+            background-color: transparent;
+        }
+        
+        .icon {
+            font-size: 20px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            object-fit: cover;
+        }
+        
+        .icon + * {
+            margin-left: 6px;
+        }
+        
+        .caption {
+            margin-bottom: 3px;
+        }
+    }
+
+    .app-bar-button {
+        width: 52px;
+        padding: 0;
+    }
+
+    .app-bar-menu {
+        flex-shrink: 0;
+        list-style: none inside;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        //width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        background-color: inherit;
+        color: inherit;
+    }
+
+    .app-bar-menu > li > a {
+        &:focus {
+            outline: 1px solid var(--appbar-item-background-hover);
+        }
+        &.dropdown-toggle {
+            &::before {
+                border-color: var(--appbar-item-color)!important;
+            }
+        }
+    }
+
+    .hamburger {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        display:block;
+        height: 52px;
+        width: 52px;
+        margin-top: -27px;
+        background: transparent;
+
+        .line {
+            background-color: var(--appbar-item-color);
+        }
+
+        &.menu-down {
+            &.active {
+                .line:nth-child(1), .line:nth-child(3) {
+                    margin: -4px 16px;
+                }
+            }
+        }
+
+        &:focus {
+            outline: 1px solid var(--appbar-item-background-hover);
+        }
+    }
+
+    .app-bar-menu {
+        &.collapsed {
+            display: none;
+        }
+        &.opened {
+            max-height: calc(100vh - 52px);
+            overflow-y: auto;
+            padding: 4px;
+
+            & > li a {
+
+            }
+
+            ul {
+                position: relative;
+                left: 0;
+                float: none;
+                width: 100%;
+                box-shadow: none;
+                border-radius: 0;
+                background-color: inherit;
+                border: none;
+            }
+        }
+    }
+
+    .app-bar-input {
+        width: 100px;
+        height: 30px;
+        font-size: .875rem;
+        border: none!important;
+        border-radius: 4px;
+    }
+
+    &:not(.app-bar-expand) {
+        padding-right: 60px!important;
+        .app-bar-menu {
+            width: 100%;
+            order: 1000;
+            top: 100%;
+            left: 0;
+            position: absolute;
+        }
+    }
+}
+
+.app-bar-expand {
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    .app-bar-menu {
+        flex-direction: row;
+        &.collapsed {
+            display: flex!important;
+        }
+    }
+
+    .hamburger {
+        display: none;
+    }
+}
+
+.container-fluid, .container {
+    & > .app-bar {
+        position: relative;
+    }
+}

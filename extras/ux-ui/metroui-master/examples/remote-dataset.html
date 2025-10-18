@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+    <link href="../lib/icons.css" rel="stylesheet">
+
+    <title>Test Remote Dataset - Metro UI :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="cloak">
+<nav data-role="appbar" class="border-bottom bd-default">
+    <span class="app-bar-item">Any</span>
+    <div class="app-bar-item-static no-hover">
+        <input type="checkbox" data-role="theme-switcher"/>
+    </div>
+    <div class="app-bar-item-static no-hover">
+        <input type="checkbox" data-role="theme-switcher" data-mode="button"/>
+    </div>
+    <div class="app-bar-item-static no-hover">
+        <div class="text-leader">Remote Dataset Test</div>
+    </div>
+</nav>
+
+<div class="container-fluid pt-10">
+    <div class="container container-query">
+        <div data-role="remote-dataset"
+             data-page-mode="page"
+             data-offset="1"
+             data-key-offset="page"
+             data-key-data="data"
+             data-key-limit="perPage"
+             data-key-total="totalProducts"
+             data-key-sort="sortBy"
+             data-key-order="order"
+             data-key-search="q"
+             data-url='https://fakestoreapiserver.reactbd.org/api/products'
+             data-cls-body="d-flex flex-row flex-wrap gap-1 mt-4 flex-center"
+             data-cls-pagination="mt-4 d-flex flex-justify-center"
+             data-sort="rating:desc"
+             data-sort-rules="price:asc:Price Asc:<span class='mif-arrow-up'>,price:desc:Price Desc:<span class='mif-arrow-down'>,rating:desc:By rating:<span class='mif-star-empty'>"
+             data-on-draw-entry="drawEntry2"
+             data-rows="8"
+             data-rows-steps="8, 16, 32, 64, 128"
+             data-show-sort="false"
+        ></div>        
+    </div>
+</div>
+
+<div class="container-fluid pt-10">
+    <div class="container container-query">
+        <div data-role="remote-dataset"
+             data-caption="Products:"
+             data-key-offset="skip"
+             data-key-data="products"
+             data-key-limit="limit"
+             data-key-total="total"
+             data-key-sort="sortBy"
+             data-key-order="order"
+             data-key-search="q"
+             data-url='https://dummyjson.com/products'
+             data-url-search='https://dummyjson.com/products/search'
+             data-cls-body="d-flex flex-row flex-wrap gap-1 mt-4 flex-center"
+             data-cls-pagination="mt-4 d-flex flex-justify-center"
+             data-sort="rating:desc"
+             data-sort-rules="price:asc:Price Asc:<span class='mif-arrow-up'>,price:desc:Price Desc:<span class='mif-arrow-down'>,rating:desc:By rating:<span class='mif-star-empty'>"
+             data-on-draw-entry="drawEntry"
+             data-rows="8"
+             data-rows-steps="8, 16, 32, 64, 128"
+        ></div>        
+    </div>
+</div>
+
+<div class="container-fluid pt-10">
+    <div class="container d-flex flex-row gap-2">
+        <input type="text" id="search">
+        <select name="" id="sorting"></select>
+        <select name="" id="rows"></select>
+    </div>
+    <div class="container container-query">
+        <div data-role="remote-dataset"
+             data-caption="Products:"
+             data-key-offset="skip"
+             data-key-data="products"
+             data-key-limit="limit"
+             data-key-total="total"
+             data-key-sort="sortBy"
+             data-key-order="order"
+             data-key-search="q"
+             data-url='https://dummyjson.com/products'
+             data-url-search='https://dummyjson.com/products/search'
+             data-cls-body="d-flex flex-row flex-wrap gap-1 mt-4 flex-center"
+             data-cls-pagination="mt-4 d-flex flex-justify-center"
+             data-sort="rating:desc"
+             data-sort-rules="price:asc:Price Asc:<span class='mif-arrow-up'>,price:desc:Price Desc:<span class='mif-arrow-down'>,rating:desc:By rating:<span class='mif-star-empty'>"
+             data-on-draw-entry="drawEntry"
+             data-rows="8"
+             data-rows-steps="8, 16, 32, 64, 128"
+             data-search-control="#search"
+             data-rows-count-control="#rows"
+             data-sorting-control="#sorting"
+        ></div>        
+    </div>
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+    function drawEntry(entry, index) {
+        const statuses = [
+            "<div class='fg-green product-status'>Ready to depart <span class=\"mif-truck-delivery icon\"></span></div>",
+            "<div class='fg-blue product-status'>In stock <span class=\"mif-transport icon\"></span></div>",
+            "<div class='fg-coral product-status'>Waiting for stock <span class=\"mif-truck2 icon\"></span></div>",
+            "<div class='fg-red product-status'>Out of stock</div>",
+        ]
+
+        const status = statuses[Math.floor(Math.random() * statuses.length)];
+
+        return `
+            <div class="product-card hovered h-100">
+                <div class="badge bg-transparent">
+                        <button class="square large flat"><span class="mif-favorite-outline enlarge-6 fg-orange"></span></button>                
+                </div>
+                <div class="product-image">
+                    <img src="${entry.thumbnail}" alt="${entry.title}"/>                
+                </div>            
+                <div class="product-info">
+                    <a href="#" class="product-title fg-sat-green-hover">
+                        ${entry.description}
+                    </a>
+                    <div class="product-rating" style="--rating-on-color: #ffa500; --rating-star-size: 14px">
+                        <input data-role="rating" data-static="true" data-value="${entry.rating}" />
+                        <div class="d-flex flex-align-center mt-1 gap-1"><span class="mif-chat-line"></span> ${entry.reviews.length}</div>
+                    </div>            
+                    ${status}
+                </div>
+                <div class="product-footer mt-auto">
+                    <div class="product-price">
+                        ${entry.discountPercentage ? "<div class='-old'>$"+(entry.price)+"</div>" : ""}
+                        <div class="fg-red">$${(entry.price - entry.price/100*entry.discountPercentage).toFixed(2)}</div>
+                    </div>
+                    <div class="ml-auto">
+                        <button class="square large flat ${status.includes('Out of stock') ? 'd-none' : ''}"><span class="mif-add-shopping-cart enlarge-6 fg-green"></span></button>
+                    </div>
+                </div>
+                <div class="product-props">
+                    <div class="product-desc">${entry.description}</div>
+                </div>
+            </div>        
+        `;
+    }
+    
+    function drawEntry2(entry, index) {
+        const statuses = [
+            "<div class='fg-green product-status'>Ready to depart <span class=\"mif-truck-delivery icon\"></span></div>",
+            "<div class='fg-blue product-status'>In stock <span class=\"mif-transport icon\"></span></div>",
+            "<div class='fg-coral product-status'>Waiting for stock <span class=\"mif-truck2 icon\"></span></div>",
+            "<div class='fg-red product-status'>Out of stock</div>",
+        ]
+
+        const status = statuses[Math.floor(Math.random() * statuses.length)];
+
+        return `
+            <div class="product-card hovered h-100">
+                <div class="badge bg-transparent">
+                        <button class="square large flat"><span class="mif-favorite-outline enlarge-6 fg-orange"></span></button>                
+                </div>
+                <div class="product-image">
+                    <img src="${entry.image}" alt="${entry.title}"/>                
+                </div>            
+                <div class="product-info">
+                    <a href="#" class="product-title fg-sat-green-hover">
+                        ${entry.title}
+                        <div class="enlarge-2">${entry.brand}</div>
+                    </a>
+                    <div class="product-rating" style="--rating-on-color: #ffa500; --rating-star-size: 14px">
+                        <input data-role="rating" data-static="true" data-value="${entry.rating}" />
+                    </div>            
+                    ${status}
+                </div>
+                <div class="product-footer mt-auto">
+                    <div class="product-price">
+                        ${entry.discountedPrice ? "<div class='-old'>$"+(entry.price)+"</div>" : ""}
+                        <div class="fg-red">$${entry.discountedPrice}</div>
+                    </div>
+                    <div class="ml-auto">
+                        <button class="square large flat ${status.includes('Out of stock') ? 'd-none' : ''}"><span class="mif-add-shopping-cart enlarge-6 fg-green"></span></button>
+                    </div>
+                </div>
+                <div class="product-props">
+                    <div class="product-desc">${entry.description}</div>
+                </div>
+            </div>        
+        `;
+    }
+</script>
+</body>
+</html>

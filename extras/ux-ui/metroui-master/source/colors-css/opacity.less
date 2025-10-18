@@ -1,0 +1,36 @@
+@import (once) "../include/vars";
+
+.op-default {
+    background-color: hsl(from @primaryColor h s l / 0.5) !important;
+}
+
+each(@colors, {
+    .op-@{value} {background-color: hsl(from @@value h s l / 0.5) !important;}
+    .op-@{value}-hi {background-color: hsl(from @@value h s l / 0.2) !important;}
+    .op-@{value}-low {background-color: hsl(from @@value h s l / 0.8) !important;}
+})
+
+each(@normalColors, {
+    @lightColor: "light-@{value}";
+    @minorColor: "minor-@{value}";
+    @darkColor: "dark-@{value}";
+    @satColor: "sat-@{value}";
+    
+    .op-light-@{value} {background-color: hsl(from @@lightColor h s l / 0.5) !important;}
+    .op-light-@{value}-hi {background-color: hsl(from @@lightColor h s l / 0.2) !important;}
+    .op-light-@{value}-low {background-color: hsl(from @@lightColor h s l / 0.8) !important;}
+    
+    .op-minor-@{value} {background-color: hsl(from @@minorColor h s l / 0.5) !important;}
+    .op-minor-@{value}-hi {background-color: hsl(from @@minorColor h s l / 0.2) !important;}
+    .op-minor-@{value}-low {background-color: hsl(from @@minorColor h s l / 0.8) !important;}
+    
+    .op-sat-@{value} {background-color: hsl(from @@satColor h s l / 0.5) !important;}
+    .op-sat-@{value}-hi {background-color: hsl(from @@satColor h s l / 0.2) !important;}
+    .op-sat-@{value}-low {background-color: hsl(from @@satColor h s l / 0.8) !important;}
+    
+    .op-dark-@{value} {background-color: hsl(from @@darkColor h s l / 0.5) !important;}
+    .op-dark-@{value}-hi {background-color: hsl(from @@darkColor h s l / 0.2) !important;}
+    .op-dark-@{value}-low {background-color: hsl(from @@darkColor h s l / 0.8) !important;}
+})
+
+

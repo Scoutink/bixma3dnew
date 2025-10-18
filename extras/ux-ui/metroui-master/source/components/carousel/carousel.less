@@ -1,0 +1,225 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --carousel-background: var(--default-background);
+    --carousel-switch-background: hsla(0, 0%, 57.3%, .8);
+    --carousel-switch-color: #fff;
+    --carousel-bullet-color: #f5f8fe;
+    --carousel-bullet-color-active: #50a8ff;
+}
+
+.dark-side {
+    --carousel-background: var(--default-background);
+    --carousel-switch-background: hsla(0, 0%, 57.3%, .8);
+    --carousel-switch-color: #fff;
+    --carousel-bullet-color: #26282e;
+    --carousel-bullet-color-active: #50a8ff;
+}
+
+.carousel {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    background-color: var(--carousel-background);
+}
+
+.carousel {
+    .slides {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        flex-grow: 0;
+        flex-basis: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 1;
+
+        &.active-slide {
+            z-index: 2;
+        }
+    }
+
+    &.fixed-size {
+        .slide {
+            overflow: hidden;
+        }
+    }
+}
+
+.carousel {
+    [class*="carousel-switch"], .carousel-bullets {
+        position: absolute;
+        display: block;
+        z-index: @zindex-absolute + 1;
+        user-select: none;
+    }
+
+    .carousel-switch-next, .carousel-switch-prev {
+        line-height: 4rem;
+        height: 4rem;
+        width: 4rem;
+        text-decoration: none;
+        margin-top: -2rem;
+        top: 50%;
+        font-weight: 700;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        background-color: var(--carousel-switch-background);
+        color: var(--carousel-switch-color);
+        opacity: 0;
+        transition: all .3s;
+
+        &:hover {
+            color: var(--carousel-switch-color-hover);
+        }
+
+        & > * {
+            max-width: 32px;
+            max-height: 32px;
+            font-size: 32px;
+        }
+    }
+
+    .carousel-switch-next {
+        right: 10px;
+        left: auto;
+        transform: translateX(64px);
+    }
+
+    .carousel-switch-prev {
+        left: 10px;
+        right: auto;
+        transform: translateX(-64px);
+    }
+
+    .carousel-bullets {
+        left: 0;
+        right: 0;
+        bottom: .625rem;
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+
+        .carousel-bullet {
+            display: block;
+            float: none;
+            width: .625rem;
+            height: .625rem;
+            background-color: var(--carousel-bullet-color);
+            border-radius: 50%;
+            cursor: pointer;
+            border: 1px var(--border-color) solid;
+            margin: 0 .3125rem;
+
+            &.bullet-on {
+                background-color: var(--carousel-bullet-color-active);
+            }
+
+            &:hover {
+            }
+        }
+
+        &.default-size .carousel-bullet{
+            width: 22px;
+            height: 22px;
+        }
+        &.mini-size .carousel-bullet{
+            width: 10px;
+            height: 10px;
+        }
+        &.small-size .carousel-bullet{
+            width: 16px;
+            height: 16px;
+        }
+        &.large-size .carousel-bullet{
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    .carousel-bullets {
+        &.bullet-style {
+            &-square {
+                .carousel-bullet {
+                    border-radius: 0;
+                }
+            }
+            &-cycle {
+                .carousel-bullet {
+                    border-radius: 50%;
+                }
+            }
+            &-diamond {
+                .carousel-bullet {
+                    border-radius: 0;
+                    transform: rotate(45deg);
+                }
+            }
+            &-rect {
+                .carousel-bullet {
+                    border-radius: 0;
+                }
+
+                &.default-size .carousel-bullet{
+                    width: 44px;
+                    height: 14px;
+                }
+                &.mini-size .carousel-bullet{
+                    width: 20px;
+                    height: 6px;
+                }
+                &.small-size .carousel-bullet{
+                    width: 32px;
+                    height: 10px;
+                }
+                &.large-size .carousel-bullet{
+                    width: 64px;
+                    height: 24px;
+                }
+            }
+        }
+    }
+    
+    @media (hover: hover) {
+        &:hover {
+            .carousel-switch-next, .carousel-switch-prev {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    }
+}
+
+.carousel {
+    &.controls-outside {
+        padding: 0 4rem 1.375rem 4rem;
+
+        .carousel-bullets {
+            bottom: 0;
+        }
+    }
+}

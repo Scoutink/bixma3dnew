@@ -1,0 +1,39 @@
+@import (once) "../include/vars";
+@import (once) "../include/mixins";
+
+.w-auto {width: auto!important;}
+.h-auto {height: auto!important;}
+
+each(@media-rules, {
+    .w-@{key} {width: @value!important;}
+})
+
+each(@percents, {
+    .h-@{value}-vh {height: unit(@value, vh)!important;}
+    .w-@{value}-vw {width: unit(@value, vw)!important;}
+    .h-@{value} {height: unit(@value, %)!important;}
+    .w-@{value} {width: unit(@value, %)!important;}
+    .h-max-@{value} {max-height: unit(@value, %)!important;}
+    .w-max-@{value} {max-width: unit(@value, %)!important;}
+    .h-min-@{value} {min-height: unit(@value, %)!important;}
+    .w-min-@{value} {min-width: unit(@value, %)!important;}
+})
+
+each(@media-rules, {
+    @container (min-width: @value) {
+        .w-auto-@{key} {width: auto!important;}
+        .h-auto-@{key} {height: auto!important;}
+
+        each(@percents, .(@p) {
+            .h-@{p}-@{key}-vh {height: unit(@p, vh)!important;}
+            .w-@{p}-@{key}-vw {width: unit(@p, vw)!important;}
+            .h-@{p}-@{key} {height: unit(@p, %)!important;}
+            .w-@{p}-@{key} {width: unit(@p, %)!important;}
+            .h-max-@{p}-@{key} {max-height: unit(@p, %)!important;}
+            .w-max-@{p}-@{key} {min-width: unit(@p, %)!important;}
+            .h-min-@{p}-@{key} {min-height: unit(@p, %)!important;}
+            .w-min-@{p}-@{key} {min-width: unit(@p, %)!important;}
+        })
+    }
+})
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+    <link href="../lib/icons.css" rel="stylesheet">
+
+    <title>Test Tag input - Metro UI :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Cookie acceptor demo</h1>
+    <button class="button" onclick="Metro.cookie.delCookie('cookies_accepted')">Withdraw accept</button>
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+    $(function(){
+        Metro.cookieDisclaimer.init({
+            duration: "1day",
+            clsAcceptButton: "success",
+            customButtons: [
+                {
+                    text: `<span class="mif-info mr-2"></span>View details`,
+                    cls: "info ml-auto",
+                    onclick: () => {
+                        alert("Details");
+                    }
+                }
+            ],
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --hero-background: #ffffff;
+    --hero-color: #191919;
+    --hero-deep-size: 80%;
+}
+
+.dark-side {
+    --hero-background: #1e1f22;
+    --hero-color: #dbdfe7;
+}
+
+.hero {
+    padding: 40px 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    background-color: var(--hero-background);
+    color: var(--hero-color);
+
+    .hero-image {
+        height: 220px;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+.hero1 {
+    clip-path: polygon(0 0, 100% 0, 100% var(--hero-deep-size), 0 100%);
+}
+
+.hero2 {
+    clip-path: polygon(0 0, 100% 0, 100% var(--hero-deep-size), 50% 100%, 0 var(--hero-deep-size));
+}
+
+.hero3 {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 var(--hero-deep-size));
+}
+
+.hero4 {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% var(--hero-deep-size), 0 100%);
+}
+
+.hero5 {
+    --mask: radial-gradient(67.08px at 50% calc(100% - 90px), #000 99%, #0000 101%) calc(50% - 60px) 0/120px 100%,
+            radial-gradient(67.08px at 50% calc(100% + 60px), #0000 99%, #000 101%) 50% calc(100% - 30px)/120px 100% repeat-x;
+    mask: var(--mask);
+}
+
+.hero6 {
+    clip-path: shape(from 0% 0%,
+    hline to 100%,
+    vline to 80%,
+    curve to 0% 80% with 75% 100% / 25% 60%,
+    close);
+}
+
+
+@media all and (min-width: @md) {
+    .hero {
+        padding: 160px 80px;
+    }
+    .hero6 {
+        padding: 80px 80px 220px;
+    }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+
+    <title>Bar 3d - Metro UI :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="cloak h-100-vh">
+<nav data-role="appbar" class="border-bottom bd-default" data-expand="true">
+    <div class="app-bar-item-static no-hover">
+        <div class="text-leader">Bar 3d</div>
+    </div>
+    <div class="ml-auto app-bar-item-static no-hover">
+        <input type="checkbox" data-role="theme-switcher"/>
+    </div>
+</nav>
+
+<div class="box h-100 d-flex flex-center flex-column">
+    <div class="chart d-flex gap-8">
+        <div data-role="bar3d" data-value="30" data-bar-color="#00d153" data-value-suffix="%" data-value-color="#fff"></div>
+        <div data-role="bar3d" data-value="30" data-bar-color="#e64fa8" data-value-suffix="%" data-value-color="#fff"></div>
+        <div data-role="bar3d" data-value="30" data-bar-color="#5bc0f1" data-value-suffix="%" data-value-color="#fff"></div>
+    </div>
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+    function run(){
+        for (let bar of $('[data-role="bar3d"]') ) {
+            $(bar).attr('data-value', Math.floor(Math.random() * 100))
+        }
+    }
+    
+    setInterval(run, 5000)
+</script>
+</body>
+</html>

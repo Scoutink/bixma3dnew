@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+    <link href="../lib/icons.css" rel="stylesheet">
+
+    <title>Test Button - Metro UI :: Popular HTML, CSS and JS library</title>
+    <style>
+        * + .example {
+            margin-top: 10px;
+        }
+        
+        .dark-side {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="cloak">
+<nav data-role="appbar" class="border-bottom bd-default">
+    <span class="app-bar-item">Any</span>
+    <div class="app-bar-item-static no-hover">
+        <input type="checkbox" data-role="theme-switcher"/>
+    </div>
+</nav>
+
+    <div class="container">
+        <h1>Button test page</h1>
+
+        <div class="example">
+            <button class="primary">Primary</button>
+            <button class="secondary">Secondary</button>
+            <button class="tertiary">Tertiary</button>
+            <button class="success">Success</button>
+            <button class="alert">Alert</button>
+            <button class="warning">Warning</button>
+            <button class="info">Info</button>
+            <button class="dark">Dark</button>
+            <button class="yellow">Yellow</button>
+        </div>
+
+        <div class="example">
+            <button class="primary outline">Primary</button>
+            <button class="secondary outline">Secondary</button>
+            <button class="tertiary outline">Tertiary</button>
+            <button class="success outline">Success</button>
+            <button class="alert outline">Alert</button>
+            <button class="warning outline">Warning</button>
+            <button class="info outline">Info</button>
+            <button class="dark outline">Dark</button>
+            <button class="yellow outline">Yellow</button>
+        </div>
+
+        <div class="example">
+            <button class="button"><span class="mif-checkmark"></span><span>Font</span></button>
+            <button class="button success cycle outline"><span class="icon mif-gamepad"></span></button>
+            <button class="button" onclick="$(this).toggleClass('loading')">
+                <span class="loader"><span class="mif-spinner3 ani-spin"></span></span>
+                <span class="caption">Load Data</span>
+            </button>
+            <button class="flat">Falt Button</button>
+            <button class="flat cycle"><span class="mif-rocket"></span></button>
+            <button class="flat cycle small"><span class="mif-rocket"></span></button>
+        </div>
+
+        <div class="example">
+            <button class="button shift">Shift</button>
+            <button class="button outline">Outline</button>
+            <button class="button hovered">Hovered</button>
+            <button class="button animated-border">Shadowed</button>
+            <button class="button rainbow-border">Shadowed</button>
+            <button class="button shadow">Shadowed</button>
+        </div>
+
+        <div class="example">
+            <button class="command-button">
+                <span class="mif-share icon"></span>
+                <span class="caption">
+                    Yes, share and connect
+                    <small>Use this option for home or work</small>
+                </span>
+            </button>
+            <button class="command-button shift">
+                <span class="mif-share icon"></span>
+                <span class="caption">
+                    Yes, share and connect
+                    <small>Use this option for home or work</small>
+                </span>
+            </button>
+            <button class="command-button shadow">
+                <span class="mif-share icon"></span>
+                <span class="caption">
+                    Yes, share and connect
+                    <small>Use this option for home or work</small>
+                </span>
+            </button>
+        </div>
+
+        <div class="example">
+            <button class="image-button">
+                <span class="mif-share icon"></span>
+                <span class="caption">Share it</span>
+            </button>
+            <button class="image-button shift">
+                <span class="mif-share icon"></span>
+                <span class="caption">Share it</span>
+            </button>
+            <button class="image-button shadow">
+                <span class="mif-share icon"></span>
+                <span class="caption">Share it</span>
+            </button>
+        </div>
+
+        <div class="example">
+            <button class="image-button mini">
+                <span class="mif-share icon"></span>
+                <span class="caption">Share it</span>
+            </button>
+            <button class="image-button small">
+                <span class="mif-share icon"></span>
+                <span class="caption">Share it</span>
+            </button>
+            <button class="image-button medium">
+                <span class="mif-share icon"></span>
+                <span class="caption">Share it</span>
+            </button>
+            <button class="image-button">
+                <span class="mif-share icon"></span>
+                <span class="caption">Share it</span>
+            </button>
+            <button class="image-button large">
+                <span class="mif-share icon"></span>
+                <span class="caption">Share it</span>
+            </button>
+            <button class="image-button largest">
+                <span class="mif-share icon"></span>
+                <span class="caption">Share it</span>
+            </button>
+        </div>
+
+        <div class="example">
+            <button class="info-button">
+                <span class="title mif-share icon"></span>
+                <span class="value">Share it</span>
+            </button>
+            <button class="info-button shift">
+                <span class="title mif-share icon"></span>
+                <span class="value">Share it</span>
+            </button>
+            <button class="info-button shadow">
+                <span class="title mif-share icon"></span>
+                <span class="value">Share it</span>
+            </button>
+        </div>
+
+        <div class="example">
+            <button class="info-button mini">
+                <span class="title">
+                    <span class="mif-github icon"></span>
+                    <span class="ml-2">Stars</span>
+                </span>
+                <span class="value">7.1k</span>
+            </button>
+            <button class="info-button small">
+                <span class="title">
+                    <span class="mif-github icon"></span>
+                    <span class="ml-2">Stars</span>
+                </span>
+                <span class="value">7.1k</span>
+            </button>
+            <button class="info-button medium">
+                <span class="title">
+                    <span class="mif-github icon"></span>
+                    <span class="ml-2">Stars</span>
+                </span>
+                <span class="value">7.1k</span>
+            </button>
+            <button class="info-button">
+                <span class="title">
+                    <span class="mif-github icon"></span>
+                    <span class="ml-2">Stars</span>
+                </span>
+                <span class="value">7.1k</span>
+            </button>
+            <button class="info-button large">
+                <span class="title">
+                    <span class="mif-github icon"></span>
+                    <span class="ml-2">Stars</span>
+                </span>
+                <span class="value">7.1k</span>
+            </button>
+            <button class="info-button largest">
+                <span class="title">
+                    <span class="mif-github icon"></span>
+                    <span class="ml-2">Stars</span>
+                </span>
+                <span class="value">7.1k</span>
+            </button>
+        </div>
+
+
+        <div class="example d-flex gap-4">
+            <div class="split-button no-gap">
+                <button class="button">Reply</button>
+                <button class="split dropdown-toggle"></button>
+                <ul class="d-menu no-icon" data-role="dropdown">
+                    <li><a href="#">Reply All</a></li>
+                    <li><a href="#">Forward</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Delete</a></li>
+                </ul>
+            </div>
+            <div class="split-button no-gap">
+                <button class="button primary">Reply</button>
+                <button class="split alert dropdown-toggle"></button>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a href="#">Reply All</a></li>
+                    <li><a href="#">Forward</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Delete</a></li>
+                </ul>
+            </div>
+            <div class="split-button">
+                <button class="button warning rounded">Reply</button>
+                <button class="split info rounded dropdown-toggle light-toggle"></button>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a href="#">Reply All</a></li>
+                    <li><a href="#">Forward</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Delete</a></li>
+                </ul>
+            </div>
+            <div class="split-button">
+                <button class="button warning rounded outline">Reply</button>
+                <button class="split info rounded outline dropdown-toggle"></button>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a href="#">Reply All</a></li>
+                    <li><a href="#">Forward</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Delete</a></li>
+                </ul>
+            </div>
+            <div class="split-button">
+                <button class="button success" onclick="alert('Main button clicked!')">Reply</button>
+                <button class="split info rounded" onclick="alert('Split button clicked!')"><span>...</span></button>
+            </div>
+        </div>
+
+        <div class="example">
+            <div class="split-button mini">
+                <button class="button">Reply</button>
+                <button class="split dropdown-toggle"></button>
+                <ul class="d-menu" data-role="dropdown">
+                </ul>
+            </div>
+            <div class="split-button small">
+                <button class="button">Reply</button>
+                <button class="split dropdown-toggle"></button>
+                <ul class="d-menu" data-role="dropdown">
+                </ul>
+            </div>
+            <div class="split-button medium">
+                <button class="button">Reply</button>
+                <button class="split dropdown-toggle"></button>
+                <ul class="d-menu" data-role="dropdown">
+                </ul>
+            </div>
+            <div class="split-button">
+                <button class="button">Reply</button>
+                <button class="split dropdown-toggle"></button>
+                <ul class="d-menu" data-role="dropdown">
+                </ul>
+            </div>
+            <div class="split-button large">
+                <button class="button">Reply</button>
+                <button class="split dropdown-toggle"></button>
+                <ul class="d-menu" data-role="dropdown">
+                </ul>
+            </div>
+            <div class="split-button largest">
+                <button class="button">Reply</button>
+                <button class="split dropdown-toggle"></button>
+                <ul class="d-menu" data-role="dropdown">
+                </ul>
+            </div>
+        </div>
+        
+        <div class="example">
+            <button class="shortcut">
+                <span class="caption">Rocket</span>
+                <span class="mif-rocket icon"></span>
+            </button>
+            <button class="shortcut info outline rounded no-caption">
+                <span class="badge">10</span>
+                <span class="mif-rocket icon"></span>
+            </button>
+            <button class="shortcut shadowed">
+                <span class="caption">Rocket</span>
+                <span class="mif-rocket icon"></span>
+            </button>
+            <button class="shortcut info rounded no-caption shadowed">
+                <span class="badge">10</span>
+                <span class="mif-rocket icon"></span>
+            </button>
+        </div>
+
+        <div class="example">
+            <button class="button" onclick="
+                var btn = $(this);
+                btn.toggleClass('loading');
+                setTimeout(function(){
+                    btn.toggleClass('loading');
+                }, 2000);
+            ">
+                <span class="load-marker mif-loop2"></span>
+                <span class="load-caption">Download...</span>
+            </button>
+
+            <button class="transform-button" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button right" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button left" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button up" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button down" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button top-left" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button top-right" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button bottom-left" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button bottom-right" onclick="$(this).toggleClass('transform')"><span></span></button>
+        </div>
+
+        <div class="example">
+            <button class="button">Default <span class="badge">10</span></button>
+            <button class="button">corner <span class="badge corner info">10</span></button>
+            <button class="button">corner outside <span class="badge corner-outside alert">10</span></button>
+        </div>
+        
+        <div class="example">
+            <button class="mini">Button</button>
+            <button class="small">Button</button>
+            <button class="medium">Button</button>
+            <button class="">Button</button>
+            <button class="large">Button</button>
+            <button class="largest">Button</button>
+        </div>
+
+        <div class="example">
+            <button class="pill-button mini">Button</button>
+            <button class="pill-button small">Button</button>
+            <button class="pill-button medium">Button</button>
+            <button class="pill-button ">Button</button>
+            <button class="pill-button large">Button</button>
+            <button class="pill-button largest">Button</button>
+        </div>
+
+    </div>
+
+<script src="../lib/metro.js"></script>
+<script>
+</script>
+</body>
+</html>

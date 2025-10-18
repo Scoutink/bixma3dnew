@@ -1,0 +1,130 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+@taginput-item-size: 26px;
+
+:root {
+    --tag-background: #f8f8f8;
+    --tag-color: #191919;
+    --tag-action-background: #dcdcdc;
+    --tag-action-color: #191919;
+}
+
+.dark-side {
+    --tag-background: #53575c;
+    --tag-color: #f3fcff;
+    --tag-action-background: #2b2d30;
+    --tag-action-color: #ffffff;
+}
+
+.tag {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    margin: 2px;
+    padding: 0;
+    height: 26px;
+    background: var(--tag-background);
+    color: var(--tag-color);
+    cursor: default;
+    border-radius: 4px;
+    flex-wrap: nowrap;
+
+    .title {
+        display: flex;
+        align-items: center;
+        position: relative;
+        font-size: 12px;
+        .text-ellipsis();
+        padding: 0 .5rem;
+        white-space: nowrap;
+        height: 100%;
+    }
+
+    .action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        height: 100%;
+        aspect-ratio: 1;
+        text-align: center;
+        cursor: pointer;
+        background: var(--tag-action-background);
+        color: var(--tag-action-color);
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        transition: @transition-short;
+        line-height: 1;
+        
+        @media (hover: hover) {
+            &:hover {
+                font-size: 1.4em;
+            }
+        }
+        
+        @media (hover: none) {
+            &:active {
+                font-size: 1.4em;
+            }
+        }
+    }
+
+    &.short-tag {
+        .title {
+            max-width: 120px;
+        }
+    }
+}
+
+.tag.static {
+    background: #d4f0ff;
+    color: @dark;
+    .action {
+        display: none!important;
+    }
+}
+
+each(@accentColors, {
+    @color: "@{value}Color";
+
+    .tag.@{value} {
+        .action {
+            background: darken(@@color, 10%);
+            color: #ffffff;
+        }
+        &:hover {
+            background: @@color!important;
+        }
+    }
+})
+
+each(@normalColors, {
+    @color: "light-@{value}";
+    @hoverTextColor: "dark-@{value}";
+    @actionColor: darken(@@color, 10%);
+    @darkenColor: darken(@actionColor, 10%);
+
+    .tag.soft-@{value} {
+        .action {
+            background: @actionColor;
+            color: #000000;
+        }
+        &:hover {
+            background: @@color!important;
+            color: @@hoverTextColor!important;
+        }
+    }
+
+    .tag.normal-@{value} {
+        .action {
+            background: darken(@@value, 10%);
+            color: #ffffff;
+        }
+        &:hover {
+            background: @@value!important;
+            color: #ffffff;
+        }
+    }
+})

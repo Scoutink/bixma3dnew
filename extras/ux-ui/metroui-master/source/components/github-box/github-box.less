@@ -1,0 +1,117 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --github-box-border-radius: 6px;
+    --github-box-border-color: #d1d9e0;
+    --github-box-background: #ffffff;
+    --github-box-color: #191919;
+    --github-box-header-background: #f7f8fa;
+    --github-box-header-color: #191919;
+}
+
+.dark-side {
+    
+}
+
+.github-box {
+    display: flex;
+    flex-flow: column wrap;
+    border-radius: var(--github-box-border-radius);
+    border: 1px solid var(--github-box-border-color);
+    font-size: 14px;
+    position: relative;
+
+    .box-header {
+        background: var( --github-box-header-background);
+        color: var( --github-box-header-color);
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        padding: 8px 16px;
+        gap: 6px;
+        border-bottom: 1px solid;
+        border-color: inherit;
+        width: 100%;
+        border-top-left-radius: var( --github-box-border-radius);
+        border-top-right-radius: var( --github-box-border-radius);
+
+        .author {
+            font-weight: 600;
+        }
+
+        .time {
+            font-size: 12px;
+        }
+
+        .actions {
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 2px;
+            align-items: center;
+
+            .more-button {
+                .dropdown-caret {
+                    display: none;
+                }
+            }
+        }
+
+        .attributes {
+            margin-left: auto;
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 2px;
+            align-items: center;
+        }
+        
+        .prc {
+            display: flex;
+            font-size: 10px;
+            padding: 3px 6px;
+            border-radius: 12px;
+            border: 1px solid;
+        }
+    }
+    
+    .box-content {
+        padding: 1rem;
+        font-size: 14px;
+        line-height: 1.5;
+        word-wrap: break-word;
+        overflow: hidden;
+        width: calc(100% - 1rem);
+    }
+
+    &.-default {
+        border-color: #54aeff66;
+        .prc {
+            border-color: #54aeff;
+        }
+        .ticket-box__header {
+            background: #def3fe;
+            color: #191919;
+        }
+        .button {
+            background: #54aeff;
+            color: #fff;
+        }
+    }
+}
+
+each(@normalColors, {
+    @header-background: "light-@{value}";
+    @header-text-color: "dark-@{value}";
+    @border-color: "@{value}";
+    
+    .box-@{value} {
+        border-color: @@border-color;
+        .box-header {
+            background: @@header-background;
+            color: @@header-text-color;
+        }
+        .prc {
+            border-color: @@value;
+        }
+    }
+})

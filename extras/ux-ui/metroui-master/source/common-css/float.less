@@ -1,0 +1,20 @@
+@import (once) "../include/vars";
+@import (once) "../include/mixins";
+
+.clear-float {
+    .clear();
+}
+
+.place-right, .float-right {float: right !important;}
+.place-left, .float-left {float: left !important;}
+.place-none, .float-none, .no-float {float: none !important;}
+
+each(@media-rules, {
+    @container (min-width: @value) {
+        .place-right-@{key}, .float-right-@{key} {float: right !important;}
+        .place-left-@{key}, .float-left-@{key} {float: left !important;}
+        .place-none-@{key}, .float-none-@{key}, .no-float-@{key} {float: none !important;}
+    }
+})
+
+

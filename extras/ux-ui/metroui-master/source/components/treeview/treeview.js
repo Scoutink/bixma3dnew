@@ -1,0 +1,699 @@
+((Metro, $) => {
+    // biome-ignore lint/suspicious/noRedundantUseStrict: <explanation>
+    "use strict";
+
+    let TreeViewDefaultConfig = {
+        treeviewDeferred: 0,
+        showChildCount: false,
+        duration: 100,
+        hideActionsOnLeave: true,
+        recheckTimeout: 100,
+        leaves: [],
+        onNodeClick: Metro.noop,
+        onNodeDblClick: Metro.noop,
+        onNodeDelete: Metro.noop,
+        onNodeInsert: Metro.noop,
+        onNodeClean: Metro.noop,
+        onCheckClick: Metro.noop,
+        onRadioClick: Metro.noop,
+        onExpandNode: Metro.noop,
+        onCollapseNode: Metro.noop,
+        onTreeViewCreate: Metro.noop,
+    };
+
+    Metro.treeViewSetup = (options) => {
+        TreeViewDefaultConfig = $.extend({}, TreeViewDefaultConfig, options);
+    };
+
+    if (typeof globalThis.metroTreeViewSetup !== "undefined") {
+        Metro.treeViewSetup(globalThis.metroTreeViewSetup);
+    }
+
+    Metro.Component("tree-view", {
+        init: function (options, elem) {
+            this._super(elem, options, TreeViewDefaultConfig);
+            return this;
+        },
+
+        _create: function () {
+            const that = this;
+            const element = this.element;
+
+            this._createTree();
+            this._createEvents();
+
+            $.each(element.find("input"), function () {
+                if (!$(this).is(":checked")) return;
+                that._recheck(this);
+            });
+
+            this._fireEvent("tree-view-create", {
+                element: element,
+            });
+        },
+
+        _createIcon: (data) => {
+            const src = Metro.utils.isTag(data) ? $(data) : $("<img src='' alt=''>").attr("src", data);
+            const icon = $("<span>").addClass("icon");
+            icon.html(src.outerHTML());
+
+            return icon;
+        },
+
+        _createCaption: (data, style) => {
+            const caption = $("<span>").addClass("caption").html(data);
+
+            if (style) {
+                if (Metro.utils.isObject(style)) {
+                    caption.css(style);
+                } else if (typeof style === "string") {
+                    caption[0].style.cssText = style;
+                }
+            }
+
+            return caption;
+        },
+
+        _createToggle: () => $("<span>").addClass("node-toggle"),
+
+        /*
+         * data = {
+         *   link: string,
+         *   href: string,
+         *   caption: string,
+         *   icon: string,
+         *   html: string,
+         *   attributes: {},
+         *   style: {} || string,
+         *   badge: string,
+         *   badges: [],
+         *   secondary: string,
+         *   actions: [],
+         *   type: "" || "node",
+         * }
+         * */
+        _createNode: function (data, target) {
+            const o = this.options;
+            const nodeContainer = target ? target : $("<li>");
+            const node = $("<a>");
+
+            nodeContainer.prepend(node);
+
+            if (data.link || data.href) {
+                node.attr("href", data.link || data.href);
+            }
+
+            if (data.caption) {
+                node.prepend(this._createCaption(data.caption, data.style));
+            }
+
+            if (data.icon) {
+                node.prepend(this._createIcon(data.icon));
+            }
+
+            if (data.html) {
+                node.append(data.html);
+            }
+
+            if (data.attributes && $.type(data.attributes) === "object") {
+                for (const key in data.attributes) {
+                    node.attr(key, data.attributes[key]);
+                }
+            }
+
+            if (data.style) {
+                if (typeof data.style === "string") {
+                    node[0].style.cssText = data.style;
+                } else if ($.type(data.style) === "object") {
+                    node.css(data.style);
+                }
+            }
+
+            if (data.badge) {
+                const [badge, className] = data.badge.split(":");
+                node.append($("<span>").addClass("badge").addClass(className).html(badge));
+            }
+
+            if (data.badges) {
+                $.each(
+                    typeof data.badges === "string"
+                        ? data.badges.toArray(",")
+                        : Array.isArray(data.badges)
+                          ? data.badges
+                          : [],
+                    (_, item) => {
+                        const [badge, className] = item.split(":");
+                        node.append($("<span>").addClass("badge").addClass(className).html(badge));
+                    },
+                );
+            }
+
+            if (data.secondary) {
+                const [badge, className] = data.secondary.split(":");
+                node.append($("<span>").addClass("secondary-text").addClass(className).html(badge));
+            }
+
+            /*
+             * item = {
+             *   type: "divider" || "",
+             *   caption: string,
+             *   icon: string,
+             *   cls: string,
+             *   onclick: function(){},
+             * }
+             * */
+            if (data.actions) {
+                const actionsHolder = $("<div class='dropdown-button'>").addClass("actions-holder");
+                const actionsListTrigger = $("<span class='actions-list-trigger'>").text("⋮").appendTo(actionsHolder);
+                const actionsList = $("<ul data-role='dropmenu' class='d-menu actions-list'>").appendTo(actionsHolder);
+                nodeContainer.append(actionsHolder);
+                for (const a of data.actions) {
+                    if (a.type && a.type === "divider") {
+                        $("<li>").addClass("divider").appendTo(actionsList);
+                    } else {
+                        const icon = a.icon ? $(a.icon).addClass("icon").outerHTML() : "";
+                        const caption = `<span class="caption">${a.caption}</span>`;
+                        const li = $(`<li><a href="#">${icon} ${caption}</a></li>`).appendTo(actionsList);
+                        if (a.cls) {
+                            li.addClass(a.cls);
+                        }
+                        li.find("a").on("click", function () {
+                            Metro.utils.exec(a.onclick, [li[0]], this);
+                        });
+                    }
+                }
+                actionsList.on(Metro.events.leave, (e) => {
+                    if (o.hideActionsOnLeave) Metro.getPlugin(actionsList, "dropmenu").close();
+                });
+            }
+
+            if (data.current) {
+                nodeContainer.addClass("current");
+            }
+
+            if (data.type === "node") {
+                nodeContainer.addClass("tree-node");
+                nodeContainer.append($("<span>").addClass("node-toggle"));
+                nodeContainer.append($("<ul>"));
+            }
+
+            if (nodeContainer.children("ul").length) {
+                nodeContainer.addClass("tree-node");
+                nodeContainer.append($("<span>").addClass("node-toggle"));
+                if (Metro.utils.bool(data.collapsed) !== true) {
+                    nodeContainer.addClass("expanded");
+                } else {
+                    nodeContainer.children("ul").hide();
+                }
+            }
+
+            return nodeContainer;
+        },
+
+        _createCheckNode: function (data, target) {
+            const node = target ? target : $("<li>");
+
+            node.append(`
+                <input data-role="${data.type}" type="${data.type ?? "checkbox"}" name="${data.name}" value="${data.value ?? ""}" ${data.checked ? "checked" : ""} data-append="${data.caption}"/>
+            `);
+
+            if (data.icon) {
+                node.find("label").prepend(this._createIcon(data.icon));
+            }
+
+            if (data.attributes && $.type(data.attributes) === "object") {
+                for (const key in data.attributes) {
+                    node.attr(key, data.attributes[key]);
+                }
+            }
+
+            if (data.secondary) {
+                const [badge, className] = data.secondary.split(":");
+                node.find("label").append($("<span>").addClass("secondary-text").addClass(className).html(badge));
+            }
+
+            return node;
+        },
+
+        _createInputNode: (data, target) => {
+            const node = target ? target : $("<li>");
+
+            node.append(`
+                <input data-role="${data.type}" type="${data.type ?? "text"}" name="${data.name}" value="${data.value ?? ""}" data-prepend="${data.caption ?? ""}" placeholder="${data.placeholder ?? ""}"/>
+            `);
+
+            if (data.secondary) {
+                const [badge, className] = data.secondary.split(":");
+                node.find("label").append($("<span>").addClass("secondary-text").addClass(className).html(badge));
+            }
+
+            return node;
+        },
+
+        _createTree: function () {
+            const element = this.element;
+            const o = this.options;
+            const nodes = element.find("li[data-caption]");
+
+            element.addClass("treeview");
+
+            $.each(nodes, (i, _el) => {
+                const el = $(_el);
+
+                if (el.data("type") === "checkbox" || el.data("type") === "radio") {
+                    this._createCheckNode(
+                        {
+                            caption: el.data("caption"),
+                            icon: el.data("icon"),
+                            type: el.data("type"),
+                            name: el.data("name"),
+                            attributes: el.data("attributes"),
+                            value: el.data("value"),
+                            checked: el.data("checked") === "true",
+                            secondary: el.data("secondary"),
+                        },
+                        el,
+                    );
+                } else if (el.data("type") === "input") {
+                    this._createInputNode(
+                        {
+                            caption: el.data("caption"),
+                            type: el.data("type"),
+                            name: el.data("name"),
+                            attributes: el.data("attributes"),
+                            value: el.data("value"),
+                            secondary: el.data("secondary"),
+                            placeholder: el.data("placeholder"),
+                        },
+                        el,
+                    );
+                } else {
+                    this._createNode(
+                        {
+                            caption: el.data("caption"),
+                            icon: el.data("icon"),
+                            html: el.data("html"),
+                            attributes: el.data("attributes"),
+                            badge: el.data("badge"),
+                            badges: el.data("badges"),
+                            actions: el.data("actions"),
+                            type: el.data("type"),
+                            collapsed: el.data("collapsed"),
+                            link: el.data("link"),
+                            href: el.data("href"),
+                            secondary: el.data("secondary"),
+                            style: el.data("style"),
+                        },
+                        el,
+                    );
+                }
+            });
+
+            if (o.leaves) {
+                const leaves = Metro.utils.isObject(o.leaves);
+                if (leaves) {
+                    this.fillTree(leaves);
+                }
+            }
+
+            this._recheckTree();
+        },
+
+        _createEvents: function () {
+            const that = this;
+            const element = this.element;
+
+            element.on(Metro.events.click, ".node-toggle", function (e) {
+                const toggle = $(this);
+                const node = toggle.parent();
+
+                that.toggleNode(node);
+
+                e.preventDefault();
+            });
+
+            element.on(Metro.events.click, "a", function (e) {
+                const node = $(this).parent();
+
+                that.current(node);
+
+                that._fireEvent("node-click", {
+                    node: node[0],
+                });
+
+                e.preventDefault();
+            });
+
+            element.on(Metro.events.dblclick, "a", function (e) {
+                const node = $(this).closest("li");
+                const toggle = node.children(".node-toggle");
+                const subtree = node.children("ul");
+
+                if (toggle.length > 0 || subtree.length > 0) {
+                    that.toggleNode(node);
+                }
+
+                that._fireEvent("node-dbl-click", {
+                    node: node[0],
+                });
+
+                e.preventDefault();
+            });
+
+            element.on(Metro.events.click, "input[type=radio]", function () {
+                const check = $(this);
+                const checked = check.is(":checked");
+                const node = check.closest("li");
+
+                that.current(node);
+
+                that._fireEvent("radio-click", {
+                    checked: checked,
+                    check: check[0],
+                    node: node[0],
+                });
+            });
+
+            element.on(Metro.events.click, "input[type=checkbox]", function () {
+                const check = $(this);
+                const checked = check.is(":checked");
+                const node = check.closest("li");
+
+                that._recheck(check);
+
+                that._fireEvent("check-click", {
+                    checked: checked,
+                    check: check[0],
+                    node: node[0],
+                });
+            });
+        },
+
+        _recheck: function (check_element) {
+            const check = $(check_element);
+            const checked = check.is(":checked");
+            const node = check.closest("li");
+
+            this.current(node);
+
+            // down
+            const checks = check.closest("li").find("ul input[type=checkbox]");
+            checks.attr("data-indeterminate", false);
+            checks.prop("indeterminate", false);
+            checks.prop("checked", checked);
+            checks.trigger("change");
+
+            this._recheckTree();
+        },
+
+        _recheckTree: function (timeout) {
+            setTimeout(() => {
+                const element = this.element;
+                const all_checks = element.find("input[type=checkbox]").reverse();
+
+                $.each(all_checks.reverse(), function () {
+                    const ch = $(this);
+                    const children = ch.closest("li").children("ul").find("input[type=checkbox]").length;
+                    const children_checked = ch
+                        .closest("li")
+                        .children("ul")
+                        .find("input[type=checkbox]")
+                        .filter((el) => el.checked).length;
+
+                    if (children > 0 && children_checked === 0) {
+                        ch.attr("data-indeterminate", false);
+                        ch.prop("indeterminate", false);
+                        ch.prop("checked", false);
+                        ch.trigger("change");
+                    }
+
+                    if (children_checked === 0) {
+                        ch.attr("data-indeterminate", false);
+                        ch.prop("indeterminate", false);
+                    } else {
+                        if (children_checked > 0 && children > children_checked) {
+                            ch.attr("data-indeterminate", true);
+                            ch.prop("indeterminate", true);
+                        } else if (children === children_checked) {
+                            ch.attr("data-indeterminate", false);
+                            ch.prop("indeterminate", false);
+                            ch.prop("checked", true);
+                            ch.trigger("change");
+                        }
+                    }
+                });
+            }, timeout ?? this.options.recheckTimeout);
+        },
+
+        current: function (node) {
+            const element = this.element;
+
+            if (!node) {
+                return element.find(".current");
+            }
+
+            element.find(".current").removeClass("current");
+            node.addClass("current");
+        },
+
+        toggleNode: function (n) {
+            const node = $(n);
+            const o = this.options;
+            const toBeExpanded = !node.data("collapsed"); //!node.hasClass("expanded");
+
+            node.toggleClass("expanded");
+            node.data("collapsed", toBeExpanded);
+
+            const func = toBeExpanded === true ? "slideUp" : "slideDown";
+            if (!toBeExpanded) {
+                this._fireEvent("expand-node", {
+                    node: node[0],
+                });
+            } else {
+                this._fireEvent("collapse-node", {
+                    node: node[0],
+                });
+            }
+
+            node.children("ul")[func](o.duration);
+        },
+
+        addTo: function (target_node, data) {
+            const element = this.element;
+            let target;
+            let new_node;
+            let toggle;
+            let node;
+
+            if (!target_node) {
+                target = element;
+            } else {
+                node = $(target_node);
+                target = node.children("ul");
+                if (target.length === 0) {
+                    target = $("<ul>").appendTo(node);
+                    toggle = this._createToggle();
+                    toggle.appendTo(node);
+                    node.addClass("expanded");
+                }
+                node?.addClass("tree-node");
+            }
+
+            if (data.type === "checkbox" || data.type === "radio") {
+                new_node = this._createCheckNode(data);
+            } else if (data.type === "input") {
+                new_node = this._createInputNode(data);
+            } else {
+                new_node = this._createNode(data);
+            }
+
+            new_node.appendTo(target);
+
+            this._fireEvent("node-insert", {
+                node: new_node[0],
+                parent: node ? node[0] : null,
+            });
+
+            this._recheckTree();
+
+            return new_node;
+        },
+
+        insertBefore: function (target_node, data) {
+            const new_node = this._createNode(data);
+
+            if (!target_node) {
+                return this.addTo(undefined, data);
+            }
+
+            const node = $(target_node);
+
+            new_node.insertBefore(node);
+
+            this._fireEvent("node-insert", {
+                node: new_node[0],
+                parent: node ? node[0] : null,
+            });
+
+            // this._recheckTree()
+
+            return new_node;
+        },
+
+        insertAfter: function (target_node, data) {
+            const new_node = this._createNode(data);
+
+            if (!target_node) {
+                return this.addTo(undefined, data);
+            }
+
+            const node = $(target_node);
+
+            new_node.insertAfter(node);
+
+            this._fireEvent("node-insert", {
+                node: new_node[0],
+                parent: node[0],
+            });
+
+            // this._recheckTree()
+
+            return new_node;
+        },
+
+        del: function (target_node) {
+            const element = this.element;
+            const node = $(target_node);
+            const parent_list = node.closest("ul");
+            const parent_node = parent_list.closest("li");
+
+            this._fireEvent("node-delete", {
+                node: node[0],
+            });
+
+            node.remove();
+
+            if (parent_list.children().length === 0 && !parent_list.is(element)) {
+                parent_list.remove();
+                parent_node.removeClass("expanded");
+                parent_node.children(".node-toggle").remove();
+            }
+
+            this._recheckTree();
+        },
+
+        clean: function (target_node) {
+            const node = $(target_node);
+            node.children("ul").remove();
+            node.removeClass("expanded");
+            node.children(".node-toggle").remove();
+
+            this._fireEvent("node-clean", {
+                node: node[0],
+            });
+        },
+
+        collapseNode(target_node) {
+            const o = this.options;
+            const node = $(target_node);
+            node.removeClass("expanded");
+            node.data("collapsed", true);
+            node.children("ul").slideUp(o.duration);
+            this._fireEvent("collapse-node", {
+                node: node[0],
+            });
+        },
+
+        expandNode(target_node) {
+            const o = this.options;
+            const node = $(target_node);
+            if (!node.hasClass("tree-node")) {
+                return;
+            }
+            node.addClass("expanded");
+            node.data("collapsed", false);
+            node.children("ul").slideDown(o.duration);
+            this._fireEvent("expand-node", {
+                node: node[0],
+            });
+        },
+
+        collapseAll() {
+            const element = this.element;
+            const o = this.options;
+            element.find(".expanded").each((_, el) => {
+                const node = $(el);
+                const toBeExpanded = !node.data("collapsed"); //!node.hasClass("expanded");
+
+                node.toggleClass("expanded");
+                node.data("collapsed", toBeExpanded);
+                const func = toBeExpanded === true ? "slideUp" : "slideDown";
+                if (!toBeExpanded) {
+                    this._fireEvent("expand-node", {
+                        node: node[0],
+                    });
+                } else {
+                    this._fireEvent("collapse-node", {
+                        node: node[0],
+                    });
+                }
+                node.children("ul")[func](o.duration);
+            });
+            this._fireEvent("collapse-all");
+        },
+
+        expandAll() {
+            const element = this.element;
+            const o = this.options;
+            element.find(".tree-node:not(.expanded)").each((_, el) => {
+                const node = $(el);
+                const toBeExpanded = !node.data("collapsed"); //!node.hasClass("expanded");
+
+                node.toggleClass("expanded");
+                node.data("collapsed", toBeExpanded);
+                const func = toBeExpanded === true ? "slideUp" : "slideDown";
+                if (!toBeExpanded) {
+                    this._fireEvent("expand-node", {
+                        node: node[0],
+                    });
+                } else {
+                    this._fireEvent("collapse-node", {
+                        node: node[0],
+                    });
+                }
+                node.children("ul")[func](o.duration);
+            });
+            this._fireEvent("expand-all");
+        },
+
+        fillTree: function (leaves, node) {
+            for (const leaf of leaves) {
+                const new_node = this.addTo(node, {
+                    ...leaf,
+                    type: leaf.items ? "node" : "item",
+                });
+                if (leaf.items) {
+                    this.fillTree(leaf.items, new_node);
+                }
+            }
+        },
+
+        changeAttribute: function (attr, value) {
+            if (attr === "data-recheck-timeout") {
+                this.options.recheckTimeout = value ?? 100;
+            }
+        },
+
+        destroy: function () {
+            const element = this.element;
+
+            element.off(Metro.events.click, ".node-toggle");
+            element.off(Metro.events.click, "li > .caption");
+            element.off(Metro.events.dblclick, "li > .caption");
+            element.off(Metro.events.click, "input[type=radio]");
+            element.off(Metro.events.click, "input[type=checkbox]");
+
+            element.remove();
+        },
+    });
+})(Metro, Dom);

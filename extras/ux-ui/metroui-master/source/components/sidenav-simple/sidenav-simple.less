@@ -1,0 +1,118 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --sidenav-simple-width: 220px;
+    --sidenav-simple-border-radius: 4px;
+}
+
+:root {
+    --sidenav-simple-background: #f6f6f6;
+    --sidenav-simple-color: #191919;
+    --sidenav-simple-icon-color: #191919;
+    --sidenav-simple-counter-color: #191919;
+    --sidenav-simple-background-hover: #cecece;
+    --sidenav-simple-color-hover: #0a0a0a;
+    --sidenav-simple-background-active: #68a3ff;
+    --sidenav-simple-color-active: #ffffff;
+}
+
+.dark-side {
+    --sidenav-simple-background: #2b2d30;
+    --sidenav-simple-color: #dfe1e5;
+    --sidenav-simple-icon-color: #dfe1e5;
+    --sidenav-simple-counter-color: #dfe1e5;
+    --sidenav-simple-background-hover: #43454a;
+    --sidenav-simple-color-hover: #ffffff;
+    --sidenav-simple-background-active: #468cff;
+    --sidenav-simple-color-active: #ffffff;
+}
+
+.sidenav-simple {
+    display: block;
+    position: relative;
+    list-style: none inside;
+    width: 64px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0 6px;
+    background-color: var(--sidenav-simple-background);
+    color: var(--sidenav-simple-color);
+    height: 100%;
+
+    .hideScrollBars();
+}
+
+.sidenav-simple {
+    li, a {
+        position: relative;
+        background-color: inherit;
+        color: inherit;
+        width: 100%;
+        border-radius: var(--sidenav-simple-border-radius, 4px);
+    }
+
+
+    a {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        text-decoration: none;
+        padding: .75rem;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+    }
+
+    .icon {
+        width: 28px;
+        height: 28px;
+        font-size: 26px;
+        line-height: 28px;
+        vertical-align: middle;
+        text-align: center;
+        margin-right: .75rem;
+    }
+
+    .title {
+        margin: 0;
+        white-space: nowrap;
+        font-size: .875rem;
+        text-transform: uppercase;
+        display: none;
+    }
+
+    li:hover {
+        background-color: var(--sidenav-simple-background-hover);
+        color: var(--sidenav-simple-color-hover);
+    }
+
+    li:active {
+        background-color: var(--sidenav-simple-background-active);
+        color: var(--sidenav-simple-color-active);
+    }
+
+    .active, li.active:hover {
+        background-color: var(--sidenav-simple-background-active);
+        color: var(--sidenav-simple-color-active);
+    }
+}
+
+.sidenav-simple[dir=rtl] {
+    .icon {
+        left: .725rem;
+    }
+}
+
+.sidenav-simple.expanded {
+    width: var( --sidenav-simple-width );
+
+    .title {
+        display: block;
+    }
+}
+

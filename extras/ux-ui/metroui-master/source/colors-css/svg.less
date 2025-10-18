@@ -1,0 +1,60 @@
+@import (once) "../include/vars";
+
+each(@colors, {
+    .fc-@{value} {fill: @@value !important;}
+    .fc-@{value}-active {&:active {fill: @@value !important;}}
+    .fc-@{value}-hover {&:hover {fill: @@value !important;}}
+    .fc-@{value}-focus {&:focus {fill: @@value !important;}}
+})
+
+each(@normalColors, {
+    @lightColor: "light-@{value}";
+    @darkColor: "dark-@{value}";
+    @minorColor: "minor-@{value}";
+    @satColor: "sat-@{value}";
+
+    .fc-light-@{value} {fill: @@lightColor !important;}
+    .fc-light-@{value}-active {&:active {fill: @@lightColor !important;}}
+    .fc-light-@{value}-hover {&:hover {fill: @@lightColor !important;}}
+    .fc-light-@{value}-focus {&:focus {fill: @@lightColor !important;}}
+
+    .fc-minor-@{value} {fill: @@minorColor !important;}
+    .fc-minor-@{value}-active {&:active {fill: @@minorColor !important;}}
+    .fc-minor-@{value}-hover {&:hover {fill: @@minorColor !important;}}
+    .fc-minor-@{value}-focus {&:focus {fill: @@minorColor !important;}}
+
+    .fc-sat-@{value} {fill: @@satColor !important;}
+    .fc-sat-@{value}-active {&:active {fill: @@satColor !important;}}
+    .fc-sat-@{value}-hover {&:hover {fill: @@satColor !important;}}
+    .fc-sat-@{value}-focus {&:focus {fill: @@satColor !important;}}
+
+    .fc-dark-@{value} {fill: @@darkColor !important;}
+    .fc-dark-@{value}-active {&:active {fill: @@darkColor !important;}}
+    .fc-dark-@{value}-hover {&:hover {fill: @@darkColor !important;}}
+    .fc-dark-@{value}-focus {&:focus {fill: @@darkColor !important;}}
+
+    .sc-@{value} {stroke: @@value !important;}
+    .sc-@{value}-active {&:active {stroke: @@value !important;}}
+    .sc-@{value}-hover {&:hover {stroke: @@value !important;}}
+    .sc-@{value}-focus {&:focus {stroke: @@value !important;}}
+
+    .sc-light-@{value} {stroke: @@lightColor !important;}
+    .sc-light-@{value}-active {&:active {stroke: @@lightColor !important;}}
+    .sc-light-@{value}-hover {&:hover {stroke: @@lightColor !important;}}
+    .sc-light-@{value}-focus {&:focus {stroke: @@lightColor !important;}}
+
+    .sc-minor-@{value} {stroke: @@minorColor !important;}
+    .sc-minor-@{value}-active {&:active {stroke: @@minorColor !important;}}
+    .sc-minor-@{value}-hover {&:hover {stroke: @@minorColor !important;}}
+    .sc-minor-@{value}-focus {&:focus {stroke: @@minorColor !important;}}
+
+    .sc-sat-@{value} {stroke: @@satColor !important;}
+    .sc-sat-@{value}-active {&:active {stroke: @@satColor !important;}}
+    .sc-sat-@{value}-hover {&:hover {stroke: @@satColor !important;}}
+    .sc-sat-@{value}-focus {&:focus {stroke: @@satColor !important;}}
+
+    .sc-dark-@{value} {stroke: @@darkColor !important;}
+    .sc-dark-@{value}-active {&:active {stroke: @@darkColor !important;}}
+    .sc-dark-@{value}-hover {&:hover {stroke: @@darkColor !important;}}
+    .sc-dark-@{value}-focus {&:focus {stroke: @@darkColor !important;}}
+})

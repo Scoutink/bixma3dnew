@@ -1,0 +1,33 @@
+@import (once) "../include/vars";
+
+each(@normalColors, {
+    @lightColor: "light-@{value}";
+    @minorColor: "minor-@{value}";
+    @darkColor: "dark-@{value}";
+    @satColor: "sat-@{value}";
+    
+    .ol-@{value} {outline-color: @@value !important;}
+    .ol-@{value}-active {&:active {outline-color: @@value !important;}}
+    .ol-@{value}-hover {&:hover {outline-color: @@value !important;}}
+    .ol-@{value}-focus {&:focus {outline-color: @@value !important;}}
+    
+    .ol-light-@{value} {outline-color: @@lightColor !important;}
+    .ol-light-@{value}-active {&:active {outline-color: @@lightColor !important;}}
+    .ol-light-@{value}-hover {&:hover {outline-color: @@lightColor !important;}}
+    .ol-light-@{value}-focus {&:focus {outline-color: @@lightColor !important;}}
+    
+    .ol-minor-@{value} {outline-color: @@minorColor !important;}
+    .ol-minor-@{value}-active {&:active {outline-color: @@minorColor !important;}}
+    .ol-minor-@{value}-hover {&:hover {outline-color: @@minorColor !important;}}
+    .ol-minor-@{value}-focus {&:focus {outline-color: @@minorColor !important;}}
+    
+    .ol-sat-@{value} {outline-color: @@satColor !important;}
+    .ol-sat-@{value}-active {&:active {outline-color: @@satColor !important;}}
+    .ol-sat-@{value}-hover {&:hover {outline-color: @@satColor !important;}}
+    .ol-sat-@{value}-focus {&:focus {outline-color: @@satColor !important;}}
+    
+    .ol-dark-@{value} {outline-color: @@darkColor !important;}
+    .ol-dark-@{value}-active {&:active {outline-color: @@darkColor !important;}}
+    .ol-dark-@{value}-hover {&:hover {outline-color: @@darkColor !important;}}
+    .ol-dark-@{value}-focus {&:focus {outline-color: @@darkColor !important;}}
+})

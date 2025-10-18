@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+
+    <title>Test ColorSelector - Metro UI :: Popular HTML, CSS and JS library</title>
+    <style>
+        .target {
+            height: 100px;
+            width: 306px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid gray;
+            margin-top: 10px;
+        }
+        .box {
+            height: 100px;
+            border: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body class="cloak" style="padding-top: 55px">
+<nav data-role="appbar">
+    <span class="app-bar-item">Any</span>
+    <div class="app-bar-item no-hover">
+        <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="cell-lg-4">
+            <div class>
+                <input type="text" data-role="input" id="color-controller">
+            </div>
+            <div class="box mt-4"></div>
+        </div>
+        <div class="cell-lg-4" lang="ua">
+            <div id="color-selector-1"
+                 data-role="color-selector"
+                 data-user-colors="#FFFFFF,#000000,#FFFB0D,#0532FF,#FF9300,#00F91A,#FF2700,#686868,#EE5464,#D27AEE,#5BA8C4,#E64AA9,#1ba1e2,#6a00ff,#bebebe,#f8f8f8"
+                 data-show-alpha-channel="true"
+                 data-controller="#color-controller"
+                 data-init-color="#9c27b0"
+                 data-readonly-input="false"
+                 data-on-select-color="changeColor"></div>
+        </div>
+        <div class="cell-lg-4">
+            <div class="d-flex flex-column">
+                <button class="button mb-1" onclick="Metro.getPlugin('#color-selector-1', 'color-selector').val('#aa00ff')">Set to Violet</button>
+                <button class="button mb-1" onclick="alert(Metro.getPlugin('#color-selector-1', 'color-selector').val())">Get color</button>
+                <button class="button mb-1" onclick="Metro.getPlugin('#color-selector-1', 'color-selector').user('#aa00ff, #ff00ff')">Set user colors</button>
+                <button class="button mb-1" onclick="alert(Metro.getPlugin('#color-selector-1', 'color-selector').user().join(','))">Get user colors</button>
+                <button class="button mb-1" onclick="createMaterialPalette()">Create material colors</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+    function changeColor(color){
+        $(".box").css("background", color)
+    }
+
+    function createMaterialPalette(){
+        var color = Metro.getPlugin('@color-selector', 'color-selector').val();
+        var palette = Farbe.Routines.createColorScheme(color, "material");
+        var outputPalette = $("#palette").clear();
+
+        $.each(palette, function(key, color){
+            outputPalette.append($("<div style='height: 50px'>").addClass("text-center p-1").css("background-color", color).text(key + " : " + color));
+        })
+    }
+
+    $(function(){
+        // createMaterialPalette();
+    })
+</script>
+</body>
+</html>

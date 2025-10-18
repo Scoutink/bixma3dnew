@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+
+    <title>Test Countdown - Metro UI :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1 class="text-center">Countdown test page</h1>
+    <div class="d-flex flex-center gap-4">
+        <button onclick="reset(1)">Reset 1</button>
+        <button onclick="reset(2)">Reset 2</button>
+    </div>
+    <div class="example">
+        <div class="row">
+            <div id="cd1" data-role="countdown" data-animate="slide" data-font-size="96"></div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+    function reset(v){
+        const cd = Metro.getPlugin("#cd1", "countdown")
+        if (v === 1) {
+            cd.resetWith("2025/05/15");
+        } else {
+            cd.resetWith({
+                days: 2,
+            });
+        }
+    }
+</script>
+</body>
+</html>

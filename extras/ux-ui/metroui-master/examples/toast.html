@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+
+    <title>Test Toast - Metro UI :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="cloak">
+<nav data-role="appbar" class="border-bottom bd-default">
+    <span class="app-bar-item">Any</span>
+    <div class="app-bar-item-static no-hover">
+        <input type="checkbox" data-role="theme-switcher"/>
+    </div>
+    <div class="app-bar-item-static no-hover">
+        <div class="text-leader">Component Test</div>
+    </div>
+</nav>
+<div class="container">
+    <h1>Toast test page</h1>
+    <div>
+        <button class="button" onclick="oldCall()">Toast old</button>
+        <button class="button" onclick="newCall()">Toast new</button>
+    </div>
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+    function cb(){
+        console.log("This is callback");
+    }
+
+    function oldCall(){
+        Metro.createToast("Toast message", cb, null, "info");
+    }
+    function newCall(){
+        Metro.createToast("Toast message", {
+            clsToast: "alert",
+            callback: cb
+        });
+    }
+
+    $(function(){
+        Metro.createToast("Toast message", {
+            clsToast: "alert"
+        });
+    })
+</script>
+</body>
+</html>

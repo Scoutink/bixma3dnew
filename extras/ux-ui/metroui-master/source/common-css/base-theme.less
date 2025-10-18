@@ -1,0 +1,62 @@
+@import "../include/vars";
+
+:root {
+    --layout-fs: @fs;
+    --layout-xs: @xs;
+    --layout-sm: @sm;
+    --layout-ld: @ld;
+    --layout-md: @md;
+    --layout-lg: @lg;
+    --layout-xl: @xl;
+    --layout-xxl: @xxl;
+    --layout-xxxl: @xxxl;
+
+    --control-height-normal: 36px;
+    --control-height-mini: 20px;
+    --control-height-small: 26px;
+    --control-height-medium: 30px;
+    --control-height-large: 40px;
+    --control-height-largest: 54px;
+}
+
+:root {
+    --default-background: #fff;
+    --default-color: #191919;
+    --default-color-hover: #000000;
+    --default-background-disabled: #f7f8fa;
+    --default-color-disabled: #c9ccd6;
+
+    --body-background: var(--default-background);
+    --body-color: var(--default-color);
+    --body-color-secondary: #a2a5b1;
+    --border-color: #e8e8e8;
+    --link-color: #5a87cb;
+    --link-color-hover: #0056B3FF;
+    --selected-color: #1FB1F8FF;
+
+    --selected-row-background: #f5f8fe;
+    --selected-item-background: #d4e2ff;
+}
+
+.dark-side {
+    --default-background: #1e1f22;
+    --default-color: #dbdfe7;
+    --default-color-hover: #dbdfe7;
+    --default-background-disabled: #343637;
+    --default-color-disabled: #54565a;
+
+    --body-background: var(--default-background);
+    --body-color: var(--default-color);
+    --body-color-secondary: #c0c0c0;
+    --border-color: #4a4d51;
+    --link-color: rgb(68, 147, 248);
+    --link-color-hover: rgb(39, 113, 209);
+
+    --selected-row-background: #26282e;
+    --selected-item-background: #2e436e;
+}
+
+body {
+    background-color: var(--body-background);
+    color: var(--body-color);
+}

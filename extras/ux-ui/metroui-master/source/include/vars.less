@@ -1,0 +1,521 @@
+@unitSize: 4px;
+
+// Fonts
+@fontName: -apple-system, system-ui, BlinkMacSystemFont,
+"Segoe UI", "Roboto", "Ubuntu",
+"Helvetica Neue", sans-serif;
+
+@fontSize: @unitSize * 4;
+
+
+// Colors
+
+// Lighting
+// +20% +10% color -10% -20%
+//
+
+@transparent: transparent;
+
+@black: #000000;
+@white: #ffffff;
+@dark: #1d1d1d;
+@light: #f8f8f8;
+
+@gray: hsl(0, 0%, 80%);
+@gray-blue: hsl(210, 26%, 54%);
+@gray-white: hsl(0, 0%, 96%);
+@gray-mouse: hsl(199, 15%, 40%);
+
+@lime: hsl(93, 97%, 71%);
+@green: hsl(120, 100%, 35%);
+@emerald: hsl(140, 52%, 55%);
+@blue: hsl(225, 100%, 68%);
+@teal: hsl(180, 77%, 44%);
+@cyan: hsl(221, 100%, 79%);
+@cobalt: hsl(215, 100%, 34%);
+@indigo: hsl(276, 100%, 33%);
+@almost: hsl(259, 84%, 55%);
+@violet: hsl(300, 76%, 72%);
+@pink: hsl(350, 100%, 88%);
+@magenta: hsl(300, 100%, 50%);
+@crimson: hsl(348, 88%, 46%);
+@red: hsl(0, 100%, 50%);
+@clown: hsl(3, 100%, 70%);
+@orange: hsl(39, 100%, 50%);
+@amber: hsl(45, 100%, 58%);
+@yellow: hsl(52, 100%, 68%);
+@brown: hsl(25, 57%, 51%);
+@olive: hsl(60, 100%, 32%);
+@steel: hsl(209, 19%, 57%);
+@mauve: hsl(277, 100%, 84%);
+@taupe: hsl(29, 19%, 50%);
+@champagne: hsl(37, 74%, 88%);
+@khaki: hsl(47, 47%, 69%);
+@charcoal: hsl(0, 0%, 60%);
+@bronze: hsl(29, 75%, 57%);
+@windstorm: hsl(216, 53%, 66%);
+@nude: hsl(29, 79%, 85%);
+@terracotta: hsl(10, 76%, 55%);
+@coral: hsl(16, 100%, 67%);
+@army: hsl(69, 34%, 30%);
+@seashell: hsl(25, 100%, 95%);
+@sand: hsl(45, 71%, 81%);
+
+@light-lime: lighten(@lime, 20%);
+@light-green: lighten(@green, 40%);
+@light-emerald: lighten(@emerald, 30%);
+@light-blue: lighten(@blue, 25%);
+@light-teal: lighten(@teal, 30%);
+@light-cyan: lighten(@cyan, 15%);
+@light-cobalt: lighten(@cobalt, 40%);
+@light-indigo: lighten(@indigo, 40%);
+@light-almost: lighten(@almost, 30%);
+@light-violet: lighten(@violet, 20%);
+@light-pink: lighten(@pink, 10%);
+@light-magenta: lighten(@magenta, 40%);
+@light-crimson: lighten(@crimson, 35%);
+@light-red: lighten(@red, 30%);
+@light-clown: lighten(@clown, 25%);
+@light-orange: lighten(@orange, 40%);
+@light-amber: lighten(@amber, 20%);
+@light-yellow: lighten(@yellow, 25%);
+@light-brown: lighten(@brown, 30%);
+@light-olive: lighten(@olive, 40%);
+@light-steel: lighten(@steel, 30%);
+@light-mauve: lighten(@mauve, 12%);
+@light-taupe: lighten(@taupe, 30%);
+@light-champagne: lighten(@champagne, 10%);
+@light-khaki: lighten(@khaki, 25%);
+@light-charcoal: lighten(@charcoal, 25%);
+@light-bronze: lighten(@bronze, 30%);
+@light-windstorm: lighten(@windstorm, 27%);
+@light-nude: lighten(@nude, 12%);
+@light-terracotta: lighten(@terracotta, 30%);
+@light-coral: lighten(@coral, 25%);
+@light-army: lighten(@army, 35%);
+@light-seashell: lighten(@seashell, 3%);
+@light-sand: lighten(@sand, 15%);
+@light-gray: lighten(@gray, 15%);
+@light-gray-blue: lighten(@gray-blue, 30%);
+@light-gray-mouse: lighten(@gray-mouse, 30%);
+
+@minor-lime: lighten(@lime, 10%);
+@minor-green: lighten(@green, 10%);
+@minor-emerald: lighten(@emerald, 10%);
+@minor-blue: lighten(@blue, 10%);
+@minor-teal: lighten(@teal, 10%);
+@minor-cyan: lighten(@cyan, 10%);
+@minor-cobalt: lighten(@cobalt, 10%);
+@minor-indigo: lighten(@indigo, 10%);
+@minor-almost: lighten(@almost, 10%);
+@minor-violet: lighten(@violet, 10%);
+@minor-pink: lighten(@pink, 5%);
+@minor-magenta: lighten(@magenta, 20%);
+@minor-crimson: lighten(@crimson, 20%);
+@minor-red: lighten(@red, 20%);
+@minor-clown: lighten(@clown, 15%);
+@minor-orange: lighten(@orange, 20%);
+@minor-amber: lighten(@amber, 10%);
+@minor-yellow: lighten(@yellow, 15%);
+@minor-brown: lighten(@brown, 15%);
+@minor-olive: lighten(@olive, 10%);
+@minor-steel: lighten(@steel, 20%);
+@minor-mauve: lighten(@mauve, 6%);
+@minor-taupe: lighten(@taupe, 17%);
+@minor-champagne: lighten(@champagne, 5%);
+@minor-khaki: lighten(@khaki, 15%);
+@minor-charcoal: lighten(@charcoal, 15%);
+@minor-bronze: lighten(@bronze, 15%);
+@minor-windstorm: lighten(@windstorm, 15%);
+@minor-nude: lighten(@nude, 7%);
+@minor-terracotta: lighten(@terracotta, 15%);
+@minor-coral: lighten(@coral, 15%);
+@minor-army: lighten(@army, 17%);
+@minor-seashell: lighten(@seashell, 2%);
+@minor-sand: lighten(@sand, 7%);
+@minor-gray: lighten(@gray, 7%);
+@minor-gray-blue: lighten(@gray-blue, 15%);
+@minor-gray-mouse: lighten(@gray-mouse, 15%);
+
+@sat-lime: darken(@lime, 10%);
+@sat-green: darken(@green, 10%);
+@sat-emerald: darken(@emerald, 10%);
+@sat-blue: darken(@blue, 10%);
+@sat-teal: darken(@teal, 10%);
+@sat-cyan: darken(@cyan, 10%);
+@sat-cobalt: darken(@cobalt, 10%);
+@sat-indigo: darken(@indigo, 10%);
+@sat-almost: darken(@almost, 10%);
+@sat-violet: darken(@violet, 10%);
+@sat-pink: darken(@pink, 10%);
+@sat-magenta: darken(@magenta, 10%);
+@sat-crimson: darken(@crimson, 10%);
+@sat-red: darken(@red, 10%);
+@sat-clown: darken(@clown, 10%);
+@sat-orange: darken(@orange, 10%);
+@sat-amber: darken(@amber, 10%);
+@sat-yellow: darken(@yellow, 10%);
+@sat-brown: darken(@brown, 10%);
+@sat-olive: darken(@olive, 10%);
+@sat-steel: darken(@steel, 10%);
+@sat-mauve: darken(@mauve, 10%);
+@sat-taupe: darken(@taupe, 10%);
+@sat-champagne: darken(@champagne, 10%);
+@sat-khaki: darken(@khaki, 10%);
+@sat-charcoal: darken(@charcoal, 10%);
+@sat-bronze: darken(@bronze, 10%);
+@sat-windstorm: darken(@windstorm, 10%);
+@sat-nude: darken(@nude, 10%);
+@sat-terracotta: darken(@terracotta, 10%);
+@sat-coral: darken(@coral, 10%);
+@sat-army: darken(@army, 10%);
+@sat-seashell: darken(@seashell, 10%);
+@sat-sand: darken(@sand, 10%);
+@sat-gray: darken(@gray, 10%);
+@sat-gray-blue: darken(@gray-blue, 10%);
+@sat-gray-mouse: darken(@gray-mouse, 10%);
+
+@dark-lime: darken(@lime, 20%);
+@dark-green: darken(@green, 20%);
+@dark-emerald: darken(@emerald, 20%);
+@dark-blue: darken(@blue, 20%);
+@dark-teal: darken(@teal, 20%);
+@dark-cyan: darken(@cyan, 20%);
+@dark-cobalt: darken(@cobalt, 20%);
+@dark-indigo: darken(@indigo, 20%);
+@dark-almost: darken(@almost, 20%);
+@dark-violet: darken(@violet, 20%);
+@dark-pink: darken(@pink, 20%);
+@dark-magenta: darken(@magenta, 20%);
+@dark-crimson: darken(@crimson, 20%);
+@dark-red: darken(@red, 20%);
+@dark-clown: darken(@clown, 20%);
+@dark-orange: darken(@orange, 20%);
+@dark-amber: darken(@amber, 20%);
+@dark-yellow: darken(@yellow, 20%);
+@dark-brown: darken(@brown, 20%);
+@dark-olive: darken(@olive, 20%);
+@dark-steel: darken(@steel, 20%);
+@dark-mauve: darken(@mauve, 20%);
+@dark-taupe: darken(@taupe, 20%);
+@dark-champagne: darken(@champagne, 20%);
+@dark-khaki: darken(@khaki, 20%);
+@dark-charcoal: darken(@charcoal, 20%);
+@dark-bronze: darken(@bronze, 20%);
+@dark-windstorm: darken(@windstorm, 20%);
+@dark-nude: darken(@nude, 20%);
+@dark-terracotta: darken(@terracotta, 20%);
+@dark-coral: darken(@coral, 20%);
+@dark-army: darken(@army, 20%);
+@dark-seashell: darken(@seashell, 20%);
+@dark-sand: darken(@sand, 20%);
+@dark-gray: darken(@gray, 20%);
+@dark-gray-blue: darken(@gray-blue, 20%);
+@dark-gray-mouse: darken(@gray-mouse, 20%);
+
+@simpleColors: black, white, dark, light;
+
+@colors: black, white, dark, light, gray, gray-blue, gray-white, gray-mouse,
+lime, green, emerald, blue, teal, cyan, cobalt, indigo, almost, violet, pink, magenta, crimson, red, clown, orange,
+amber, yellow, brown, olive, steel, mauve, taupe, champagne, khaki, charcoal,
+bronze, windstorm, nude, terracotta, coral, army, seashell, sand;
+
+@normalColors: gray, gray-blue, gray-mouse, 
+lime, green, emerald, blue, teal, cyan, cobalt, indigo, almost, violet, pink, magenta, crimson, red, orange,
+amber, yellow, brown, olive, steel, mauve, taupe, champagne, khaki, charcoal,
+bronze, windstorm, nude, terracotta, coral, army, seashell, sand;
+
+// Accent colors-css
+@primaryColor: #f75553;
+@primaryColorLight: lighten(#f75553, 15%);
+@primaryColorDark: darken(#f75553, 5%);
+
+@secondaryColor: #74290a;
+@secondaryColorLight: lighten(#74290a, 15%);
+@secondaryColorDark: darken(#74290a, 5%);
+
+@tertiaryColor: #ffbebd;
+@tertiaryColorLight: lighten(#fdd7d6, 15%);
+@tertiaryColorDark: darken(#fdd7d6, 5%);
+
+@successColor: @emerald;
+@successColorLight: lighten(@emerald, 15%);
+@successColorDark: darken(@emerald, 5%);
+
+@alertColor: @crimson;
+@alertColorLight: lighten(@crimson, 15%);
+@alertColorDark: darken(@crimson, 5%);
+
+@warningColor: @orange;
+@warningColorLight: lighten(@orange, 15%);
+@warningColorDark: darken(@orange, 5%);
+
+@yellowColor: @yellow;
+@yellowColorLight: lighten(@yellow, 15%);
+@yellowColorDark: darken(@yellow, 5%);
+
+@infoColor: #468cff;
+@infoColorLight: lighten(#468cff, 15%);
+@infoColorDark: darken(#468cff, 5%);
+
+@darkColor: lighten(@dark, 20%);
+@darkColorLight: lighten(@darkColor, 15%);
+@darkColorDark: darken(@darkColor, 5%);
+
+@lightColor: @light;
+@lightColorLight: @white;
+@lightColorDark: darken(@light, 5%);
+
+@accentColors: primary, secondary, tertiary, success, alert, warning, info, dark, light;
+
+@hoverBackground: rgba(red(@dark), green(@dark), blue(@dark), .1);
+
+
+// Z-index
+@zindex-selectedCheck: 100;
+@zindex-absolute: 500;
+@zindex-dropdown: 1000;
+@zindex-sticky: 1020;
+@zindex-fixed: 1030;
+@zindex-modal-backdrop: 1040;
+@zindex-modal: 1050;
+@zindex-popover: 1060;
+@zindex-tooltip: 1070;
+@zindex-top: 1080;
+@zindex-notify: 1085;
+@zindex-charms: 1090;
+@zindex-overlay: 2000;
+@zindex-fullscreen: 2147483647;
+
+// Media breakpoints
+@fs: 0;
+@xs: 360px;
+@sm: 576px;
+@ld: 640px;
+@md: 768px;
+@lg: 992px;
+@xl: 1200px;
+@xxl: 1400px;
+@xxxl: 2000px;
+
+@media-rules: {
+    fs: @fs;
+    xs: @xs;
+    sm: @sm;
+    ld: @ld;
+    md: @md;
+    lg: @lg;
+    xl: @xl;
+    xxl: @xxl;
+    xxxl: @xxxl;
+}
+
+@media-rules-max: {
+    xs: 359px;
+    sm: 575px;
+    ld: 639px;
+    md: 767px;
+    lg: 991px;
+    xl: 1199px;
+    xxl: 1399px;
+    xxxl: 1999px;
+}
+
+@media-scale: {
+    fs: 0.8;
+    xs: 1.1;
+    sm: 1.2;
+    ld: 1.3;
+    md: 1.4;
+    lg: 1.5;
+    xl: 1.6;
+    xxl: 1.7;
+    xxxl: 1.8;
+}
+
+@mediaBreakpointListMobile: fs, xs, sm, ld, md, lg, xl, xxl, xxxl;
+
+@percents: 10, 20, 25, 33, 50, 66, 75, 80, 90, 100;
+
+// Transition
+@transition-speed: .3s;
+@transition-short: all .15s ease-in-out;
+@transition-base: all .3s ease-in-out;
+@transition-long: all 1s ease-in-out;
+@transition-margin: margin .3s ease-in-out;
+@transition-fade: opacity .15s linear;
+@transition-color: color .3s linear;
+@transition-collapse: max-height .3s ease;
+@transition-width: width .3s ease;
+@transition-left: left .3s ease;
+@transition-right: right .3s ease;
+@transition-top: top .3s ease;
+@transition-bottom: bottom .3s ease;
+@transition-transform: transform .3s ease;
+
+@johnDoe: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwKDAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAUABQAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+t+KKPxo/GgA70Yo/Gj8aADFH4VesdC1HUl3WtjcXCf344yV/PGKW+0HUtNXddWNzbp/fkjIX88YoAofhR+FH40fjQAfhR+FH40fjQAUUUUAFepeAPh5D9li1LVYhK8g3Q27j5VXszDuT6f5HA+FtOXVvEWn2rjMcko3j1UckfkDX0MBgYHAoARVCKFUBVHAA6ClZQwKkZBGCDS0UAec+Pvh3BJay6lpUQimjBeW3QYVx3Kjsfbv/PyqvpuvnvxfpqaT4l1C1QbY0lJUDsrfMB+RoAyKKKKACiiigDa8GXq6f4p02eQgIJQpJ7Bvlz+tfQP4V8yDg17P4A8cw65ZxWV5IE1KMbfmP+uA7j39R+NAHaUfhSUUAL+FeA+OL1NQ8WalNGQU83YCO+0Bf6V6b498cQ6BZyWlrIJNSkXaApz5QP8AEff0FeKk5OTyTQAUUUUAH40fjRU1naTX93DbQIXmlYIijuTQBc0Dw/eeI74W1mm49XkbhUHqTXsHhz4eaXoCpI8YvbscmaYZAP8Asr0H8/etHwv4cg8M6XHaxANIfmllxy7dz9PStigA/Gk/GlooA5bxJ8PdL19XkWMWd43PnwjGT/tL0P8AP3rx/X/D954cvjbXibT1SReVceoNfRFZHijw5B4m0uS1lAWQfNFLjlG7H6etAHz5+NH41NeWk1hdzW06FJonKMp7EGoaACvQfhBowudTudRkXK2y7I8j+Nup/Afzrz6vafhRaCDwmkgHM8zufwO3/wBloA7Kiij8KACkpaSgBaSj8KKAPJvi/owttTttRjXC3K7JMf3l6H8R/KvPq9p+K1qJ/CbyEcwTI4P1O3/2avFqAP/Z";
+
+
+// Градієнти для кольорів
+@gradient-lime: linear-gradient(var(--gradient-direction), lighten(@lime, 10%), darken(@lime, 15%));
+@gradient-green: linear-gradient(var(--gradient-direction), lighten(@green, 20%), darken(@green, 10%));
+@gradient-emerald: linear-gradient(var(--gradient-direction), lighten(@emerald, 15%), darken(@emerald, 20%));
+@gradient-blue: linear-gradient(var(--gradient-direction), lighten(@blue, 10%), darken(@blue, 25%));
+@gradient-teal: linear-gradient(var(--gradient-direction), lighten(@teal, 20%), darken(@teal, 15%));
+@gradient-cyan: linear-gradient(var(--gradient-direction), lighten(@cyan, 5%), darken(@cyan, 20%));
+@gradient-cobalt: linear-gradient(var(--gradient-direction), lighten(@cobalt, 25%), darken(@cobalt, 10%));
+@gradient-indigo: linear-gradient(var(--gradient-direction), lighten(@indigo, 30%), darken(@indigo, 15%));
+@gradient-almost: linear-gradient(var(--gradient-direction), lighten(@almost, 20%), darken(@almost, 15%));
+@gradient-violet: linear-gradient(var(--gradient-direction), lighten(@violet, 10%), darken(@violet, 20%));
+@gradient-pink: linear-gradient(var(--gradient-direction), lighten(@pink, 5%), darken(@pink, 15%));
+@gradient-magenta: linear-gradient(var(--gradient-direction), lighten(@magenta, 15%), darken(@magenta, 20%));
+@gradient-crimson: linear-gradient(var(--gradient-direction), lighten(@crimson, 20%), darken(@crimson, 15%));
+@gradient-red: linear-gradient(var(--gradient-direction), lighten(@red, 15%), darken(@red, 20%));
+@gradient-clown: linear-gradient(var(--gradient-direction), lighten(@clown, 10%), darken(@clown, 15%));
+@gradient-orange: linear-gradient(var(--gradient-direction), lighten(@orange, 15%), darken(@orange, 20%));
+@gradient-amber: linear-gradient(var(--gradient-direction), lighten(@amber, 10%), darken(@amber, 15%));
+@gradient-yellow: linear-gradient(var(--gradient-direction), lighten(@yellow, 10%), darken(@yellow, 25%));
+@gradient-brown: linear-gradient(var(--gradient-direction), lighten(@brown, 20%), darken(@brown, 15%));
+@gradient-olive: linear-gradient(var(--gradient-direction), lighten(@olive, 25%), darken(@olive, 10%));
+@gradient-steel: linear-gradient(var(--gradient-direction), lighten(@steel, 15%), darken(@steel, 20%));
+@gradient-mauve: linear-gradient(var(--gradient-direction), lighten(@mauve, 5%), darken(@mauve, 15%));
+@gradient-taupe: linear-gradient(var(--gradient-direction), lighten(@taupe, 20%), darken(@taupe, 15%));
+@gradient-champagne: linear-gradient(var(--gradient-direction), lighten(@champagne, 5%), darken(@champagne, 20%));
+@gradient-khaki: linear-gradient(var(--gradient-direction), lighten(@khaki, 15%), darken(@khaki, 20%));
+@gradient-charcoal: linear-gradient(var(--gradient-direction), lighten(@charcoal, 20%), darken(@charcoal, 15%));
+@gradient-bronze: linear-gradient(var(--gradient-direction), lighten(@bronze, 15%), darken(@bronze, 20%));
+@gradient-windstorm: linear-gradient(var(--gradient-direction), lighten(@windstorm, 15%), darken(@windstorm, 20%));
+@gradient-nude: linear-gradient(var(--gradient-direction), lighten(@nude, 8%), darken(@nude, 18%));
+@gradient-terracotta: linear-gradient(var(--gradient-direction), lighten(@terracotta, 20%), darken(@terracotta, 15%));
+@gradient-coral: linear-gradient(var(--gradient-direction), lighten(@coral, 10%), darken(@coral, 20%));
+@gradient-army: linear-gradient(var(--gradient-direction), lighten(@army, 25%), darken(@army, 10%));
+@gradient-seashell: linear-gradient(var(--gradient-direction), lighten(@seashell, 2%), darken(@seashell, 10%));
+@gradient-sand: linear-gradient(var(--gradient-direction), lighten(@sand, 10%), darken(@sand, 15%));
+@gradient-gray: linear-gradient(var(--gradient-direction), lighten(@gray, 10%), darken(@gray, 15%));
+@gradient-gray-blue: linear-gradient(var(--gradient-direction), lighten(@gray-blue, 10%), darken(@gray-blue, 15%));
+@gradient-gray-mouse: linear-gradient(var(--gradient-direction), lighten(@gray-mouse, 10%), darken(@gray-mouse, 15%));
+
+@gradient-radial-lime: radial-gradient(var(--gradient-position), lighten(@lime, 15%), darken(@lime, 25%));
+@gradient-radial-green: radial-gradient(var(--gradient-position), lighten(@green, 25%), darken(@green, 20%));
+@gradient-radial-emerald: radial-gradient(var(--gradient-position), lighten(@emerald, 20%), darken(@emerald, 25%));
+@gradient-radial-blue: radial-gradient(var(--gradient-position), lighten(@blue, 15%), darken(@blue, 30%));
+@gradient-radial-teal: radial-gradient(var(--gradient-position), lighten(@teal, 25%), darken(@teal, 20%));
+@gradient-radial-cyan: radial-gradient(var(--gradient-position), lighten(@cyan, 10%), darken(@cyan, 25%));
+@gradient-radial-cobalt: radial-gradient(var(--gradient-position), lighten(@cobalt, 30%), darken(@cobalt, 15%));
+@gradient-radial-indigo: radial-gradient(var(--gradient-position), lighten(@indigo, 35%), darken(@indigo, 20%));
+@gradient-radial-almost: radial-gradient(var(--gradient-position), lighten(@almost, 25%), darken(@almost, 20%));
+@gradient-radial-violet: radial-gradient(var(--gradient-position), lighten(@violet, 15%), darken(@violet, 25%));
+@gradient-radial-pink: radial-gradient(var(--gradient-position), lighten(@pink, 10%), darken(@pink, 20%));
+@gradient-radial-magenta: radial-gradient(var(--gradient-position), lighten(@magenta, 20%), darken(@magenta, 25%));
+@gradient-radial-crimson: radial-gradient(var(--gradient-position), lighten(@crimson, 25%), darken(@crimson, 20%));
+@gradient-radial-red: radial-gradient(var(--gradient-position), lighten(@red, 20%), darken(@red, 25%));
+@gradient-radial-clown: radial-gradient(var(--gradient-position), lighten(@clown, 15%), darken(@clown, 20%));
+@gradient-radial-orange: radial-gradient(var(--gradient-position), lighten(@orange, 20%), darken(@orange, 25%));
+@gradient-radial-amber: radial-gradient(var(--gradient-position), lighten(@amber, 15%), darken(@amber, 20%));
+@gradient-radial-yellow: radial-gradient(var(--gradient-position), lighten(@yellow, 15%), darken(@yellow, 30%));
+@gradient-radial-brown: radial-gradient(var(--gradient-position), lighten(@brown, 25%), darken(@brown, 20%));
+@gradient-radial-olive: radial-gradient(var(--gradient-position), lighten(@olive, 30%), darken(@olive, 15%));
+@gradient-radial-steel: radial-gradient(var(--gradient-position), lighten(@steel, 20%), darken(@steel, 25%));
+@gradient-radial-mauve: radial-gradient(var(--gradient-position), lighten(@mauve, 10%), darken(@mauve, 20%));
+@gradient-radial-taupe: radial-gradient(var(--gradient-position), lighten(@taupe, 25%), darken(@taupe, 20%));
+@gradient-radial-champagne: radial-gradient(var(--gradient-position), lighten(@champagne, 10%), darken(@champagne, 25%));
+@gradient-radial-khaki: radial-gradient(var(--gradient-position), lighten(@khaki, 20%), darken(@khaki, 25%));
+@gradient-radial-charcoal: radial-gradient(var(--gradient-position), lighten(@charcoal, 25%), darken(@charcoal, 20%));
+@gradient-radial-bronze: radial-gradient(var(--gradient-position), lighten(@bronze, 20%), darken(@bronze, 25%));
+@gradient-radial-windstorm: radial-gradient(var(--gradient-position), lighten(@windstorm, 20%), darken(@windstorm, 25%));
+@gradient-radial-nude: radial-gradient(var(--gradient-position), lighten(@nude, 12%), darken(@nude, 22%));
+@gradient-radial-terracotta: radial-gradient(var(--gradient-position), lighten(@terracotta, 25%), darken(@terracotta, 20%));
+@gradient-radial-coral: radial-gradient(var(--gradient-position), lighten(@coral, 15%), darken(@coral, 25%));
+@gradient-radial-army: radial-gradient(var(--gradient-position), lighten(@army, 30%), darken(@army, 15%));
+@gradient-radial-seashell: radial-gradient(var(--gradient-position), lighten(@seashell, 5%), darken(@seashell, 15%));
+@gradient-radial-sand: radial-gradient(var(--gradient-position), lighten(@sand, 15%), darken(@sand, 20%));
+@gradient-radial-gray: radial-gradient(var(--gradient-position), lighten(@gray, 15%), darken(@gray, 20%));
+@gradient-radial-gray-blue: radial-gradient(var(--gradient-position), lighten(@gray-blue, 15%), darken(@gray-blue, 20%));
+@gradient-radial-gray-mouse: radial-gradient(var(--gradient-position), lighten(@gray-mouse, 15%), darken(@gray-mouse, 20%));
+
+// Кольорові переходи з сусідніми кольорами
+@gradient-lime-green: linear-gradient(var(--gradient-direction), @lime, @green);
+@gradient-green-emerald: linear-gradient(var(--gradient-direction), @green, @emerald);
+@gradient-emerald-teal: linear-gradient(var(--gradient-direction), @emerald, @teal);
+@gradient-blue-cyan: linear-gradient(var(--gradient-direction), @blue, @cyan);
+@gradient-teal-cyan: linear-gradient(var(--gradient-direction), @teal, @cyan);
+@gradient-cyan-blue: linear-gradient(var(--gradient-direction), @cyan, @blue);
+@gradient-cobalt-indigo: linear-gradient(var(--gradient-direction), @cobalt, @indigo);
+@gradient-indigo-violet: linear-gradient(var(--gradient-direction), @indigo, @violet);
+@gradient-almost-violet: linear-gradient(var(--gradient-direction), @almost, @violet);
+@gradient-violet-pink: linear-gradient(var(--gradient-direction), @violet, @pink);
+@gradient-pink-magenta: linear-gradient(var(--gradient-direction), @pink, @magenta);
+@gradient-magenta-violet: linear-gradient(var(--gradient-direction), @magenta, @violet);
+@gradient-crimson-red: linear-gradient(var(--gradient-direction), @crimson, @red);
+@gradient-red-crimson: linear-gradient(var(--gradient-direction), @red, @crimson);
+@gradient-clown-red: linear-gradient(var(--gradient-direction), @clown, @red);
+@gradient-orange-amber: linear-gradient(var(--gradient-direction), @orange, @amber);
+@gradient-amber-yellow: linear-gradient(var(--gradient-direction), @amber, @yellow);
+@gradient-yellow-amber: linear-gradient(var(--gradient-direction), @yellow, @amber);
+@gradient-brown-bronze: linear-gradient(var(--gradient-direction), @brown, @bronze);
+@gradient-olive-army: linear-gradient(var(--gradient-direction), @olive, @army);
+@gradient-steel-charcoal: linear-gradient(var(--gradient-direction), @steel, @charcoal);
+@gradient-mauve-violet: linear-gradient(var(--gradient-direction), @mauve, @violet);
+@gradient-taupe-bronze: linear-gradient(var(--gradient-direction), @taupe, @bronze);
+@gradient-champagne-nude: linear-gradient(var(--gradient-direction), @champagne, @nude);
+@gradient-khaki-sand: linear-gradient(var(--gradient-direction), @khaki, @sand);
+@gradient-charcoal-steel: linear-gradient(var(--gradient-direction), @charcoal, @steel);
+@gradient-bronze-brown: linear-gradient(var(--gradient-direction), @bronze, @brown);
+@gradient-windstorm-steel: linear-gradient(var(--gradient-direction), @windstorm, @steel);
+@gradient-nude-seashell: linear-gradient(var(--gradient-direction), @nude, @seashell);
+@gradient-terracotta-coral: linear-gradient(var(--gradient-direction), @terracotta, @coral);
+@gradient-coral-orange: linear-gradient(var(--gradient-direction), @coral, @orange);
+@gradient-army-olive: linear-gradient(var(--gradient-direction), @army, @olive);
+@gradient-seashell-champagne: linear-gradient(var(--gradient-direction), @seashell, @champagne);
+@gradient-sand-khaki: linear-gradient(var(--gradient-direction), @sand, @khaki);
+
+// Тричастинні переходи з сусідніми кольорами
+@gradient-lime-green-emerald: linear-gradient(var(--gradient-direction), @lime, @green, @emerald);
+@gradient-green-emerald-teal: linear-gradient(var(--gradient-direction), @green, @emerald, @teal);
+@gradient-emerald-teal-cyan: linear-gradient(var(--gradient-direction), @emerald, @teal, @cyan);
+@gradient-cyan-blue-cobalt: linear-gradient(var(--gradient-direction), @cyan, @blue, @cobalt);
+@gradient-blue-cobalt-indigo: linear-gradient(var(--gradient-direction), @blue, @cobalt, @indigo);
+@gradient-cobalt-indigo-violet: linear-gradient(var(--gradient-direction), @cobalt, @indigo, @violet);
+@gradient-indigo-violet-pink: linear-gradient(var(--gradient-direction), @indigo, @violet, @pink);
+@gradient-violet-pink-magenta: linear-gradient(var(--gradient-direction), @violet, @pink, @magenta);
+@gradient-pink-magenta-crimson: linear-gradient(var(--gradient-direction), @pink, @magenta, @crimson);
+@gradient-magenta-crimson-red: linear-gradient(var(--gradient-direction), @magenta, @crimson, @red);
+@gradient-crimson-red-orange: linear-gradient(var(--gradient-direction), @crimson, @red, @orange);
+@gradient-red-orange-amber: linear-gradient(var(--gradient-direction), @red, @orange, @amber);
+@gradient-orange-amber-yellow: linear-gradient(var(--gradient-direction), @orange, @amber, @yellow);
+@gradient-amber-yellow-sand: linear-gradient(var(--gradient-direction), @amber, @yellow, @sand);
+@gradient-yellow-sand-khaki: linear-gradient(var(--gradient-direction), @yellow, @sand, @khaki);
+@gradient-brown-bronze-taupe: linear-gradient(var(--gradient-direction), @brown, @bronze, @taupe);
+@gradient-bronze-taupe-nude: linear-gradient(var(--gradient-direction), @bronze, @taupe, @nude);
+@gradient-taupe-nude-champagne: linear-gradient(var(--gradient-direction), @taupe, @nude, @champagne);
+@gradient-nude-champagne-seashell: linear-gradient(var(--gradient-direction), @nude, @champagne, @seashell);
+@gradient-steel-charcoal-windstorm: linear-gradient(var(--gradient-direction), @steel, @charcoal, @windstorm);
+@gradient-army-olive-khaki: linear-gradient(var(--gradient-direction), @army, @olive, @khaki);
+@gradient-terracotta-coral-orange: linear-gradient(var(--gradient-direction), @terracotta, @coral, @orange);
+
+@gradient-transitions: lime-green, green-emerald, emerald-teal, blue-cyan, teal-cyan, cyan-blue, cobalt-indigo,
+indigo-violet, almost-violet, violet-pink, pink-magenta, magenta-violet, crimson-red, red-crimson,
+clown-red, orange-amber, amber-yellow, yellow-amber, brown-bronze, olive-army, steel-charcoal, mauve-violet, taupe-bronze,
+champagne-nude, khaki-sand, charcoal-steel, bronze-brown, windstorm-steel, nude-seashell, terracotta-coral, coral-orange,
+army-olive, seashell-champagne, sand-khaki, lime-green-emerald, green-emerald-teal, emerald-teal-cyan,
+cyan-blue-cobalt, blue-cobalt-indigo, cobalt-indigo-violet, indigo-violet-pink, violet-pink-magenta, pink-magenta-crimson,
+magenta-crimson-red, crimson-red-orange, red-orange-amber, orange-amber-yellow, amber-yellow-sand, yellow-sand-khaki, brown-bronze-taupe,
+bronze-taupe-nude, taupe-nude-champagne, nude-champagne-seashell, steel-charcoal-windstorm, army-olive-khaki, terracotta-coral-orange;
+
+@gradient-blue-coral: linear-gradient(45deg, #12c2e9, #c471ed, #f64f59);
+@gradient-sunset-dream: linear-gradient(45deg, #ff7e5f, #feb47b, #ffcda5);
+@gradient-deep-space: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+@gradient-emerald-green: linear-gradient(45deg, #16a085, #2ecc71, #4cb8c4);
+@gradient-purple-love: linear-gradient(45deg, #cc2b5e, #753a88, #4a235a);
+@gradient-cherry-glow: linear-gradient(45deg, #f05053, #e1eec3, #a7bf5d);
+@gradient-cosmic-fusion: linear-gradient(45deg, #ff00cc, #333399, #0033ff);
+@gradient-sunny-morning: linear-gradient(45deg, #f6d365, #fda085, #fbc2eb);
+@gradient-winter-frost: linear-gradient(45deg, #a1c4fd, #c2e9fb, #e2ebf0);
+@gradient-neon-pulse: linear-gradient(45deg, #00fffc, #fc00ff, #fffc00);
+@gradient-royal-elegance: linear-gradient(45deg, #141e30, #243b55, #4286f4);
+@gradient-sunset: linear-gradient(to right, #fdc830, #f37335);
+@gradient-emerald-sea: linear-gradient(to right, #00f260, #0575e6);
+
+@gradient-themed: blue-coral, sunset-dream, deep-space, emerald-green, purple-love, cherry-glow, cosmic-fusion, sunny-morning, winter-frost, 
+neon-pulse, royal-elegance, sunset, emerald-sea;
+

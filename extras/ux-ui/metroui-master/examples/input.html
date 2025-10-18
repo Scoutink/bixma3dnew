@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols&display=swap" rel="stylesheet">
+    
+    <link href="../lib/metro.css" rel="stylesheet">
+
+    <title>Test Input - Metro UI :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="cloak h-100-vh">
+<nav data-role="appbar" class="border-bottom bd-default" data-expand="true">
+    <div class="app-bar-item-static no-hover">
+        <div class="text-leader">Component Name</div>
+    </div>
+    <div class="app-bar-item-static no-hover">
+        <input type="checkbox" data-role="theme-switcher"/>
+    </div>
+</nav>
+
+<div class="container h-100 d-flex flex-column flex-center">
+    <div class="example">
+        <input type="text" data-role="input">
+    </div>
+
+    <div class="example mt-4">
+        <input type="text" data-role="input" data-prepend-options="http://,https://">
+        <input type="text" data-role="input" data-append-options="http://,https://">
+    </div>
+
+    <div class="example mt-4">
+        <input type="text" data-role="input" data-custom-buttons='[{"text": "✓", "cls": "success", "onclick": "alert(\"Confirmed\")"}]'>
+    </div>
+</div>
+
+<script src="../lib/metro.js"></script>
+</body>
+</html>

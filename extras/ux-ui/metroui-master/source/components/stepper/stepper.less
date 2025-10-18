@@ -1,0 +1,90 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --stepper-step-background: #515151;
+    --stepper-step-color: #FFFFFF;
+    --stepper-step-background-complete: #00B500;
+    --stepper-step-color-complete: #FFFFFF;
+    --stepper-step-background-current: #94B6FF;
+    --stepper-step-color-current: #FFFFFF;
+    --stepper-line-color: #e3e3e3;
+}
+
+.dark-side {
+    --stepper-step-background: #515151;
+    --stepper-step-color: #FFFFFF;
+    --stepper-step-background-complete: #00B500;
+    --stepper-step-color-complete: #FFFFFF;
+    --stepper-step-background-current: #94B6FF;
+    --stepper-step-color-current: #FFFFFF;
+    --stepper-line-color: #2b2d30;
+}
+
+.stepper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    position: relative;
+    margin: .5rem 0;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        position: absolute;
+        height: 1px;
+        background-color: var(--stepper-line-color);
+        top: 50%;
+        left: 0;
+        z-index: 0;
+    }
+
+    &.vertical {
+        flex-flow: column nowrap;
+    }
+}
+
+.stepper {
+    .step {
+        display: block;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        z-index: 1;
+        background-color: var(--stepper-step-background);
+        color: var(--stepper-step-color);
+        cursor: pointer;
+        position: relative;
+
+        span {
+            display: block;
+        }
+
+        &.complete {
+            background-color: var(--stepper-step-background-complete);
+            color: var(--stepper-step-color-complete);
+        }
+
+        &.current {
+            background-color: var(--stepper-step-background-current);
+            color: var(--stepper-step-color-current);
+        }
+    }
+
+    &.cycle {
+        .step {
+            border-radius: 50%;
+        }
+    }
+
+    &.diamond {
+        .step {
+            .rotate(45deg);
+            span {
+                .rotate(-45deg);
+            }
+        }
+    }
+}

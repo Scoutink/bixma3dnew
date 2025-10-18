@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+
+    <title>Test Checkbox - Metro UI :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak">
+<nav data-role="appbar">
+    <span class="app-bar-item">Checkbox</span>
+    <div class="app-bar-item no-hover">
+        <input type="checkbox" data-role="theme-switcher" data-state="light"/>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Checkbox test page</h1>
+
+    <div class="mt-4">
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox">
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox" checked>
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox" disabled>
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox" disabled checked>
+    </div>
+
+    <div class="mt-4" style="--checkbox-color: red; --checkbox-background: transaprent;">
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox">
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox" checked>
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox" disabled>
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox" disabled checked>
+    </div>
+
+    <div class="mt-4 border-top bd-default pt-4">
+        <div>
+            <button class="button" onclick="Metro.getPlugin('#chk1', 'checkbox').toggle(-1)">Indeterminate</button>
+            <button class="button" onclick="Metro.getPlugin('#chk1', 'checkbox').toggle(1)">Checked</button>
+            <button class="button" onclick="Metro.getPlugin('#chk1', 'checkbox').toggle(0)">UnChecked</button>
+            <button class="button" onclick="Metro.getPlugin('#chk1', 'checkbox').toggle()">Toggle</button>
+        </div>
+        <br>
+        <div>
+            <input type="checkbox" data-role="checkbox" id="chk1" data-caption="Remote controlled">
+        </div>
+    </div>
+
+    <div class="mt-4 border-top bd-default pt-4">
+        <h3>Three state</h3>
+        <div>
+            <input type="checkbox" data-role="checkbox" data-three-state="true" data-append="Checkbox1">
+        </div>
+    </div>
+
+    <div class="mt-4 border-top bd-default pt-4">
+        <h3>Sizes</h3>
+        <div>
+            <input type="checkbox" data-role="checkbox" data-append="small" class="small">
+            <input type="checkbox" data-role="checkbox" data-append="medium" class="medium">
+            <input type="checkbox" data-role="checkbox" data-append="default">
+            <input type="checkbox" data-role="checkbox" data-append="large" class="large">
+            <input type="checkbox" data-role="checkbox" data-append="largest" class="largest"> 
+        </div>
+    </div>
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --wheel-picker-border-radius: 4px;
+    --wheel-picker-color: #191919;
+    --wheel-picker-selected-background: rgba(175, 175, 175, 0.5);
+}
+
+.dark-side {
+    --wheel-picker-color: #dbdfe7;
+    --wheel-picker-selected-background: rgba(78,81,88, .5);
+}
+
+.wheel-picker {
+    --picker-height: var(--control-height, 36px);
+    --picker-font-size: 16px;
+    
+    display: block;
+    position: relative;
+    width: 100%;
+    min-width: calc(var( --picker-height) * 6);
+    cursor: default;
+    background: var(--input-background);
+    color: var(--wheel-picker-color);
+    height: var( --picker-height);
+    user-select: none;
+    border-radius: var(--wheel-picker-border-radius);
+    
+    &.small {
+        --picker-height: var(--control-height-small);
+        --picker-font-size: 12px;       
+    }
+    &.medium {
+        --picker-height: var(--control-height-medium);
+        --picker-font-size: 14px;       
+    }
+    &.large {
+        --picker-height: var(--control-height-large);
+        --picker-font-size: 16px;       
+    }
+    &.largest {
+        --picker-height: var(--control-height-largest);
+        --picker-font-size: 20px;       
+    }
+}
+
+.wheel-picker {
+    .select-wrapper {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        height: auto;
+        z-index: 3;
+        width: 100%;
+        background: var(--input-background);
+        border-radius: var(--wheel-picker-border-radius);
+        overflow: hidden;
+        box-shadow: 0 1px 3px 0 var(--shadow-color-normal), 0 1px 2px -1px var(--shadow-color-normal);
+    }
+
+    .select-block {
+        position: relative;
+        display: flex;
+        flex-flow: row nowrap;
+        width: 100%;
+        flex-shrink: 0;
+        background: transparent;
+
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            z-index: 0;
+            height: 40px;
+            background: var(--wheel-picker-selected-background);
+            top: 50%;
+            left: 0;
+            .translateY(-50%);
+            width: 100%;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none inside;
+            display: block;
+            text-align: center;
+            height: 100%;
+            z-index: 1;
+            flex: 1;
+            border: 1px solid var(--border-color);
+
+            overflow-y: auto;
+            .hideScrollBars();
+
+            li {
+                display: block;
+                height: 40px;
+                line-height: 40px;
+                font-size: .9em;
+
+                &.active {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .action-block {
+        display: flex;
+        flex-flow: row nowrap;
+        position: relative;
+        width: 100%;
+        background: transparent;
+
+        & > * {
+            flex: 1;
+        }
+    }
+
+    &.drop-up-select {
+        .select-wrapper {
+            .translate3d(0, -100%, 0);
+        }
+    }
+    
+    &.drop-as-dialog {
+        .select-wrapper {
+        }
+    }
+    
+    &.pill-input {
+        border-radius: calc(var(--picker-height) * 0.44);;
+    }
+}

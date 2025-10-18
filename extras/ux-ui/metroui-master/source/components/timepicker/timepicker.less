@@ -1,0 +1,103 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.time-picker {
+    .hideElement(input);
+
+    input:focus ~ .time-wrapper {
+        .focus-show(@light-gray);
+    }
+
+    .time-wrapper {
+        display: inline-flex;
+        flex-flow: row nowrap;
+        position: relative;
+        border: 1px solid var(--border-color);
+        width: 100%;
+        overflow: hidden;
+        height: 100%;
+        border-radius: var(--wheel-picker-border-radius);
+    }
+
+    .hours, .minutes, .seconds {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex: 1;
+        border: 1px solid var(--border-color);
+        text-align: center;
+        height: 100%;
+        position: relative;
+        font-size: var(--picker-font-size);
+    }
+
+    &.show-labels {
+        .hours, .minutes, .seconds {
+            --before-position: 4px;
+            
+            &::before {
+                content: attr(data-title);
+                position: absolute;
+                display: block;
+                font-size: calc(var(--picker-font-size) * .65);
+                line-height: 12px;
+                left: 50%;
+                bottom: var( --before-position);
+                transform: translateX(-50%);
+            }
+        }
+        
+        
+        &.small {
+            .hours, .minutes, .seconds {
+                --before-position: 0px;
+            }
+        }
+        
+        &.medium {
+            .hours, .minutes, .seconds {
+                --before-position: 2px;
+            }
+        }
+        
+        &.large {
+            .hours, .minutes, .seconds {
+                --before-position: 10px;
+            }
+        }
+    }
+
+    .action-block {
+        border: 1px solid var(--border-color);
+        border-radius: var(--wheel-picker-border-radius);
+    }
+
+    .button {
+        margin: 2px;
+
+        .icon {
+            font-family: "Segoe UI Symbol", serif;
+        }
+    }
+
+    li {
+        cursor: pointer;
+    }
+
+    &.pill-input {
+        --picker-border-radius: calc(var(--picker-height) * 0.44);
+        
+        .time-wrapper {
+            border-radius: var(--wheel-picker-border-radius);
+
+            div:first-child {
+                border-top-left-radius: var(--wheel-picker-border-radius);
+                border-bottom-left-radius: var(--wheel-picker-border-radius);
+            }
+            div:last-child {
+                border-top-right-radius: var(--wheel-picker-border-radius);
+                border-bottom-right-radius: var(--wheel-picker-border-radius);
+            }
+        }
+    }
+}

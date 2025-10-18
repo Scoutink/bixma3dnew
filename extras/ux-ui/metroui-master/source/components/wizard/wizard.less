@@ -1,0 +1,170 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --wizard-height: 200px;
+    --wizard-background: #ffffff;
+    --wizard-color: #191919;
+    --wizard-border-color: #f3f3f3;
+    --wizard-number-color: #a8a8a8;
+}
+
+.dark-side {
+    --wizard-background: #1e1f22;
+    --wizard-color: #dbdfe7;
+    --wizard-border-color: #484b4c;
+}
+
+.wizard {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    background-color: var(--wizard-background);
+    color: var(--wizard-color);
+    min-height: var(--wizard-height);
+    height: auto;
+    border: 1px solid var(--wizard-border-color);
+    counter-reset: wizard-step;
+    position: relative;
+}
+
+.wizard {
+    & > section, & > .section {
+
+        counter-increment: wizard-step;
+        display: block;
+        position: relative;
+        border-left: var(--wizard-border-color) solid;
+        border-left-width: 4px;
+        width: 0;
+        transition: @transition-width;
+
+        &::before {
+            display: none;
+            content: counter(wizard-step);
+            position: absolute;
+            bottom: 20px;
+            width: 25px;
+            text-align: center;
+            left: -25px;
+            z-index: 1;
+            color: var(--wizard-number-color);
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .page-content {
+            padding: 1rem 1rem 4.25rem;
+            display: none;
+            overflow: hidden;
+        }
+
+        &.current {
+            width: 100%;
+            border: 0!important;
+
+            .page-content {
+                display: block;
+            }
+
+            &::before {
+                display: block;
+                left: 0;
+                color: @white;
+                background-color: @cyan;
+            }
+        }
+
+        &.current, &.complete {
+            transition: @transition-width;
+        }
+
+        &.complete {
+            cursor: pointer;
+        }
+    }
+
+    .action-bar {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: right;
+        position: absolute;
+        bottom: 1rem;
+        left: 41px;
+        .clear();
+
+        & > * {
+            margin: 1px;
+        }
+        
+        .wizard-btn-help, 
+        .wizard-btn-next, 
+        .wizard-btn-prev, 
+        .wizard-btn-finish 
+        {
+            font-size: 20px!important;
+            font-family: sans-serif;
+        }
+    }
+}
+
+.wizard {
+    & > section {
+        border-color: darken(@cyan, 50%);
+        &:nth-child(1) {border-color: @cyan;}
+        &:nth-child(2) {border-color: darken(@cyan, 5%);}
+        &:nth-child(3) {border-color: darken(@cyan, 10%);}
+        &:nth-child(4) {border-color: darken(@cyan, 15%);}
+        &:nth-child(5) {border-color: darken(@cyan, 20%);}
+        &:nth-child(6) {border-color: darken(@cyan, 25%);}
+        &:nth-child(7) {border-color: darken(@cyan, 30%);}
+        &:nth-child(8) {border-color: darken(@cyan, 35%);}
+        &:nth-child(9) {border-color: darken(@cyan, 40%);}
+        &:nth-child(10) {border-color: darken(@cyan, 50%);}
+
+        &.complete {
+            border-color: darken(@light-gray, 50%);
+            &:nth-child(1) {border-color: @light-gray;}
+            &:nth-child(2) {border-color: darken(@light-gray, 5%);}
+            &:nth-child(3) {border-color: darken(@light-gray, 10%);}
+            &:nth-child(4) {border-color: darken(@light-gray, 15%);}
+            &:nth-child(5) {border-color: darken(@light-gray, 20%);}
+            &:nth-child(6) {border-color: darken(@light-gray, 25%);}
+            &:nth-child(7) {border-color: darken(@light-gray, 30%);}
+            &:nth-child(8) {border-color: darken(@light-gray, 35%);}
+            &:nth-child(9) {border-color: darken(@light-gray, 40%);}
+            &:nth-child(10) {border-color: darken(@light-gray, 50%);}
+        }
+    }
+}
+
+.wizard {
+    [class*=wizard-btn] {
+        //&.disabled {
+        //    opacity: .1;
+        //}
+    }
+}
+
+.wide-wizard() {
+    flex-flow: row nowrap;
+
+    & > section {
+        border-left-width: 25px;
+
+        &::before {
+            display: block;
+        }
+    }
+}
+
+each(@media-rules, {
+    @container (min-width: @value) {
+        .wizard {
+            &.wizard-wide-@{key} {
+                .wide-wizard();
+            }
+        }
+    }
+})
+

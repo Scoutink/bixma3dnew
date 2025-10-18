@@ -1,0 +1,24 @@
+:root {
+    --gravatar-border-color: #efefef;
+}
+
+.dark-side {
+    --gravatar-border-color: #2b2d30;
+}
+
+.gravatar {
+    object-fit: cover;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    img {
+        object-fit: cover;
+    }
+    
+    &.avatar {
+        border-radius: 50%;
+        border: 2px solid #fff;
+        overflow: hidden;
+    }
+}

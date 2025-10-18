@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-side">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+    <link href="../lib/icons.css" rel="stylesheet">
+
+    <title>Test Chart - Metro UI :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="cloak h-100-vh">
+<nav data-role="appbar" class="border-bottom bd-default" data-expand="true">
+    <div class="app-bar-item-static no-hover">
+        <div class="text-leader">Chat Demo</div>
+    </div>
+    <div class="app-bar-item-static no-hover ml-auto">
+        <input type="checkbox" data-role="theme-switcher"/>
+    </div>
+</nav>
+<div class="container h-100 d-flex flex-center">
+    <div id="chat"
+         data-role="chat, draggable"
+         data-width="640"
+         data-height="860"
+         data-title="Direct chat"
+         data-random-color="true"
+         data-welcome="Welcome to the chat!"
+         data-on-send="sendMessage"
+         data-on-message="onMessage"
+         data-avatar="<span>👦</span>"
+         data-welcome-avatar="<span>📎</span>"
+         data-readonly="false"
+         data-send-mode="control+enter"
+    ></div>
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+    var messages = [
+        "Confucius says: vision and om."
+        , "Be unconditional."
+        , "Scholars, winds, and inward lovers will always protect them."
+        , "The meditation of hurting yogis is closest."
+        , "One mediocre silence i give you: meet each other."
+        , "You have to preach, and love blessing by your rising."
+        , "Acceptance, resurrection and a boundless great unknown."
+        , "Demissios mori, tanquam gratis buxum."
+        , "Aye, ah."
+        , "Stutter calmly like a salty dubloon."
+        , "Devastation at the holodeck was the rumour of faith, avoided to a solid planet."
+        , "Solitudos volare, tanquam brevis torquis."
+        , "When mashing small shrimps, be sure they are room temperature."
+        , "Try fluffing cheesecake garnished with cocktail sauce, blended with onion powder."
+        , "You have to sit, and know core by your balancing."
+        , "Gar, mighty lubber. you won't crush the pacific ocean."
+    ];
+
+    var opponent = {
+        name: "Wolfy",
+        avatar:  "<span>🐺</span>",
+    };
+
+    function onMessage(msg, el){
+    }
+
+    function sendMessage(msg){
+        var chat = Metro.getPlugin("#chat", "chat");
+        setTimeout(function(){
+            var _m = {
+                name: opponent.name,
+                avatar: opponent.avatar,
+                time: (new Date()),
+                text: messages[$.random(0, messages.length - 1)],
+                position: "left"
+            };
+            chat.add(_m);
+        }, $.random(1000, 3000));
+    }
+</script>
+</body>
+</html>

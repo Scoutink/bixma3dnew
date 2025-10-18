@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+
+    <title>Test Calendar picker - Metro UI :: Popular HTML, CSS and JS library</title>
+    <style>
+        .prepend {
+            background: red!important;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <nav data-role="appbar">
+        <span class="app-bar-item">Calendar Picker</span>
+        <div class="app-bar-item no-hover">
+            <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+        </div>
+    </nav>
+    <h1>Calendar picker test page</h1>
+
+    <div>
+<!--        <input data-role="calendar-picker" data-prepend="prepend" data-dialog-mode="true" data-overlay-color="#ff00ff">-->
+<!--        <input data-role="calendar-picker" data-label="Select date:">-->
+    </div>
+
+    <div class="example">
+        <div class="row">
+            <div class="cell-md-4">
+                <p>Calendar</p>
+                <div data-role="calendar" id="cal1"></div>
+            </div>
+            <div class="cell-md-4">
+                <p>DD, MMM YYYY</p>
+                <input type="text" data-role="calendar-picker" value="1972/12/21" data-format="DD, MMM YYYY" data-dialog-point="360">
+            </div>
+            <div class="cell-md-4" lang="ua">
+                <p>DD/MM/YYYY</p>
+                <input type="text" 
+                       data-role="calendar-picker" 
+                       data-dialog-point="360" 
+                       data-min-date="8/07/2025" 
+                       data-max-date="15/07/2025" 
+                       data-input-format="DD/MM/YYYY"
+                > 
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+</script>
+</body>
+</html>

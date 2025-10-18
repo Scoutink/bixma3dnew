@@ -1,0 +1,74 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.date-picker {
+    .hideElement(input);
+    
+    input:focus ~ .time-wrapper {
+        .focus-show(@light-gray);
+    }
+
+    .date-wrapper {
+        display: inline-flex;
+        flex-flow: row nowrap;
+        position: relative;
+        border: 1px solid var(--border-color);
+        width: 100%;
+        overflow: hidden;
+        height: 100%;
+        border-radius: var(--wheel-picker-border-radius);
+    }
+
+    .month, .day, .year {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        border: 1px solid var(--border-color);
+        text-align: center;
+        height: 100%;
+        font-size: var(--picker-font-size);
+    }
+
+    .month {
+        flex-grow: 2;
+    }
+
+    .sel-month {
+        flex-grow: 2!important;
+    }
+    
+    .action-block {
+        border: 1px solid var(--border-color);
+        border-radius: var(--wheel-picker-border-radius);
+    } 
+    
+    .button {
+        margin: 2px;        
+        
+        .icon {
+            //font-family: "Segoe UI Symbol", serif;
+        }
+    }
+    
+    li {
+        cursor: pointer;
+    }
+
+    &.pill-input {
+        --picker-border-radius: calc(var(--picker-height) * 0.44);
+
+        .date-wrapper {
+            border-radius: var(--picker-border-radius);
+
+            div:first-child {
+                border-top-left-radius: var(--picker-border-radius);
+                border-bottom-left-radius: var(--picker-border-radius);
+            }
+            div:last-child {
+                border-top-right-radius: var(--picker-border-radius);
+                border-bottom-right-radius: var(--picker-border-radius);
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+    <link href="../lib/icons.css" rel="stylesheet">
+
+    <title>Audio Button - Metro UI :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="cloak h-100-vh">
+<nav data-role="appbar" class="border-bottom bd-default" data-expand="true">
+    <div class="app-bar-item-static no-hover">
+        <div class="text-leader">Audio Button</div>
+    </div>
+    <div class="app-bar-item-static no-hover ml-auto">
+        <input type="checkbox" data-role="theme-switcher"/>
+    </div>
+</nav>
+
+<div class="container h-100 d-flex flex-center">
+    <button id="btn1" data-role="audio-button"
+            data-audio-src="https://cdn.bensound.com/bensound-prism.mp3"
+            data-audio-volume=".5"
+            data-on-progress="onProgress"
+    >
+        <span class="caption">Play Sound</span>
+        <span class="percent" data-role="donut" data-size="26"></span>
+    </button>
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+    function onProgress(dur, pos, percent, btn){
+        Metro.getPlugin(".percent", "donut").val(percent)   
+    }
+</script>
+</body>
+</html>

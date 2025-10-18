@@ -1,0 +1,232 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+:root {
+    --keypad-background: var(--input-background);
+    --keypad-color: var(--input-color);
+    --keypad-border-color: #E8E8E8;
+}
+
+.dark-side {
+    --keypad-background: var(--input-background);
+    --keypad-color: var(--input-color);
+    --keypad-border-color: #4A4D51;
+}
+
+.keypad {
+    background: var(--keypad-background);
+    color: var(--keypad-color);
+    border: 1px solid var(--keypad-border-color);
+    border-radius: var(--input-border-radius);
+    position: relative;
+}
+
+.keypad {
+
+    input {
+        border: 0;
+    }
+
+    .button-group {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        height: calc(100% - 4px);
+    }
+
+    .button {
+        background-color: transparent;
+        border-color: transparent;
+        color: var(--input-color);
+        height: calc(100% - 0px);
+        aspect-ratio: 1;
+        border: 1px solid var(--input-border-color);
+        font-size: var(--input-font-size);
+        padding: 0;
+        cursor: pointer;
+        z-index: 1;
+
+        &:focus, &:active {
+            box-shadow: none!important;
+        }
+    }
+
+    .keys {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: auto;
+        float: left;
+        background-color: inherit;
+        color: inherit;
+        border: none;
+        padding: 0;
+        user-select: none;
+        z-index: @zindex-dropdown;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        box-shadow: 0 1px 3px 0 var(--shadow-color-normal), 0 1px 2px -1px var(--shadow-color-normal);
+
+        &::before {
+            content: '';
+            position: absolute;
+            background-color: inherit;
+            width: 10px;
+            height: 10px;
+            border: 1px solid var(--keypad-border-color);
+            z-index: 2;
+            left: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            margin-top: -5px;
+            border-top-color: transparent;
+            border-right-color: transparent;
+            .rotate(45deg);
+        }
+
+        &.open {
+            display: flex;
+        }
+    }
+    
+    .key {
+        display: block;
+        position: relative;
+        float: left;
+        background-color: inherit;
+        color: inherit;
+        margin: 0;
+        text-align: center;
+        border: 1px solid var(--keypad-border-color);
+        font-size: 1rem;
+        cursor: pointer;
+        transition: @transition-short;
+        flex-shrink: 0;
+
+        &:hover {
+            .focus-show(@light-gray);
+            transform: scale(1.1);
+            z-index: 2;
+        }
+    }
+    
+    .keys {
+        
+        &.right {
+            left: 100%;
+            transform: translateY(-50%);
+            top: 50%;
+            margin-left: -1px;
+        }
+
+        &.bottom {
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%;
+            margin-top: -1px;
+
+            &::before {
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                .rotate(135deg);
+            }
+        }
+
+        &.top {
+            top: 0;
+            left: 50%;
+            transform: translateY(-100%) translateX(-50%);
+            margin-top: 1px;
+
+            &::before {
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                .rotate(-45deg);
+            }
+        }
+
+        &.left {
+            left: 0;
+            transform: translateY(-50%) translateX(-100%) ;
+            top: 50%;
+            margin-left: 1px;
+
+            &::before {
+                top: 50%;
+                transform: translateY(-50%);
+                left: 100%;
+                margin-left: -5px;
+                .rotate(225deg);
+            }
+        }
+
+        &.bottom-left {
+            top: 100%;
+            left: 0;
+            margin-top: -1px;
+
+            &::before {
+                top: 0;
+                left: .625rem;
+                .rotate(135deg);
+            }
+        }
+
+        &.bottom-right {
+            top: 100%;
+            left: 100%;
+            transform: translateX(-100%);
+            margin-top: -1px;
+
+            &::before {
+                top: 0;
+                left: 100%;
+                margin-left: -1rem;
+                .rotate(135deg);
+            }
+        }
+
+        &.top-left {
+            top: 0;
+            left: 0;
+            transform: translateY(-100%);
+            margin-top: 1px;
+
+            &::before {
+                top: 100%;
+                left: .625rem;
+                .rotate(-45deg);
+            }
+        }
+
+        &.top-right {
+            top: 0;
+            left: 100%;
+            transform: translateY(-100%) translateX(-100%);
+            margin-top: 1px;
+
+            &::before {
+                top: 100%;
+                left: 100%;
+                margin-left: -1rem;
+                .rotate(-45deg);
+            }
+        }
+    }
+
+    &.pill-input {
+        --input-border-radius: calc(var(--input-height) * 0.44);
+
+        .button {
+            border-radius: 50%;
+        }
+    }
+}
